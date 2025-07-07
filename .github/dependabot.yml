@@ -1,0 +1,23 @@
+version: 2
+updates:
+- package-ecosystem: gradle
+  directory: "/kotlin-multiplatform"
+  schedule:
+    interval: weekly
+  labels: 
+    - 'kotlin multiplatform'
+    - 'dependencies'
+  open-pull-requests-limit: 3
+  assignees:
+    - "yasanglass"
+
+- package-ecosystem: "github-actions"
+  directory: "/"
+  schedule:
+    interval: weekly
+  labels: 
+    - 'github actions'
+    - 'dependencies'
+  open-pull-requests-limit: 3
+  assignees:
+    - "yasanglass"
