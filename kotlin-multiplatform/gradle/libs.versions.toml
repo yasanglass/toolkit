@@ -5,6 +5,7 @@ android-sdk-min = "29"
 androidx-lifecycle = "2.9.1"
 jetbrains-kotlin = "2.2.0"
 jetbrains-compose = "1.8.2"
+vanniktech-maven-publish = "0.30.0"
 
 [libraries]
 androidx-lifecycle-runtime-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
@@ -17,3 +18,4 @@ jetbrains-kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", ve
 android-kotlin-multiplatform-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
 jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "jetbrains-compose" }
 jetbrains-kotlin-plugin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "jetbrains-kotlin" }
+vanniktech-maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "vanniktech-maven-publish" }
