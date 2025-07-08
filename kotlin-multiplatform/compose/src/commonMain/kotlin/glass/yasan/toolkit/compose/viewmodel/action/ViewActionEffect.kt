@@ -1,4 +1,4 @@
-package glass.yasan.toolkit.kotlin.multiplatform.compose.viewmodel.action
+package glass.yasan.toolkit.compose.viewmodel.action
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect

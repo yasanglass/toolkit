@@ -1,11 +1,11 @@
-package glass.yasan.toolkit.kotlin.multiplatform.compose.viewmodel
+package glass.yasan.toolkit.compose.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import glass.yasan.toolkit.kotlin.multiplatform.compose.viewmodel.action.ViewAction
-import glass.yasan.toolkit.kotlin.multiplatform.compose.viewmodel.event.DelicateViewEventApi
-import glass.yasan.toolkit.kotlin.multiplatform.compose.viewmodel.event.ViewEvent
-import glass.yasan.toolkit.kotlin.multiplatform.compose.viewmodel.state.ViewState
+import glass.yasan.toolkit.compose.viewmodel.action.ViewAction
+import glass.yasan.toolkit.compose.viewmodel.event.DelicateViewEventApi
+import glass.yasan.toolkit.compose.viewmodel.event.ViewEvent
+import glass.yasan.toolkit.compose.viewmodel.state.ViewState
 import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow

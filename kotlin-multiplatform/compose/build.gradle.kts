@@ -10,7 +10,7 @@ plugins {
     alias(libs.plugins.vanniktech.maven.publish)
 }
 
-group = "glass.yasan.toolkit.kotlin.multiplatform"
+group = "glass.yasan.toolkit"
 version = "0.0.3"
 
 kotlin {
@@ -50,7 +50,7 @@ kotlin {
 }
 
 android {
-    namespace = "glass.yasan.toolkit.kotlin.multiplatform.compose"
+    namespace = "glass.yasan.toolkit.compose"
     compileSdk = libs.versions.android.sdk.compile.get().toInt()
 
     defaultConfig {

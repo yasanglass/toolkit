@@ -1,4 +1,4 @@
-package glass.yasan.toolkit.kotlin.multiplatform.compose.viewmodel.event
+package glass.yasan.toolkit.compose.viewmodel.event
 
 @RequiresOptIn(level = RequiresOptIn.Level.ERROR)
 @Retention(AnnotationRetention.BINARY)
