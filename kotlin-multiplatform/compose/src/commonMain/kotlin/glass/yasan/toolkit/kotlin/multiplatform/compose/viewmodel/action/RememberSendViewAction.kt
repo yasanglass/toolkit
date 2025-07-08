@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(DelicateViewEventApi::class)
 @Composable
-fun <S : ViewState, U : ViewEvent, D : ViewAction> rememberSendViewEvent(
+public fun <S : ViewState, U : ViewEvent, D : ViewAction> rememberSendViewEvent(
     viewModel: ToolkitViewModel<S, U, D>,
 ): ((U) -> Unit) {
     val scope = rememberCoroutineScope()

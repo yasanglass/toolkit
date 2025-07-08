@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 
 @Composable
-fun <A : ViewAction> ViewActionEffect(
+public fun <A : ViewAction> ViewActionEffect(
     viewAction: Flow<A>,
     onViewAction: (A) -> Unit,
 ) {

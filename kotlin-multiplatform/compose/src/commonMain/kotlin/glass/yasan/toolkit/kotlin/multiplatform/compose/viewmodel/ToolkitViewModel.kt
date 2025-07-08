@@ -18,18 +18,18 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
-abstract class ToolkitViewModel<
+public abstract class ToolkitViewModel<
         S : ViewState,
         E : ViewEvent,
         A : ViewAction,
         > : ViewModel() {
 
     private val _viewState: MutableStateFlow<S> = MutableStateFlow(defaultViewState())
-    val viewState: StateFlow<S> = _viewState.asStateFlow()
+    public val viewState: StateFlow<S> = _viewState.asStateFlow()
 
-    abstract fun defaultViewState(): S
+    public abstract fun defaultViewState(): S
 
-    fun updateViewState(body: (state: S) -> S) {
+    public fun updateViewState(body: (state: S) -> S) {
         _viewState.value = body(_viewState.value)
     }
 
@@ -43,16 +43,16 @@ abstract class ToolkitViewModel<
     }
 
     @DelicateViewEventApi
-    fun sendViewEvent(event: E) {
+    public fun sendViewEvent(event: E) {
         _viewEvent.trySend(event)
     }
 
-    abstract suspend fun onViewEvent(event: E)
+    public abstract suspend fun onViewEvent(event: E)
 
     private val _viewAction: Channel<A> = Channel(Channel.Factory.BUFFERED)
-    val viewAction: Flow<A> = _viewAction.receiveAsFlow()
+    public val viewAction: Flow<A> = _viewAction.receiveAsFlow()
 
-    fun sendViewAction(action: A) {
+    public fun sendViewAction(action: A) {
         _viewAction.trySend(action)
     }
 
@@ -62,7 +62,7 @@ abstract class ToolkitViewModel<
         }
     }
 
-    fun <T> Flow<T>.stateIn(initialValue: T): StateFlow<T> =
+    public fun <T> Flow<T>.stateIn(initialValue: T): StateFlow<T> =
         stateIn(
             scope = viewModelScope,
             started = SharingStarted.Companion.WhileSubscribed(5.seconds),
