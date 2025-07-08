@@ -4,3 +4,7 @@
 [![Maven Central Version](https://img.shields.io/maven-central/v/glass.yasan.toolkit.kotlin.multiplatform/compose)](https://central.sonatype.com/artifact/glass.yasan.toolkit.kotlin.multiplatform/compose)
 
 Personal development toolkit.
+
+```kotlin
+implementation("glass.yasan.toolkit.kotlin.multiplatform:compose:<version>")
+```
