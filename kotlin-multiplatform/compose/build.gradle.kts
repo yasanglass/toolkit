@@ -1,10 +1,12 @@
 import com.vanniktech.maven.publish.SonatypeHost
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.jetbrains.kotlin.multiplatform)
-    alias(libs.plugins.android.kotlin.multiplatform.library)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.compose)
-    alias(libs.plugins.jetbrains.kotlin.plugin.compose)
+    alias(libs.plugins.jetbrains.kotlin.compose)
     alias(libs.plugins.vanniktech.maven.publish)
 }
 
@@ -12,11 +14,14 @@ group = "glass.yasan.toolkit.kotlin.multiplatform"
 version = "0.0.1"
 
 kotlin {
-    androidLibrary {
-        namespace = "glass.yasan.toolkit.kotlin.multiplatform.compose"
-        minSdk = libs.versions.android.sdk.min.get().toInt()
-        compileSdk = libs.versions.android.sdk.compile.get().toInt()
+    androidTarget {
+        publishLibraryVariants("release")
+        @OptIn(ExperimentalKotlinGradlePluginApi::class)
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
+        }
     }
+    jvm()
 
     sourceSets {
         commonMain {
@@ -32,6 +37,24 @@ kotlin {
                 implementation(libs.androidx.lifecycle.viewmodel)
             }
         }
+        jvmMain.dependencies {
+            implementation(compose.desktop.common)
+            implementation(libs.jetbrains.kotlinx.coroutines.swing)
+        }
+    }
+}
+
+android {
+    namespace = "glass.yasan.toolkit.kotlin.multiplatform.compose"
+    compileSdk = libs.versions.android.sdk.compile.get().toInt()
+
+    defaultConfig {
+        minSdk = libs.versions.android.sdk.min.get().toInt()
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 }
 
