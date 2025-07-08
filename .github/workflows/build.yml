@@ -29,3 +29,12 @@ jobs:
 
       - name: Gradle Build
         run: cd kotlin-multiplatform && ./gradlew build
+
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: kotlin-multiplatform-build-artifacts
+          path: |
+            kotlin-multiplatform/compose/build/libs/
+            kotlin-multiplatform/compose/build/outputs/
+          retention-days: 30
