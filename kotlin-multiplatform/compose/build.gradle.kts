@@ -71,7 +71,7 @@ mavenPublishing {
 
     pom {
         name = "Toolkit"
-        description = "Personal toolkit for Kotlin Multiplatform"
+        description = "Personal development toolkit for Kotlin Multiplatform"
         inceptionYear = "2025"
         url = "https://github.com/yasanglass/toolkit/"
         licenses {
