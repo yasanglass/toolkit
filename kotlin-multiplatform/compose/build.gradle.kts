@@ -11,7 +11,7 @@ plugins {
 }
 
 group = "glass.yasan.toolkit"
-version = "0.0.3"
+version = "0.0.5"
 
 kotlin {
     explicitApi()
