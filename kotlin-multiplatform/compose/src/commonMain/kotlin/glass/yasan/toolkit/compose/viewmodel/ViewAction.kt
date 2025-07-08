@@ -1,4 +1,4 @@
-package glass.yasan.toolkit.compose.viewmodel.action
+package glass.yasan.toolkit.compose.viewmodel;
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -8,12 +8,15 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 
+public interface ViewAction
+
 @Composable
 public fun <A : ViewAction> ViewActionEffect(
     viewAction: Flow<A>,
     onViewAction: (A) -> Unit,
 ) {
     val lifecycle = LocalLifecycleOwner.current.lifecycle
+
     LaunchedEffect(viewAction, lifecycle) {
         viewAction
             .flowWithLifecycle(lifecycle)
