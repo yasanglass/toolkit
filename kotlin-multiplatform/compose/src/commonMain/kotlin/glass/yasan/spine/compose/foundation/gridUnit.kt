@@ -4,6 +4,10 @@ import androidx.compose.runtime.Stable
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
+@Deprecated(
+    message = "Use dp value instead",
+    ReplaceWith("8.dp", "androidx.compose.ui.unit.dp")
+)
 public val gridUnit: Dp = 8.dp
 
 @Stable
