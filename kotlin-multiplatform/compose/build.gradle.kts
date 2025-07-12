@@ -32,8 +32,6 @@ kotlin {
         commonMain {
             dependencies {
                 implementation(compose.components.resources)
-                implementation(compose.components.uiToolingPreview)
-                implementation(compose.uiTooling)
                 implementation(compose.foundation)
                 implementation(compose.material3)
                 implementation(compose.materialIconsExtended)
@@ -43,9 +41,22 @@ kotlin {
                 implementation(libs.androidx.lifecycle.viewmodel)
             }
         }
-        jvmMain.dependencies {
-            implementation(compose.desktop.common)
-            implementation(libs.jetbrains.kotlinx.coroutines.swing)
+        val previewMain by creating {
+            dependsOn(commonMain.get())
+            dependencies {
+                implementation(compose.components.uiToolingPreview)
+                implementation(compose.uiTooling)
+            }
+        }
+        androidMain {
+            dependsOn(previewMain)
+        }
+        jvmMain {
+            dependsOn(previewMain)
+            dependencies {
+                implementation(compose.desktop.common)
+                implementation(libs.jetbrains.kotlinx.coroutines.swing)
+            }
         }
     }
 }
