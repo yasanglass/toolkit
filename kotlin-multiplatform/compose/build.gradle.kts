@@ -41,7 +41,7 @@ kotlin {
                 implementation(libs.androidx.lifecycle.viewmodel)
             }
         }
-        val previewMain by creating {
+        val jvmAndroidMain by creating {
             dependsOn(commonMain.get())
             dependencies {
                 implementation(compose.components.uiToolingPreview)
@@ -49,10 +49,10 @@ kotlin {
             }
         }
         androidMain {
-            dependsOn(previewMain)
+            dependsOn(jvmAndroidMain)
         }
         jvmMain {
-            dependsOn(previewMain)
+            dependsOn(jvmAndroidMain)
             dependencies {
                 implementation(compose.desktop.common)
                 implementation(libs.jetbrains.kotlinx.coroutines.swing)
