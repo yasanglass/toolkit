@@ -9,13 +9,19 @@ Personal development toolkit.
 
 ### Kotlin Multiplatform
 
+##### Core
+
 ```kotlin
 implementation("glass.yasan.toolkit:core:<version>")
 ```
 
+##### Compose
+
 ```kotlin
 implementation("glass.yasan.toolkit:compose:<version>")
 ```
+
+##### Koin
 
 ```kotlin
 implementation("glass.yasan.toolkit:koin:<version>")
