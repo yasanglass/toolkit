@@ -6,6 +6,7 @@ androidx-lifecycle = "2.9.1"
 jetbrains-compose = "1.8.2"
 jetbrains-kotlin = "2.2.0"
 jetbrains-kotlinx-coroutines = "1.10.2"
+koin = "4.1.0"
 vanniktech-maven-publish = "0.30.0"
 
 [libraries]
@@ -13,6 +14,7 @@ androidx-lifecycle-runtime-compose = { module = "org.jetbrains.androidx.lifecycl
 androidx-lifecycle-viewmodel = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
 jetbrains-kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "jetbrains-kotlinx-coroutines" }
 jetbrains-kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "jetbrains-kotlinx-coroutines" }
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 
 [plugins]
 android-library = { id = "com.android.library", version.ref = "agp" }

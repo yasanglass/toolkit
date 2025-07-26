@@ -15,3 +15,7 @@ implementation("glass.yasan.toolkit:core:<version>")
 ```kotlin
 implementation("glass.yasan.toolkit:compose:<version>")
 ```
+
+```kotlin
+implementation("glass.yasan.toolkit:koin:<version>")
+```
