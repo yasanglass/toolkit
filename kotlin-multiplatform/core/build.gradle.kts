@@ -4,11 +4,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.jetbrains.kotlin.multiplatform)
     alias(libs.plugins.android.library)
-    alias(libs.plugins.vanniktech.maven.publish)
 }
-
-group = "glass.yasan.toolkit"
-version = "0.0.10"
 
 kotlin {
     explicitApi()
@@ -53,4 +49,8 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+}
+
+configure<com.vanniktech.maven.publish.MavenPublishBaseExtension> {
+    coordinates(artifactId = "core")
 }
