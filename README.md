@@ -3,6 +3,7 @@
 [![kmp build](https://img.shields.io/github/actions/workflow/status/yasanglass/toolkit/build.yml?label=kmp%20build)](https://github.com/yasanglass/toolkit/actions/workflows/build.yml)
 [![kmp core](https://img.shields.io/maven-central/v/glass.yasan.toolkit/core?label=kmp%20core)](https://central.sonatype.com/artifact/glass.yasan.toolkit/core)
 [![kmp compose](https://img.shields.io/maven-central/v/glass.yasan.toolkit/compose?label=kmp%20compose)](https://central.sonatype.com/artifact/glass.yasan.toolkit/compose)
+[![kmp koin](https://img.shields.io/maven-central/v/glass.yasan.toolkit/koin?label=kmp%20koin)](https://central.sonatype.com/artifact/glass.yasan.toolkit/koin)
 
 Personal development toolkit.
 
