@@ -33,14 +33,16 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
+                implementation(libs.jetbrains.kotlinx.coroutines.core)
+                implementation(libs.androidx.lifecycle.runtime.compose)
+                implementation(libs.androidx.lifecycle.viewmodel)
+
                 implementation(compose.components.resources)
                 implementation(compose.foundation)
                 implementation(compose.material3)
                 implementation(compose.materialIconsExtended)
                 implementation(compose.runtime)
                 implementation(compose.ui)
-                implementation(libs.androidx.lifecycle.runtime.compose)
-                implementation(libs.androidx.lifecycle.viewmodel)
             }
         }
         val jvmAndroidMain by creating {
@@ -52,12 +54,14 @@ kotlin {
         }
         androidMain {
             dependsOn(jvmAndroidMain)
+            dependencies {
+                implementation(libs.jetbrains.kotlinx.coroutines.android)
+            }
         }
         jvmMain {
             dependsOn(jvmAndroidMain)
             dependencies {
-                implementation(compose.desktop.common)
-                implementation(libs.jetbrains.kotlinx.coroutines.swing)
+                implementation(compose.desktop.currentOs)
             }
         }
     }

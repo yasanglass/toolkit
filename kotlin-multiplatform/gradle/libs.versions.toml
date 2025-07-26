@@ -11,7 +11,8 @@ vanniktech-maven-publish = "0.30.0"
 [libraries]
 androidx-lifecycle-runtime-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-viewmodel = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
-jetbrains-kotlinx-coroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "jetbrains-kotlinx-coroutines" }
+jetbrains-kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "jetbrains-kotlinx-coroutines" }
+jetbrains-kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "jetbrains-kotlinx-coroutines" }
 
 [plugins]
 android-library = { id = "com.android.library", version.ref = "agp" }
