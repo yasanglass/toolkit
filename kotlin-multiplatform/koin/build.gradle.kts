@@ -1,6 +1,8 @@
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
+val artifactId = "koin"
+
 plugins {
     alias(libs.plugins.jetbrains.kotlin.multiplatform)
     alias(libs.plugins.android.library)
@@ -40,7 +42,7 @@ kotlin {
 }
 
 android {
-    namespace = "glass.yasan.toolkit.koin"
+    namespace = "glass.yasan.toolkit.$artifactId"
     compileSdk = libs.versions.android.sdk.compile.get().toInt()
 
     defaultConfig {
@@ -54,5 +56,5 @@ android {
 }
 
 configure<com.vanniktech.maven.publish.MavenPublishBaseExtension> {
-    coordinates(artifactId = "koin")
+    coordinates(artifactId = artifactId)
 }

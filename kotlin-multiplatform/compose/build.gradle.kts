@@ -1,6 +1,8 @@
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
+val artifactId = "compose"
+
 plugins {
     alias(libs.plugins.jetbrains.kotlin.multiplatform)
     alias(libs.plugins.android.library)
@@ -63,7 +65,7 @@ kotlin {
 }
 
 android {
-    namespace = "glass.yasan.toolkit.compose"
+    namespace = "glass.yasan.toolkit.$artifactId"
     compileSdk = libs.versions.android.sdk.compile.get().toInt()
 
     defaultConfig {
@@ -78,10 +80,10 @@ android {
 
 compose.resources {
     publicResClass = false
-    packageOfResClass = "glass.yasan.toolkit.compose"
+    packageOfResClass = "glass.yasan.toolkit.$artifactId"
     generateResClass = auto
 }
 
 configure<com.vanniktech.maven.publish.MavenPublishBaseExtension> {
-    coordinates(artifactId = "compose")
+    coordinates(artifactId = artifactId)
 }

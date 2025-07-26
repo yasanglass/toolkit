@@ -1,6 +1,8 @@
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
+val artifactId = "core"
+
 plugins {
     alias(libs.plugins.jetbrains.kotlin.multiplatform)
     alias(libs.plugins.android.library)
@@ -38,7 +40,7 @@ kotlin {
 }
 
 android {
-    namespace = "glass.yasan.toolkit.core"
+    namespace = "glass.yasan.toolkit.$artifactId"
     compileSdk = libs.versions.android.sdk.compile.get().toInt()
 
     defaultConfig {
@@ -52,5 +54,5 @@ android {
 }
 
 configure<com.vanniktech.maven.publish.MavenPublishBaseExtension> {
-    coordinates(artifactId = "core")
+    coordinates(artifactId = artifactId)
 }
