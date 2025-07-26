@@ -76,6 +76,12 @@ android {
     }
 }
 
+compose.resources {
+    publicResClass = false
+    packageOfResClass = "glass.yasan.toolkit.compose"
+    generateResClass = auto
+}
+
 configure<com.vanniktech.maven.publish.MavenPublishBaseExtension> {
     coordinates(artifactId = "compose")
 }
