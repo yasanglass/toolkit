@@ -29,6 +29,8 @@ kotlin {
         commonMain {
             dependencies {
                 implementation(libs.jetbrains.kotlinx.coroutines.core)
+
+                implementation(libs.koin.core)
             }
         }
         androidMain {
