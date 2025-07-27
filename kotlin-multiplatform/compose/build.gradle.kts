@@ -42,6 +42,9 @@ kotlin {
                 implementation(compose.materialIconsExtended)
                 implementation(compose.runtime)
                 implementation(compose.ui)
+
+                implementation(libs.koin.compose)
+                implementation(libs.koin.core)
             }
         }
         val jvmAndroidMain by creating {
