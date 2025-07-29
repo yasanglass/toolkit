@@ -33,6 +33,12 @@ kotlin {
                 implementation(libs.koin.core)
             }
         }
+        jvmTest {
+            dependencies {
+                implementation(libs.koin.test)
+                implementation(libs.junit)
+            }
+        }
         androidMain {
             dependencies {
                 implementation(libs.jetbrains.kotlinx.coroutines.android)
