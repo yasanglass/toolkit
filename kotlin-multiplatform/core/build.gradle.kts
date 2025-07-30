@@ -6,6 +6,7 @@ val artifactId = "core"
 plugins {
     alias(libs.plugins.jetbrains.kotlin.multiplatform)
     alias(libs.plugins.android.library)
+    alias(libs.plugins.jetbrains.kotlinx.kover)
 }
 
 kotlin {
