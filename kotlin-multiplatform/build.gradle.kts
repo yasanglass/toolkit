@@ -27,10 +27,15 @@ subprojects {
         buildUponDefaultConfig = true
         config.setFrom("$rootDir/detekt/detekt.yml")
         source.from(
-            "src/commonMain/kotlin",
             "src/androidMain/kotlin",
+            "src/androidTest/kotlin",
+            "src/commonMain/kotlin",
+            "src/commonTest/kotlin",
+            "src/iosMain/kotlin",
+            "src/iosTest/kotlin",
+            "src/jvmAndroidMain/kotlin",
             "src/jvmMain/kotlin",
-            "src/iosMain/kotlin"
+            "src/jvmTest/kotlin"
         )
     }
 
