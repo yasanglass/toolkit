@@ -4,6 +4,14 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.multiplatform) apply false
     alias(libs.plugins.android.library) apply false
     alias(libs.plugins.vanniktech.maven.publish) apply false
+    alias(libs.plugins.arturbosch.detekt) apply true
+}
+
+detekt {
+    buildUponDefaultConfig = true
+    allRules = false
+    config.setFrom("$projectDir/detekt/detekt.yml")
+    autoCorrect = true
 }
 
 allprojects {
@@ -13,7 +21,19 @@ allprojects {
 
 subprojects {
     apply(plugin = "com.vanniktech.maven.publish")
-    
+    apply(plugin = "io.gitlab.arturbosch.detekt")
+
+    detekt {
+        buildUponDefaultConfig = true
+        config.setFrom("$rootDir/detekt/detekt.yml")
+        source.from(
+            "src/commonMain/kotlin",
+            "src/androidMain/kotlin",
+            "src/jvmMain/kotlin",
+            "src/iosMain/kotlin"
+        )
+    }
+
     configure<com.vanniktech.maven.publish.MavenPublishBaseExtension> {
         publishToMavenCentral(com.vanniktech.maven.publish.SonatypeHost.CENTRAL_PORTAL)
         
