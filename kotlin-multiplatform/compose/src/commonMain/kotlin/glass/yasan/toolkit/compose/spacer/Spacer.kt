@@ -41,7 +41,7 @@ public fun HorizontalSpacer(
     )
 }
 
-public fun LazyListScope.spacer(
+public fun LazyListScope.spacerItem(
     height: Dp,
     width: Dp,
 ) {
@@ -53,19 +53,19 @@ public fun LazyListScope.spacer(
     }
 }
 
-public fun LazyListScope.horizontalSpacer(
+public fun LazyListScope.horizontalSpacerItem(
     width: Dp,
 ) {
-    spacer(
+    spacerItem(
         height = 0.dp,
         width = width,
     )
 }
 
-public fun LazyListScope.verticalSpacer(
+public fun LazyListScope.verticalSpacerItem(
     height: Dp,
 ) {
-    spacer(
+    spacerItem(
         height = height,
         width = 0.dp,
     )
