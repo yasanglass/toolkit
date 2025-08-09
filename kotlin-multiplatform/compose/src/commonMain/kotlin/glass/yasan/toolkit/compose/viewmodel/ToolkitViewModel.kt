@@ -30,7 +30,7 @@ public abstract class ToolkitViewModel<
         _viewState.value = body(_viewState.value)
     }
 
-    private val _viewEvent: Channel<E> = Channel(Channel.Factory.BUFFERED)
+    private val _viewEvent: Channel<E> = Channel(Channel.BUFFERED)
     private val viewEvent: Flow<E> = _viewEvent.receiveAsFlow()
 
     private suspend fun collectViewEvents() {
@@ -46,7 +46,7 @@ public abstract class ToolkitViewModel<
 
     public abstract suspend fun onViewEvent(event: E)
 
-    private val _viewAction: Channel<A> = Channel(Channel.Factory.BUFFERED)
+    private val _viewAction: Channel<A> = Channel(Channel.BUFFERED)
     public val viewAction: Flow<A> = _viewAction.receiveAsFlow()
 
     public fun sendViewAction(action: A) {
@@ -62,7 +62,7 @@ public abstract class ToolkitViewModel<
     public fun <T> Flow<T>.stateIn(initialValue: T): StateFlow<T> =
         stateIn(
             scope = viewModelScope,
-            started = SharingStarted.Companion.WhileSubscribed(5.seconds),
+            started = SharingStarted.WhileSubscribed(5.seconds),
             initialValue = initialValue,
         )
 
