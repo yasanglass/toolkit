@@ -2,6 +2,7 @@ package glass.yasan.toolkit.compose.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
@@ -59,10 +60,45 @@ public abstract class ToolkitViewModel<
         }
     }
 
-    public fun <T> Flow<T>.stateIn(initialValue: T): StateFlow<T> =
+    public fun <T> Flow<T>.stateInEagerly(
+        initialValue: T,
+    ): StateFlow<T> =
         stateIn(
             scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5.seconds),
+            started = SharingStarted.Eagerly,
+            initialValue = initialValue,
+        )
+
+    public fun <T> Flow<T>.stateInLazily(
+        initialValue: T,
+    ): StateFlow<T> =
+        stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Lazily,
+            initialValue = initialValue,
+        )
+
+    public fun <T> Flow<T>.stateInWhileSubscribed(
+        stopTimeout: Duration = 5.seconds,
+        replayExpiration: Duration = Duration.INFINITE,
+        initialValue: T,
+    ): StateFlow<T> =
+        stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(
+                stopTimeout = stopTimeout,
+                replayExpiration = replayExpiration,
+            ),
+            initialValue = initialValue,
+        )
+
+    public fun <T> Flow<T>.stateIn(
+        started: SharingStarted,
+        initialValue: T,
+    ): StateFlow<T> =
+        stateIn(
+            scope = viewModelScope,
+            started = started,
             initialValue = initialValue,
         )
 
