@@ -27,8 +27,8 @@ public abstract class ToolkitViewModel<
 
     public abstract fun defaultViewState(): S
 
-    public fun updateViewState(body: (state: S) -> S) {
-        _viewState.value = body(_viewState.value)
+    public fun updateViewState(transform: S.() -> S) {
+        _viewState.value = transform(_viewState.value)
     }
 
     private val _viewEvent: Channel<E> = Channel(Channel.BUFFERED)
