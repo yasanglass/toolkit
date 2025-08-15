@@ -26,3 +26,9 @@ implementation("glass.yasan.toolkit:koin:<version>")
 ```kotlin
 implementation("glass.yasan.toolkit:compose:<version>")
 ```
+
+##### [Compose: Branding](https://github.com/yasanglass/toolkit/tree/main/kotlin-multiplatform/compose/branding)
+
+```kotlin
+implementation("glass.yasan.toolkit:compose-branding:<version>")
+```

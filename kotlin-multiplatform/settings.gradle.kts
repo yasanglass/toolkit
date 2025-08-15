@@ -14,6 +14,7 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "toolkit"
+include(":about")
 include(":compose")
 include(":core")
 include(":koin")

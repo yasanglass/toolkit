@@ -1,11 +1,13 @@
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
-val artifactId = "koin"
+val artifactId = "compose-about"
 
 plugins {
     alias(libs.plugins.jetbrains.kotlin.multiplatform)
     alias(libs.plugins.android.library)
+    alias(libs.plugins.jetbrains.compose)
+    alias(libs.plugins.jetbrains.kotlin.compose)
 }
 
 kotlin {
@@ -28,30 +30,23 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                api(project(":about"))
                 api(project(":compose"))
-                api(project(":core"))
 
-                implementation(libs.jetbrains.kotlinx.coroutines.core)
-                implementation(libs.koin.core)
-            }
-        }
-        jvmTest {
-            dependencies {
-                implementation(libs.koin.test)
-                implementation(libs.junit)
-            }
-        }
-        androidMain {
-            dependencies {
-                implementation(libs.jetbrains.kotlinx.coroutines.android)
+                implementation(compose.components.resources)
+                implementation(compose.foundation)
+                implementation(compose.material3)
+                implementation(compose.materialIconsExtended)
+                implementation(compose.runtime)
+                implementation(compose.ui)
+
+                implementation(libs.coil.compose)
             }
         }
     }
 }
 
 android {
-    namespace = "glass.yasan.toolkit.$artifactId"
+    namespace = "glass.yasan.toolkit.compose.about"
     compileSdk = libs.versions.android.sdk.compile.get().toInt()
 
     defaultConfig {
@@ -62,6 +57,12 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+}
+
+compose.resources {
+    publicResClass = false
+    packageOfResClass = "glass.yasan.toolkit.compose.about"
+    generateResClass = auto
 }
 
 configure<com.vanniktech.maven.publish.MavenPublishBaseExtension> {
