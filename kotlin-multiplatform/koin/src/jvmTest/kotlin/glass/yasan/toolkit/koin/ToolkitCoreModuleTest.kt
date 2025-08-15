@@ -10,7 +10,7 @@ class ToolkitCoreModuleTest : KoinTest {
     @OptIn(KoinExperimentalAPI::class)
     @Test
     fun verifyModule() {
-        toolkitCoreModule.verify()
+        toolkitModule.verify()
     }
 
 }
