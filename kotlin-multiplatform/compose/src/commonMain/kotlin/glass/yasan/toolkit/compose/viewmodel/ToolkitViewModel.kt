@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.WhileSubscribed
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 public abstract class ToolkitViewModel<
@@ -28,7 +29,7 @@ public abstract class ToolkitViewModel<
     public abstract fun defaultViewState(): S
 
     public fun updateViewState(transform: S.() -> S) {
-        _viewState.value = transform(_viewState.value)
+        _viewState.update { state -> transform(state) }
     }
 
     private val _viewEvent: Channel<E> = Channel(Channel.BUFFERED)
