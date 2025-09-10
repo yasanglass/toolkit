@@ -1,7 +1,7 @@
 [versions]
 agp = "8.10.1"
 android-sdk-compile = "36"
-android-sdk-min = "29"
+android-sdk-min = "28"
 androidx-lifecycle = "2.9.3"
 arturbosch-detekt = "1.23.8"
 jetbrains-compose = "1.8.2"
