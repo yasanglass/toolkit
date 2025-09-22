@@ -10,6 +10,14 @@ updates:
   open-pull-requests-limit: 3
   assignees:
     - "yasanglass"
+  groups:
+    kotlin:
+      patterns:
+        - "jetbrains.kotlin.*"
+        - "com.google.devtools.ksp"
+    android-x:
+      patterns:
+        - "androidx.*"
 
 - package-ecosystem: "github-actions"
   directory: "/"
