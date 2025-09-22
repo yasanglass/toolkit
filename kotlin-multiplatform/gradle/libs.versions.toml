@@ -2,7 +2,7 @@
 agp = "8.10.1"
 android-sdk-compile = "36"
 android-sdk-min = "21"
-androidx-lifecycle = "2.9.3"
+androidx-lifecycle = "2.9.4"
 arturbosch-detekt = "1.23.8"
 jetbrains-compose = "1.9.0"
 jetbrains-kotlin = "2.2.20"
