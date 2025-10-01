@@ -42,9 +42,20 @@ subprojects {
 
     configure<com.vanniktech.maven.publish.MavenPublishBaseExtension> {
         publishToMavenCentral()
-        
-        signAllPublications()
-        
+
+        val hasSigningKeys = listOf(
+            "signing.keyId",
+            "signingInMemoryKey",
+            "signing.gnupg.keyName",
+            "signing.secretKeyRingFile"
+        ).any { project.findProperty(it) != null } ||
+            System.getenv("SIGNING_KEY_ID") != null ||
+            System.getenv("SIGNING_IN_MEMORY_KEY") != null
+
+        if (hasSigningKeys) {
+            signAllPublications()
+        }
+
         pom {
             name.set("Toolkit")
             description.set("Personal development toolkit for Kotlin Multiplatform")
@@ -79,4 +90,10 @@ moduleGraphConfig {
     showFullPath.set(false)
     setStyleByModuleType.set(true)
     nestingEnabled.set(true)
+}
+
+tasks.register("publishAllToMavenLocal") {
+    group = "publishing"
+    description = "Publishes all subprojects to the local Maven repository."
+    dependsOn(subprojects.map { "${it.path}:publishToMavenLocal" })
 }
