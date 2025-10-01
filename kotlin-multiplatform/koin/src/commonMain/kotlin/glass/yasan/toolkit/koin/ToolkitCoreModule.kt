@@ -1,4 +1,4 @@
-package glass.yasan.toolkit.core.koin
+package glass.yasan.toolkit.koin
 
 import glass.yasan.toolkit.core.coroutines.ApplicationScope
 import glass.yasan.toolkit.core.coroutines.DefaultDispatcherProvider

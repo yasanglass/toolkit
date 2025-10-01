@@ -1,4 +1,4 @@
-package glass.yasan.toolkit.core.koin
+package glass.yasan.toolkit.koin
 
 import org.junit.Test
 import org.koin.core.annotation.KoinExperimentalAPI
