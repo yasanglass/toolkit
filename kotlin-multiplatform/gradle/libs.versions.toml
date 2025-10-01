@@ -8,6 +8,7 @@ coil = "3.3.0"
 iurysouza-modulegraph = "0.12.1"
 jetbrains-compose = "1.9.0"
 jetbrains-kotlin = "2.2.20"
+jetbrains-kotlinx-collections-immutable = "0.4.0"
 jetbrains-kotlinx-coroutines = "1.10.2"
 junit = "4.13.2"
 koin = "4.1.1"
@@ -18,6 +19,7 @@ androidx-lifecycle-runtime-compose = { module = "org.jetbrains.androidx.lifecycl
 androidx-lifecycle-viewmodel = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
 coil-svg = { module = "io.coil-kt.coil3:coil-svg", version.ref = "coil" }
+jetbrains-kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "jetbrains-kotlinx-collections-immutable" }
 jetbrains-kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "jetbrains-kotlinx-coroutines" }
 jetbrains-kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "jetbrains-kotlinx-coroutines" }
 junit = { module = "junit:junit", version.ref = "junit" }
