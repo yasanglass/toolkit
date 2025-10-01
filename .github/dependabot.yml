@@ -4,6 +4,8 @@ updates:
   directory: "/kotlin-multiplatform"
   schedule:
     interval: weekly
+    time: "16:30"
+    timezone: "Europe/Prague"
   labels: 
     - 'kotlin multiplatform'
     - 'dependencies'
@@ -23,6 +25,8 @@ updates:
   directory: "/"
   schedule:
     interval: weekly
+    time: "16:30"
+    timezone: "Europe/Prague"
   labels: 
     - 'github actions'
     - 'dependencies'
