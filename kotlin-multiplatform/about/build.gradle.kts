@@ -40,6 +40,7 @@ kotlin {
                 implementation(compose.ui)
 
                 implementation(libs.coil.compose)
+                implementation(libs.coil.svg)
             }
         }
     }
