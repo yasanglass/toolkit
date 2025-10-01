@@ -13,6 +13,7 @@ public data class Developer(
         val gumroad: String = "https://yasanglass.gumroad.com",
         val mastodon: String = "https://mastodon.social/@yasanglass",
         val playStore: String = "https://play.google.com/store/apps/dev?id=5035207490031558874",
+        val discordServer: String = "https://discord.gg/8BQrfyA",
     )
 
 }
