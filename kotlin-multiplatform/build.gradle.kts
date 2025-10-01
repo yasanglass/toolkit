@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.android.library) apply false
     alias(libs.plugins.vanniktech.maven.publish) apply false
     alias(libs.plugins.arturbosch.detekt) apply true
+    alias(libs.plugins.iurysouza.modulegraph)
 }
 
 detekt {
@@ -70,4 +71,12 @@ subprojects {
             }
         }
     }
+}
+
+moduleGraphConfig {
+    readmePath.set("${rootDir}/README.md")
+    heading.set("### Modules")
+    showFullPath.set(false)
+    setStyleByModuleType.set(true)
+    nestingEnabled.set(true)
 }

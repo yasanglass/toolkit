@@ -4,6 +4,7 @@ android-sdk-compile = "36"
 android-sdk-min = "21"
 androidx-lifecycle = "2.9.4"
 arturbosch-detekt = "1.23.8"
+iurysouza-modulegraph = "0.12.1"
 jetbrains-compose = "1.9.0"
 jetbrains-kotlin = "2.2.20"
 jetbrains-kotlinx-coroutines = "1.10.2"
@@ -24,6 +25,7 @@ koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
 [plugins]
 android-library = { id = "com.android.library", version.ref = "agp" }
 arturbosch-detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "arturbosch-detekt" }
+iurysouza-modulegraph = { id = "dev.iurysouza.modulegraph", version.ref = "iurysouza-modulegraph" }
 jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "jetbrains-compose" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "jetbrains-kotlin" }
 jetbrains-kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "jetbrains-kotlin" }
