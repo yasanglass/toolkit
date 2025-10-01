@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
-val artifactId = "compose-about"
+val artifactId = "about"
 
 plugins {
     alias(libs.plugins.jetbrains.kotlin.multiplatform)
