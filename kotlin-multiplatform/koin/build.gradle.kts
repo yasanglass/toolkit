@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
-val artifactId = "core"
+val artifactId = "koin"
 
 plugins {
     alias(libs.plugins.jetbrains.kotlin.multiplatform)
@@ -28,7 +28,16 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
+                api(project(":core"))
+
                 implementation(libs.jetbrains.kotlinx.coroutines.core)
+                implementation(libs.koin.core)
+            }
+        }
+        jvmTest {
+            dependencies {
+                implementation(libs.koin.test)
+                implementation(libs.junit)
             }
         }
         androidMain {

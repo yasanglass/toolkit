@@ -2,6 +2,7 @@
 
 [![kmp build](https://img.shields.io/github/actions/workflow/status/yasanglass/toolkit/build.yml?label=kmp%20build)](https://github.com/yasanglass/toolkit/actions/workflows/build.yml)
 [![kmp core](https://img.shields.io/maven-central/v/glass.yasan.toolkit/core?label=kmp%20core)](https://central.sonatype.com/artifact/glass.yasan.toolkit/core)
+[![kmp koin](https://img.shields.io/maven-central/v/glass.yasan.toolkit/koin?label=kmp%20koin)](https://central.sonatype.com/artifact/glass.yasan.toolkit/koin)
 [![kmp compose](https://img.shields.io/maven-central/v/glass.yasan.toolkit/compose?label=kmp%20compose)](https://central.sonatype.com/artifact/glass.yasan.toolkit/compose)
 
 Personal development toolkit.
@@ -12,6 +13,12 @@ Personal development toolkit.
 
 ```kotlin
 implementation("glass.yasan.toolkit:core:<version>")
+```
+
+##### [Koin](https://github.com/yasanglass/toolkit/tree/main/kotlin-multiplatform/koin)
+
+```kotlin
+implementation("glass.yasan.toolkit:koin:<version>")
 ```
 
 ##### [Compose](https://github.com/yasanglass/toolkit/tree/main/kotlin-multiplatform/compose)
