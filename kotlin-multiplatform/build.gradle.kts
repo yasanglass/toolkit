@@ -17,7 +17,7 @@ detekt {
 
 allprojects {
     group = "glass.yasan.toolkit"
-    version = "0.2.3"
+    version = "0.2.4"
 }
 
 subprojects {
