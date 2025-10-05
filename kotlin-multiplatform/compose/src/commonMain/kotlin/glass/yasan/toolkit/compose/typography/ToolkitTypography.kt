@@ -3,7 +3,6 @@ package glass.yasan.toolkit.compose.typography
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.font.FontFamily
-import glass.yasan.toolkit.compose.font.rubikFontFamily
 
 @Composable
 public fun ToolkitTypography(fontFamily: FontFamily): Typography = Typography().run {
