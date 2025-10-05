@@ -1,6 +1,5 @@
 package glass.yasan.toolkit.about.presentation.compose
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.requiredHeight
@@ -9,11 +8,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import coil3.compose.AsyncImage
 import glass.yasan.toolkit.compose.about.Res
-import glass.yasan.toolkit.compose.about.yasan_type_logo_dark
-import glass.yasan.toolkit.compose.about.yasan_type_logo_light
 import glass.yasan.toolkit.compose.spacer.VerticalSpacer
-import org.jetbrains.compose.resources.painterResource
 
 @Composable
 public fun DeveloperBrandingFooter(
@@ -31,14 +28,14 @@ public fun DeveloperBrandingFooter(
             VerticalSpacer(height = spacerTop)
         }
 
-        Image(
-            painter = painterResource(
-                resource = if (dark) {
-                    Res.drawable.yasan_type_logo_dark
-                } else {
-                    Res.drawable.yasan_type_logo_light
-                },
-            ),
+        AsyncImage(
+            // Coil does not support KMP compile-safe resources yet
+            // See https://github.com/coil-kt/coil/issues/2812
+            model = if (dark) {
+                Res.getUri(path = "drawable/yasan_type_logo_dark.svg")
+            } else {
+                Res.getUri(path = "drawable/yasan_type_logo_light.svg")
+            },
             contentDescription = null,
             modifier = Modifier
                 .requiredHeight(logoHeight),

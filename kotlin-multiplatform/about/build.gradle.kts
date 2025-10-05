@@ -40,6 +40,9 @@ kotlin {
                 implementation(compose.ui)
 
                 implementation(libs.jetbrains.kotlinx.collections.immutable)
+
+                implementation(libs.coil.compose)
+                implementation(libs.coil.svg)
             }
         }
     }
