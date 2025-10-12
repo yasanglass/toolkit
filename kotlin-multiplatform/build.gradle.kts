@@ -2,7 +2,10 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android) apply false
     alias(libs.plugins.jetbrains.kotlin.compose) apply false
     alias(libs.plugins.jetbrains.kotlin.multiplatform) apply false
+    alias(libs.plugins.android.application) apply false
     alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.jetbrains.compose) apply false
+    alias(libs.plugins.jetbrains.compose.hotreload) apply false
     alias(libs.plugins.vanniktech.maven.publish) apply false
     alias(libs.plugins.arturbosch.detekt) apply true
     alias(libs.plugins.iurysouza.modulegraph)
@@ -20,10 +23,8 @@ allprojects {
     version = "0.2.4"
 }
 
-subprojects {
-    apply(plugin = "com.vanniktech.maven.publish")
+fun Project.configureDetekt() {
     apply(plugin = "io.gitlab.arturbosch.detekt")
-
     detekt {
         buildUponDefaultConfig = true
         config.setFrom("$rootDir/detekt/detekt.yml")
@@ -39,12 +40,15 @@ subprojects {
             "src/jvmTest/kotlin"
         )
     }
+}
 
+fun Project.configurePublishing() {
+    apply(plugin = "com.vanniktech.maven.publish")
     configure<com.vanniktech.maven.publish.MavenPublishBaseExtension> {
         publishToMavenCentral()
-        
+
         signAllPublications()
-        
+
         pom {
             name.set("Toolkit")
             description.set("Personal development toolkit for Kotlin Multiplatform")
@@ -70,6 +74,16 @@ subprojects {
                 developerConnection.set("scm:git:ssh://git@github.com/yasanglass/toolkit.git")
             }
         }
+    }
+}
+
+subprojects {
+    val isSample = path.contains("sample")
+
+    configureDetekt()
+
+    if (isSample.not()) {
+        configurePublishing()
     }
 }
 
