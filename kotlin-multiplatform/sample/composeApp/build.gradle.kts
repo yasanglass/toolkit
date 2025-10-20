@@ -30,8 +30,6 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation(project(":about"))
-                implementation(project(":compose"))
                 implementation(project(":koin"))
 
                 implementation(compose.runtime)
