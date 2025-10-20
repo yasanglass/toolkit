@@ -9,11 +9,17 @@ import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -23,6 +29,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import glass.yasan.toolkit.about.presentation.compose.DeveloperBrandingFooter
 import org.jetbrains.compose.resources.stringResource
@@ -34,7 +41,6 @@ import glass.yasan.toolkit.composeapp.generated.resources.increment
 import glass.yasan.toolkit.sample.SampleViewModel.Event
 import glass.yasan.toolkit.sample.SampleViewModel.State
 import glass.yasan.toolkit.sample.theme.AppTheme
-import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -43,16 +49,15 @@ fun SampleApp() {
     val viewState: State by viewModel.viewState.collectAsState()
     val sendViewEvent: (Event) -> Unit = rememberSendViewEvent(viewModel)
 
-    Content(
+    SampleApp(
         viewState = viewState,
         sendViewEvent = sendViewEvent,
     )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview
 @Composable
-private fun Content(
+private fun SampleApp(
     viewState: State,
     sendViewEvent: (Event) -> Unit,
 ) {
@@ -60,7 +65,12 @@ private fun Content(
         Scaffold(
             topBar = {
                 TopAppBar(
-                    title = { Text(stringResource(Res.string.app_title)) },
+                    title = {
+                        Text(
+                            text = stringResource(Res.string.app_title),
+                            fontWeight = FontWeight.Black,
+                        )
+                    },
                 )
             },
         ) { contentPadding ->
@@ -70,27 +80,64 @@ private fun Content(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.padding(16.dp),
             ) {
-                item {
-                    Button(
-                        onClick = { sendViewEvent(Event.Increment) },
-                        modifier = Modifier.fillMaxWidth(),
-                    ) {
-                        Text(text = stringResource(Res.string.increment))
-                    }
-                }
-                item {
-                    CounterText(viewState.count)
-                }
-                item {
-                    Button(
-                        onClick = { sendViewEvent(Event.Decrement) },
-                        modifier = Modifier.fillMaxWidth(),
-                    ) {
-                        Text(text = stringResource(Res.string.decrement))
-                    }
-                }
-
+                viewEventItem(viewState, sendViewEvent)
+                item { HorizontalDivider() }
+                developerItem(viewState)
+                item { HorizontalDivider() }
                 item { DeveloperBrandingFooter() }
+            }
+        }
+    }
+}
+
+private fun LazyListScope.viewEventItem(
+    viewState: State,
+    sendViewEvent: (Event) -> Unit,
+) {
+    item {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            Button(
+                onClick = { sendViewEvent(Event.Increment) },
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Text(text = stringResource(Res.string.increment))
+            }
+            CounterText(viewState.count)
+            Button(
+                onClick = { sendViewEvent(Event.Decrement) },
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Text(text = stringResource(Res.string.decrement))
+            }
+        }
+    }
+}
+
+private fun LazyListScope.developerItem(viewState: State) {
+    item {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(space = 4.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            viewState.developer.links.forEach { link ->
+                Button(
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                        contentColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                    ),
+                    onClick = {},
+                ) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(text = link.name)
+                        Spacer(Modifier.weight(1f))
+                        link.Icon()
+                    }
+                }
             }
         }
     }
