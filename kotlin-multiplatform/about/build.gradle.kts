@@ -31,6 +31,7 @@ kotlin {
         commonMain {
             dependencies {
                 api(project(":compose"))
+                api(libs.jetbrains.kotlinx.collections.immutable)
 
                 implementation(compose.components.resources)
                 implementation(compose.foundation)
@@ -39,10 +40,9 @@ kotlin {
                 implementation(compose.runtime)
                 implementation(compose.ui)
 
-                implementation(libs.jetbrains.kotlinx.collections.immutable)
-
                 implementation(libs.coil.compose)
                 implementation(libs.coil.svg)
+
             }
         }
     }

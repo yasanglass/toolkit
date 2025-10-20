@@ -11,14 +11,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import glass.yasan.toolkit.compose.about.Res
-import glass.yasan.toolkit.compose.about.dev_logo_type_black
-import glass.yasan.toolkit.compose.about.dev_logo_type_white
+import glass.yasan.toolkit.compose.about.dev_logo_black
+import glass.yasan.toolkit.compose.about.dev_logo_white
 import glass.yasan.toolkit.compose.spacer.VerticalSpacer
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
 public fun DeveloperBrandingFooter(
-    dark: Boolean,
+    darkContainer: Boolean,
     modifier: Modifier = Modifier,
     spacerTop: Dp = 64.dp,
     spacerBottom: Dp = 64.dp,
@@ -34,7 +34,11 @@ public fun DeveloperBrandingFooter(
 
         Image(
             painter = painterResource(
-                resource = if (dark) Res.drawable.dev_logo_type_white else Res.drawable.dev_logo_type_black,
+                resource = if (darkContainer) {
+                    Res.drawable.dev_logo_white
+                } else {
+                    Res.drawable.dev_logo_black
+                },
             ),
             contentDescription = null,
             modifier = Modifier
@@ -55,7 +59,7 @@ public fun DeveloperBrandingFooter(
     logoHeight: Dp = 48.dp,
 ) {
     DeveloperBrandingFooter(
-        dark = isSystemInDarkTheme(),
+        darkContainer = isSystemInDarkTheme(),
         modifier = modifier,
         spacerTop = spacerTop,
         spacerBottom = spacerBottom,
