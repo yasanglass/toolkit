@@ -33,7 +33,7 @@ jobs:
         run: cd kotlin-multiplatform && ./gradlew assembleDebug
 
       - name: Upload Android Artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: android-debug-artifacts
           path: |
@@ -63,7 +63,7 @@ jobs:
         run: cd kotlin-multiplatform && ./gradlew jvmJar
 
       - name: Upload JVM Artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: jvm-artifacts
           path: |
@@ -92,7 +92,7 @@ jobs:
         run: cd kotlin-multiplatform && ./gradlew linkDebugFrameworkIosArm64 linkDebugFrameworkIosSimulatorArm64 linkDebugFrameworkIosX64
 
       - name: Upload iOS Artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: ios-artifacts
           path: |
