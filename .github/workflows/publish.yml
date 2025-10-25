@@ -1,4 +1,4 @@
-name: Kotlin Multiplatform
+name: Publish
 on:
   release:
     types: [released, prereleased]
