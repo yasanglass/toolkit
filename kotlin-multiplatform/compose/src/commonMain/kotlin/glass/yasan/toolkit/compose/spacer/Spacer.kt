@@ -13,9 +13,10 @@ import androidx.compose.ui.unit.dp
 public fun Spacer(
     height: Dp,
     width: Dp,
+    modifier: Modifier = Modifier,
 ) {
     Spacer(
-        modifier = Modifier
+        modifier = modifier
             .height(height)
             .width(width),
     )
@@ -24,49 +25,59 @@ public fun Spacer(
 @Composable
 public fun VerticalSpacer(
     height: Dp,
+    modifier: Modifier = Modifier,
 ) {
     Spacer(
         height = height,
         width = 0.dp,
+        modifier = modifier,
     )
 }
 
 @Composable
 public fun HorizontalSpacer(
     width: Dp,
+    modifier: Modifier = Modifier,
 ) {
     Spacer(
         height = 0.dp,
         width = width,
+        modifier = modifier,
     )
 }
 
 public fun LazyListScope.spacerItem(
     height: Dp,
     width: Dp,
+    modifier: Modifier = Modifier,
 ) {
     item {
         Spacer(
             height = height,
             width = width,
+            modifier = modifier,
         )
     }
 }
 
 public fun LazyListScope.horizontalSpacerItem(
     width: Dp,
+    modifier: Modifier = Modifier,
 ) {
     spacerItem(
         height = 0.dp,
         width = width,
+        modifier = modifier,
     )
 }
 
 public fun LazyListScope.verticalSpacerItem(
     height: Dp,
+    modifier: Modifier = Modifier,
 ) {
     spacerItem(
         height = height,
         width = 0.dp,
+        modifier = modifier,
     )
 }
