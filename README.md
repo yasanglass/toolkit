@@ -3,6 +3,7 @@
 [![android](https://img.shields.io/github/actions/workflow/status/yasanglass/toolkit/android.yml?label=android)](https://github.com/yasanglass/toolkit/actions/workflows/android.yml)
 [![jvm](https://img.shields.io/github/actions/workflow/status/yasanglass/toolkit/jvm.yml?label=jvm)](https://github.com/yasanglass/toolkit/actions/workflows/jvm.yml)
 [![ios](https://img.shields.io/github/actions/workflow/status/yasanglass/toolkit/ios.yml?label=ios)](https://github.com/yasanglass/toolkit/actions/workflows/ios.yml)
+[![detekt](https://img.shields.io/github/actions/workflow/status/yasanglass/toolkit/detekt.yml?label=detekt)](https://github.com/yasanglass/toolkit/actions/workflows/detekt.yml)
 [![version](https://img.shields.io/maven-central/v/glass.yasan.toolkit/core?label=version)](https://central.sonatype.com/artifact/glass.yasan.toolkit/core)
 
 Personal development toolkit.
