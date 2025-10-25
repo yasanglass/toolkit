@@ -5,7 +5,7 @@ on:
 
 jobs:
   publish:
-    name: Release build and publish
+    name: Publish
     runs-on: macOS-latest
     steps:
       - name: Checkout
