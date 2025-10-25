@@ -3,7 +3,7 @@ updates:
 - package-ecosystem: gradle
   directory: "/kotlin-multiplatform"
   schedule:
-    interval: weekly
+    interval: daily
     time: "16:30"
     timezone: "Europe/Prague"
   labels: 
@@ -24,7 +24,7 @@ updates:
 - package-ecosystem: "github-actions"
   directory: "/"
   schedule:
-    interval: weekly
+    interval: daily
     time: "16:30"
     timezone: "Europe/Prague"
   labels: 
