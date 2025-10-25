@@ -63,3 +63,24 @@ jobs:
 
       - name: Run Tests
         run: cd kotlin-multiplatform && ./gradlew testDebugUnitTest
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          submodules: true
+
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: zulu
+          java-version: 21
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v5
+
+      - name: Run Lint
+        run: cd kotlin-multiplatform && ./gradlew lintDebug
