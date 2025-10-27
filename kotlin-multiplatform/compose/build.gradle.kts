@@ -36,6 +36,10 @@ kotlin {
         browser()
     }
 
+    js {
+        browser()
+    }
+
     applyDefaultHierarchyTemplate()
 
     sourceSets {
@@ -58,11 +62,11 @@ kotlin {
                 implementation(libs.koin.core)
             }
         }
-        val nonWasmMain by creating {
+        val nonWebMain by creating {
             dependsOn(commonMain.get())
         }
         val jvmAndroidMain by creating {
-            dependsOn(nonWasmMain)
+            dependsOn(nonWebMain)
             dependencies {
                 implementation(compose.components.uiToolingPreview)
                 implementation(compose.uiTooling)
@@ -81,7 +85,7 @@ kotlin {
             }
         }
         iosMain {
-            dependsOn(nonWasmMain)
+            dependsOn(nonWebMain)
         }
     }
 }

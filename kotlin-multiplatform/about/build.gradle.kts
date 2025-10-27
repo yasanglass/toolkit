@@ -31,6 +31,10 @@ kotlin {
         browser()
     }
 
+    js {
+        browser()
+    }
+
     applyDefaultHierarchyTemplate()
 
     sourceSets {

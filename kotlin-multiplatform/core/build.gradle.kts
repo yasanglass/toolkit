@@ -34,6 +34,10 @@ kotlin {
         browser()
     }
 
+    js {
+        browser()
+    }
+
     applyDefaultHierarchyTemplate()
 
     sourceSets {
@@ -42,20 +46,20 @@ kotlin {
                 implementation(libs.jetbrains.kotlinx.coroutines.core)
             }
         }
-        val nonWasmMain by creating {
+        val nonWebMain by creating {
             dependsOn(commonMain.get())
         }
         jvmMain {
-            dependsOn(nonWasmMain)
+            dependsOn(nonWebMain)
         }
         androidMain {
-            dependsOn(nonWasmMain)
+            dependsOn(nonWebMain)
             dependencies {
                 implementation(libs.jetbrains.kotlinx.coroutines.android)
             }
         }
         iosMain {
-            dependsOn(nonWasmMain)
+            dependsOn(nonWebMain)
         }
     }
 }
