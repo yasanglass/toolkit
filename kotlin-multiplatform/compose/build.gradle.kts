@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 val artifactId = "compose"
@@ -12,7 +13,12 @@ plugins {
 
 kotlin {
     explicitApi()
-    
+
+    @OptIn(ExperimentalKotlinGradlePluginApi::class)
+    compilerOptions {
+        freeCompilerArgs.add("-Xexpect-actual-classes")
+    }
+
     androidTarget {
         publishLibraryVariants("release")
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
@@ -24,6 +30,11 @@ kotlin {
     iosX64()
     iosArm64()
     iosSimulatorArm64()
+
+    @OptIn(ExperimentalWasmDsl::class)
+    wasmJs {
+        browser()
+    }
 
     applyDefaultHierarchyTemplate()
 
@@ -47,8 +58,11 @@ kotlin {
                 implementation(libs.koin.core)
             }
         }
-        val jvmAndroidMain by creating {
+        val nonWasmMain by creating {
             dependsOn(commonMain.get())
+        }
+        val jvmAndroidMain by creating {
+            dependsOn(nonWasmMain)
             dependencies {
                 implementation(compose.components.uiToolingPreview)
                 implementation(compose.uiTooling)
@@ -65,6 +79,9 @@ kotlin {
             dependencies {
                 implementation(compose.desktop.currentOs)
             }
+        }
+        iosMain {
+            dependsOn(nonWasmMain)
         }
     }
 }

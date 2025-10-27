@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 val artifactId = "koin"
@@ -10,6 +11,11 @@ plugins {
 
 kotlin {
     explicitApi()
+
+    @OptIn(ExperimentalKotlinGradlePluginApi::class)
+    compilerOptions {
+        freeCompilerArgs.add("-Xexpect-actual-classes")
+    }
 
     androidTarget {
         publishLibraryVariants("release")
@@ -23,6 +29,11 @@ kotlin {
     iosArm64()
     iosSimulatorArm64()
 
+    @OptIn(ExperimentalWasmDsl::class)
+    wasmJs {
+        browser()
+    }
+
     applyDefaultHierarchyTemplate()
 
     sourceSets {
@@ -34,15 +45,25 @@ kotlin {
                 implementation(libs.koin.core)
             }
         }
+        val nonWasmMain by creating {
+            dependsOn(commonMain.get())
+        }
+        jvmMain {
+            dependsOn(nonWasmMain)
+        }
+        androidMain {
+            dependsOn(nonWasmMain)
+            dependencies {
+                implementation(libs.jetbrains.kotlinx.coroutines.android)
+            }
+        }
+        iosMain {
+            dependsOn(nonWasmMain)
+        }
         jvmTest {
             dependencies {
                 implementation(libs.koin.test)
                 implementation(libs.junit)
-            }
-        }
-        androidMain {
-            dependencies {
-                implementation(libs.jetbrains.kotlinx.coroutines.android)
             }
         }
     }
