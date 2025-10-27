@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 val artifactId = "core"
@@ -10,6 +11,11 @@ plugins {
 
 kotlin {
     explicitApi()
+
+    @OptIn(ExperimentalKotlinGradlePluginApi::class)
+    compilerOptions {
+        freeCompilerArgs.add("-Xexpect-actual-classes")
+    }
 
     androidTarget {
         publishLibraryVariants("release")
@@ -23,6 +29,11 @@ kotlin {
     iosArm64()
     iosSimulatorArm64()
 
+    @OptIn(ExperimentalWasmDsl::class)
+    wasmJs {
+        browser()
+    }
+
     applyDefaultHierarchyTemplate()
 
     sourceSets {
@@ -31,10 +42,20 @@ kotlin {
                 implementation(libs.jetbrains.kotlinx.coroutines.core)
             }
         }
+        val nonWasmMain by creating {
+            dependsOn(commonMain.get())
+        }
+        jvmMain {
+            dependsOn(nonWasmMain)
+        }
         androidMain {
+            dependsOn(nonWasmMain)
             dependencies {
                 implementation(libs.jetbrains.kotlinx.coroutines.android)
             }
+        }
+        iosMain {
+            dependsOn(nonWasmMain)
         }
     }
 }
