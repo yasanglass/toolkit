@@ -20,7 +20,7 @@ detekt {
 
 allprojects {
     group = "glass.yasan.toolkit"
-    version = "0.2.7"
+    version = "0.2.8"
 }
 
 fun Project.configureDetekt() {
