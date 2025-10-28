@@ -49,20 +49,25 @@ kotlin {
                 implementation(libs.koin.core)
             }
         }
-        val nonWebMain by creating {
+        val nonAndroidMain by creating {
             dependsOn(commonMain.get())
         }
         jvmMain {
-            dependsOn(nonWebMain)
+            dependsOn(nonAndroidMain)
+        }
+        iosMain {
+            dependsOn(nonAndroidMain)
+        }
+        jsMain {
+            dependsOn(nonAndroidMain)
+        }
+        wasmJsMain {
+            dependsOn(nonAndroidMain)
         }
         androidMain {
-            dependsOn(nonWebMain)
             dependencies {
                 implementation(libs.jetbrains.kotlinx.coroutines.android)
             }
-        }
-        iosMain {
-            dependsOn(nonWebMain)
         }
         jvmTest {
             dependencies {

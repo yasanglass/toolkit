@@ -19,11 +19,14 @@ internal class SampleViewModel : ToolkitViewModel<State, Event, Action>() {
     ) : ViewState
 
     sealed interface Event : ViewEvent {
+        data class DeveloperLinkClick(val link: Developer.Link) : Event
         data object Increment : Event
         data object Decrement : Event
     }
 
-    sealed interface Action : ViewAction
+    sealed interface Action : ViewAction {
+        data class LaunchUrl(val url: String) : Action
+    }
 
     override suspend fun onViewEvent(event: Event) {
         when (event) {
@@ -33,6 +36,10 @@ internal class SampleViewModel : ToolkitViewModel<State, Event, Action>() {
 
             Event.Decrement -> {
                 updateViewState { copy(count = count - 1) }
+            }
+
+            is Event.DeveloperLinkClick -> {
+                sendViewAction(action = Action.LaunchUrl(event.link.url))
             }
         }
     }

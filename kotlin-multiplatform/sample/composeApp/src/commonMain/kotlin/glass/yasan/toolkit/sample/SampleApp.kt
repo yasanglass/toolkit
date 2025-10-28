@@ -32,15 +32,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import glass.yasan.toolkit.about.presentation.compose.DeveloperBrandingFooter
+import glass.yasan.toolkit.compose.viewmodel.ViewActionEffect
 import org.jetbrains.compose.resources.stringResource
 import glass.yasan.toolkit.compose.viewmodel.rememberSendViewEvent
 import glass.yasan.toolkit.composeapp.generated.resources.Res
 import glass.yasan.toolkit.composeapp.generated.resources.app_title
 import glass.yasan.toolkit.composeapp.generated.resources.decrement
 import glass.yasan.toolkit.composeapp.generated.resources.increment
+import glass.yasan.toolkit.core.url.UrlLauncher
+import glass.yasan.toolkit.sample.SampleViewModel.Action
 import glass.yasan.toolkit.sample.SampleViewModel.Event
 import glass.yasan.toolkit.sample.SampleViewModel.State
 import glass.yasan.toolkit.sample.theme.AppTheme
+import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -49,10 +53,18 @@ fun SampleApp() {
     val viewState: State by viewModel.viewState.collectAsState()
     val sendViewEvent: (Event) -> Unit = rememberSendViewEvent(viewModel)
 
+    val urlLauncher: UrlLauncher = koinInject()
+
     SampleApp(
         viewState = viewState,
         sendViewEvent = sendViewEvent,
     )
+
+    ViewActionEffect(viewModel.viewAction) { action ->
+        when (action) {
+            is Action.LaunchUrl -> urlLauncher.launch(action.url)
+        }
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -82,7 +94,7 @@ private fun SampleApp(
             ) {
                 viewEventItem(viewState, sendViewEvent)
                 item { HorizontalDivider() }
-                developerItem(viewState)
+                developerItem(viewState, sendViewEvent)
                 item { HorizontalDivider() }
                 item { DeveloperBrandingFooter() }
             }
@@ -116,7 +128,10 @@ private fun LazyListScope.viewEventItem(
     }
 }
 
-private fun LazyListScope.developerItem(viewState: State) {
+private fun LazyListScope.developerItem(
+    viewState: State,
+    sendViewEvent: (Event) -> Unit,
+) {
     item {
         Column(
             verticalArrangement = Arrangement.spacedBy(space = 4.dp),
@@ -128,7 +143,7 @@ private fun LazyListScope.developerItem(viewState: State) {
                         containerColor = MaterialTheme.colorScheme.secondaryContainer,
                         contentColor = MaterialTheme.colorScheme.onSecondaryContainer,
                     ),
-                    onClick = {},
+                    onClick = { sendViewEvent(Event.DeveloperLinkClick(link)) },
                 ) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically
