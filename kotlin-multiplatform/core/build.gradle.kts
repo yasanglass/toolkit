@@ -44,6 +44,7 @@ kotlin {
         commonMain {
             dependencies {
                 implementation(libs.jetbrains.kotlinx.coroutines.core)
+                implementation(libs.touchlab.kermit)
             }
         }
         val nonWebMain by creating {
@@ -56,6 +57,7 @@ kotlin {
             dependsOn(nonWebMain)
             dependencies {
                 implementation(libs.jetbrains.kotlinx.coroutines.android)
+                implementation(libs.androidx.browser)
             }
         }
         iosMain {

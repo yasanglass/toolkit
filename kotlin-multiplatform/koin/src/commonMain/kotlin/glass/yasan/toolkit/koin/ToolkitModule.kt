@@ -12,6 +12,8 @@ import org.koin.core.module.dsl.factoryOf
 import org.koin.dsl.module
 
 public val toolkitModule: Module = module {
+    includes(toolkitPlatformModule)
+
     single<DispatcherProvider> { createDefaultDispatcherProvider() }
     single<ApplicationScope> {
         CoroutineScope(SupervisorJob() + get<DispatcherProvider>().default)
