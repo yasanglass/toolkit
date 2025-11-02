@@ -52,6 +52,7 @@ kotlin {
                 implementation(libs.androidx.lifecycle.viewmodel)
 
                 implementation(compose.components.resources)
+                implementation(compose.components.uiToolingPreview)
                 implementation(compose.foundation)
                 implementation(compose.material3)
                 implementation(compose.materialIconsExtended)
@@ -65,21 +66,12 @@ kotlin {
         val nonWebMain by creating {
             dependsOn(commonMain.get())
         }
-        val jvmAndroidMain by creating {
-            dependsOn(nonWebMain)
-            dependencies {
-                implementation(compose.components.uiToolingPreview)
-                implementation(compose.uiTooling)
-            }
-        }
         androidMain {
-            dependsOn(jvmAndroidMain)
             dependencies {
                 implementation(libs.jetbrains.kotlinx.coroutines.android)
             }
         }
         jvmMain {
-            dependsOn(jvmAndroidMain)
             dependencies {
                 implementation(compose.desktop.currentOs)
             }

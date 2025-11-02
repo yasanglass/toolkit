@@ -44,6 +44,7 @@ kotlin {
                 api(libs.jetbrains.kotlinx.collections.immutable)
 
                 implementation(compose.components.resources)
+                implementation(compose.components.uiToolingPreview)
                 implementation(compose.foundation)
                 implementation(compose.material3)
                 implementation(compose.materialIconsExtended)
