@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.jetbrains.kotlin.compose)
+    alias(libs.plugins.jetbrains.compose.hotreload)
 }
 
 kotlin {
@@ -71,6 +72,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+}
+
+dependencies {
+    debugImplementation(compose.uiTooling)
 }
 
 compose.resources {
