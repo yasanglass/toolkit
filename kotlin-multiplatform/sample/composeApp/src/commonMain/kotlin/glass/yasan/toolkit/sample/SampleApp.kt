@@ -8,6 +8,8 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.animation.togetherWith
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -27,15 +29,19 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import glass.yasan.toolkit.about.presentation.compose.DeveloperBrandingFooter
+import glass.yasan.toolkit.about.presentation.compose.ToolkitAppBanner
+import glass.yasan.toolkit.about.presentation.compose.ToolkitDeveloperBanner
 import glass.yasan.toolkit.compose.viewmodel.ViewActionEffect
 import org.jetbrains.compose.resources.stringResource
 import glass.yasan.toolkit.compose.viewmodel.rememberSendViewEvent
 import glass.yasan.toolkit.composeapp.generated.resources.Res
+import glass.yasan.toolkit.composeapp.generated.resources.app_icon
 import glass.yasan.toolkit.composeapp.generated.resources.app_title
 import glass.yasan.toolkit.composeapp.generated.resources.decrement
 import glass.yasan.toolkit.composeapp.generated.resources.increment
@@ -44,6 +50,8 @@ import glass.yasan.toolkit.sample.SampleViewModel.Action
 import glass.yasan.toolkit.sample.SampleViewModel.Event
 import glass.yasan.toolkit.sample.SampleViewModel.State
 import glass.yasan.toolkit.sample.theme.AppTheme
+import kotlinx.collections.immutable.persistentListOf
+import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -74,6 +82,8 @@ private fun SampleApp(
     sendViewEvent: (Event) -> Unit,
 ) {
     AppTheme {
+        val showBuildDetails = remember { mutableStateOf(true) }
+
         Scaffold(
             topBar = {
                 TopAppBar(
@@ -96,7 +106,27 @@ private fun SampleApp(
                 item { HorizontalDivider() }
                 developerItem(viewState, sendViewEvent)
                 item { HorizontalDivider() }
-                item { DeveloperBrandingFooter() }
+                item {
+                    ToolkitAppBanner(
+                        appName = stringResource(Res.string.app_title),
+                        appIcon = painterResource(Res.drawable.app_icon),
+                        appVersionName = "1.0.0",
+                        showBuildDetails = showBuildDetails.value,
+                        buildDetails = persistentListOf(100, "flavor"),
+                        modifier = Modifier
+                            .clickable(
+                                indication = null,
+                                interactionSource = null,
+                            ) {
+                                showBuildDetails.value = !showBuildDetails.value
+                            },
+                    )
+                }
+                item {
+                    ToolkitDeveloperBanner(
+                        darkContainer = isSystemInDarkTheme(),
+                    )
+                }
             }
         }
     }
