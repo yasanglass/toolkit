@@ -16,7 +16,6 @@ updates:
     kotlin:
       patterns:
         - "jetbrains.kotlin.*"
-        - "com.google.devtools.ksp"
     android-x:
       patterns:
         - "androidx.*"
