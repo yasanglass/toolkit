@@ -67,14 +67,16 @@ kotlin {
         val nonWebMain by creating {
             dependsOn(commonMain.get())
         }
-        androidMain {
-            dependencies {
-                implementation(libs.jetbrains.kotlinx.coroutines.android)
-            }
-        }
         jvmMain {
+            dependsOn(nonWebMain)
             dependencies {
                 implementation(compose.desktop.currentOs)
+            }
+        }
+        androidMain {
+            dependsOn(nonWebMain)
+            dependencies {
+                implementation(libs.jetbrains.kotlinx.coroutines.android)
             }
         }
         iosMain {
