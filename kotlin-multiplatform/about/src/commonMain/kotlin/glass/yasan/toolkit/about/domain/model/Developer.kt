@@ -6,11 +6,11 @@ import glass.yasan.toolkit.compose.about.Res
 import glass.yasan.toolkit.compose.about.ic_bluesky
 import glass.yasan.toolkit.compose.about.ic_discord
 import glass.yasan.toolkit.compose.about.ic_github
+import glass.yasan.toolkit.compose.about.ic_gumroad
 import glass.yasan.toolkit.compose.about.ic_language
 import glass.yasan.toolkit.compose.about.ic_mail
 import glass.yasan.toolkit.compose.about.ic_mastodon
 import glass.yasan.toolkit.compose.about.ic_play_store
-import glass.yasan.toolkit.compose.about.ic_storefront
 import glass.yasan.toolkit.compose.about.ic_telegram
 import io.ktor.http.parseUrl
 import kotlinx.collections.immutable.ImmutableList
@@ -129,7 +129,7 @@ public data class Developer(
                 Type.BLUESKY -> Res.drawable.ic_bluesky
                 Type.DISCORD -> Res.drawable.ic_discord
                 Type.GITHUB -> Res.drawable.ic_github
-                Type.GUMROAD -> Res.drawable.ic_storefront
+                Type.GUMROAD -> Res.drawable.ic_gumroad
                 Type.MASTODON -> Res.drawable.ic_mastodon
                 Type.PLAY_STORE -> Res.drawable.ic_play_store
                 Type.TELEGRAM -> Res.drawable.ic_telegram
