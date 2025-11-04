@@ -5,6 +5,6 @@ import kotlinx.coroutines.flow.Flow
 
 public interface AboutRepository {
 
-    public fun getDeveloper(): Flow<Developer>
+    public val developer: Flow<Developer>
 
 }
