@@ -15,6 +15,7 @@ kotlin {
     @OptIn(ExperimentalKotlinGradlePluginApi::class)
     compilerOptions {
         freeCompilerArgs.add("-Xexpect-actual-classes")
+        freeCompilerArgs.add("-Xcontext-sensitive-resolution")
     }
 
     androidTarget {

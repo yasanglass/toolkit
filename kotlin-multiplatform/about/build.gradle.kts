@@ -15,6 +15,11 @@ plugins {
 kotlin {
     explicitApi()
 
+    @OptIn(ExperimentalKotlinGradlePluginApi::class)
+    compilerOptions {
+        freeCompilerArgs.add("-Xcontext-sensitive-resolution")
+    }
+
     androidTarget {
         publishLibraryVariants("release")
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
