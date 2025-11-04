@@ -20,7 +20,7 @@ import androidx.compose.material3.Icon as MaterialIcon
 
 public data class Developer(
     val name: String = "Yasan Glass",
-    val about: String = "Developer & Designer",
+    val biography: String = "Developer & Designer",
     val links: ImmutableList<Link> = persistentListOf(
         Link(
             name = "Bluesky",
