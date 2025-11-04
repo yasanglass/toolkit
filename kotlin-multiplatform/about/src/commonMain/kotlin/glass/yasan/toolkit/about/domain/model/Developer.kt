@@ -21,6 +21,11 @@ import androidx.compose.material3.Icon as MaterialIcon
 public data class Developer(
     val name: String = "Yasan Glass",
     val biography: String = "Developer & Designer",
+    val picture: Picture = Picture(
+        gravatar = Picture.Gravatar(
+            id = "8489f66463e06f02d36e024188bcd7ae", // hello@yasan.glass
+        ),
+    ),
     val links: ImmutableList<Link> = persistentListOf(
         Link(
             name = "Bluesky",
@@ -69,6 +74,25 @@ public data class Developer(
         ),
     ),
 ) {
+
+    public data class Picture(
+        val gravatar: Gravatar,
+    ) {
+
+        /**
+         * @property id MD5 hash of the gravatar profile email address
+         */
+        public data class Gravatar(
+            private val id: String,
+        ) {
+
+            public fun getImageUrl(size: Int = 512): String = "$baseImageUrl?s=$size"
+
+            private val baseImageUrl: String get() = "https://www.gravatar.com/avatar/$id"
+
+        }
+
+    }
 
     public data class Link(
         val name: String,
