@@ -16,6 +16,7 @@ jetbrains-kotlinx-collections-immutable = "0.4.0"
 jetbrains-kotlinx-coroutines = "1.10.2"
 junit = "4.13.2"
 koin = "4.1.1"
+ktor = "3.3.1"
 touchlab-kermit = "2.0.8"
 vanniktech-maven-publish = "0.34.0"
 
@@ -40,6 +41,7 @@ koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koin" }
 koin-compose-viewmodel = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koin" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
+ktor-http = { module = "io.ktor:ktor-http", version.ref = "ktor" }
 touchlab-kermit = { module = "co.touchlab:kermit", version.ref = "touchlab-kermit" }
 
 [plugins]

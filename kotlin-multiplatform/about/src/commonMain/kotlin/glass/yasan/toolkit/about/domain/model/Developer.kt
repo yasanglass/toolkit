@@ -12,6 +12,7 @@ import glass.yasan.toolkit.compose.about.ic_mastodon
 import glass.yasan.toolkit.compose.about.ic_play_store
 import glass.yasan.toolkit.compose.about.ic_storefront
 import glass.yasan.toolkit.compose.about.ic_telegram
+import io.ktor.http.parseUrl
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import org.jetbrains.compose.resources.DrawableResource
@@ -30,47 +31,38 @@ public data class Developer(
         Link(
             name = "Bluesky",
             url = "https://bsky.app/profile/yasan.glass",
-            icon = Res.drawable.ic_bluesky,
         ),
         Link(
             name = "Discord",
             url = "https://discord.gg/8BQrfyA",
-            icon = Res.drawable.ic_discord,
         ),
         Link(
             name = "Email",
             url = "mailto:yasanglass@gmail.com",
-            icon = Res.drawable.ic_mail,
         ),
         Link(
             name = "GitHub",
             url = "https://github.com/yasanglass",
-            icon = Res.drawable.ic_github,
         ),
         Link(
             name = "Gumroad",
             url = "https://yasanglass.gumroad.com",
-            icon = Res.drawable.ic_storefront,
         ),
         Link(
             name = "Mastodon",
             url = "https://mastodon.social/@yasanglass",
-            icon = Res.drawable.ic_mastodon,
         ),
         Link(
             name = "Play Store",
             url = "https://play.google.com/store/apps/dev?id=5035207490031558874",
-            icon = Res.drawable.ic_play_store,
         ),
         Link(
             name = "Telegram",
             url = "https://t.me/YASANupdates",
-            icon = Res.drawable.ic_telegram,
         ),
         Link(
             name = "Website",
             url = "https://yasan.glass",
-            icon = Res.drawable.ic_language,
         ),
     ),
 ) {
@@ -97,8 +89,52 @@ public data class Developer(
     public data class Link(
         val name: String,
         val url: String,
-        private val icon: DrawableResource,
     ) {
+
+        public enum class Type {
+            BLUESKY,
+            DISCORD,
+            EMAIL,
+            GITHUB,
+            GUMROAD,
+            MASTODON,
+            PLAY_STORE,
+            TELEGRAM,
+            WEBSITE,
+        }
+
+        public val type: Type
+            get() {
+                val parsedUrl = parseUrl(urlString = url)
+
+                return when {
+                    // Exact protocol
+                    parsedUrl?.protocol?.name == "mailto" -> EMAIL
+                    // Exact host
+                    parsedUrl?.host == "bsky.app" -> BLUESKY
+                    parsedUrl?.host == "discord.gg" -> DISCORD
+                    parsedUrl?.host == "github.com" -> GITHUB
+                    parsedUrl?.host == "play.google.com" -> PLAY_STORE
+                    parsedUrl?.host == "t.me" -> TELEGRAM
+                    // Other
+                    name.contains("Mastodon", true) -> MASTODON
+                    parsedUrl?.host?.contains("gumroad.com") == true -> GUMROAD
+                    else -> WEBSITE
+                }
+            }
+
+        public val icon: DrawableResource
+            get() = when (type) {
+                Type.EMAIL -> Res.drawable.ic_mail
+                Type.BLUESKY -> Res.drawable.ic_bluesky
+                Type.DISCORD -> Res.drawable.ic_discord
+                Type.GITHUB -> Res.drawable.ic_github
+                Type.GUMROAD -> Res.drawable.ic_storefront
+                Type.MASTODON -> Res.drawable.ic_mastodon
+                Type.PLAY_STORE -> Res.drawable.ic_play_store
+                Type.TELEGRAM -> Res.drawable.ic_telegram
+                Type.WEBSITE -> Res.drawable.ic_language
+            }
 
         @Composable
         public fun Icon(modifier: Modifier = Modifier) {
