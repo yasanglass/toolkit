@@ -1,7 +1,5 @@
 package glass.yasan.toolkit.about.domain.model
 
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import glass.yasan.toolkit.compose.about.Res
 import glass.yasan.toolkit.compose.about.ic_bluesky
 import glass.yasan.toolkit.compose.about.ic_discord
@@ -16,8 +14,6 @@ import io.ktor.http.parseUrl
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import org.jetbrains.compose.resources.DrawableResource
-import org.jetbrains.compose.resources.painterResource
-import androidx.compose.material3.Icon as MaterialIcon
 
 public data class Developer(
     val name: String = "Yasan Glass",
@@ -117,7 +113,7 @@ public data class Developer(
                     parsedUrl?.host == "play.google.com" -> PLAY_STORE
                     parsedUrl?.host == "t.me" -> TELEGRAM
                     // Other
-                    name.contains("Mastodon", true) -> MASTODON
+                    name.contains("mastodon", true) -> MASTODON
                     parsedUrl?.host?.contains("gumroad.com") == true -> GUMROAD
                     else -> WEBSITE
                 }
@@ -136,14 +132,6 @@ public data class Developer(
                 Type.WEBSITE -> Res.drawable.ic_language
             }
 
-        @Composable
-        public fun Icon(modifier: Modifier = Modifier) {
-            MaterialIcon(
-                painter = painterResource(resource = icon),
-                contentDescription = name,
-                modifier = modifier,
-            )
-        }
     }
 
 }
