@@ -25,40 +25,40 @@ public data class Developer(
     ),
     val links: ImmutableList<Link> = persistentListOf(
         Link(
-            name = "Bluesky",
-            url = "https://bsky.app/profile/yasan.glass",
-        ),
-        Link(
-            name = "Discord",
-            url = "https://discord.gg/8BQrfyA",
+            name = "Website",
+            url = "https://yasan.glass",
         ),
         Link(
             name = "Email",
             url = "mailto:yasanglass@gmail.com",
         ),
         Link(
-            name = "GitHub",
-            url = "https://github.com/yasanglass",
+            name = "Discord Server",
+            url = "https://discord.gg/8BQrfyA",
         ),
         Link(
-            name = "Gumroad",
-            url = "https://yasanglass.gumroad.com",
-        ),
-        Link(
-            name = "Mastodon",
-            url = "https://mastodon.social/@yasanglass",
+            name = "Telegram Channel",
+            url = "https://t.me/YASANupdates",
         ),
         Link(
             name = "Play Store",
             url = "https://play.google.com/store/apps/dev?id=5035207490031558874",
         ),
         Link(
-            name = "Telegram",
-            url = "https://t.me/YASANupdates",
+            name = "GitHub",
+            url = "https://github.com/yasanglass",
         ),
         Link(
-            name = "Website",
-            url = "https://yasan.glass",
+            name = "Mastodon",
+            url = "https://mastodon.social/@yasanglass",
+        ),
+        Link(
+            name = "Bluesky",
+            url = "https://bsky.app/profile/yasan.glass",
+        ),
+        Link(
+            name = "Gumroad",
+            url = "https://yasanglass.gumroad.com",
         ),
     ),
 ) {
