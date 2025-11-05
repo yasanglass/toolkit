@@ -1,11 +1,23 @@
 package glass.yasan.toolkit.compose.coroutines
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import glass.yasan.toolkit.core.coroutines.firstBlocking
 import kotlinx.coroutines.flow.Flow
-import androidx.compose.runtime.State
+import kotlinx.coroutines.flow.StateFlow
 
 @Composable
-public fun <T> Flow<T>.collectAsStateWithLifecycleBlocking(): State<T> =
-    collectAsStateWithLifecycle(initialValue = firstBlocking())
+public fun <T> Flow<T>.collectAsStateWithLifecycleBlocking(): State<T> = collectAsStateWithLifecycle(
+    initialValue = firstBlocking(),
+)
+
+@Composable
+public actual fun <T> Flow<T>.collectAsStateWithLifecycleIfAvailable(
+    initialValue: T,
+): State<T> = collectAsStateWithLifecycle(
+    initialValue = initialValue,
+)
+
+@Composable
+public actual fun <T> StateFlow<T>.collectAsStateWithLifecycleIfAvailable(): State<T> = collectAsStateWithLifecycle()
