@@ -1,5 +1,6 @@
 package glass.yasan.toolkit.about.presentation.compose
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import glass.yasan.toolkit.about.domain.model.Developer
 import glass.yasan.toolkit.about.domain.repository.AboutRepository
@@ -27,6 +29,9 @@ import org.koin.compose.koinInject
 @Composable
 public fun ToolkitDeveloperContent(
     modifier: Modifier = Modifier,
+    linkButtonContainerColor: Color = MaterialTheme.colorScheme.surface,
+    linkButtonContentColor: Color = MaterialTheme.colorScheme.onSurface,
+    linkButtonBorder: BorderStroke? = null,
 ) {
     val aboutRepository: AboutRepository = koinInject()
     val urlLauncher: UrlLauncher = koinInject()
@@ -34,8 +39,11 @@ public fun ToolkitDeveloperContent(
     val developer: Developer by aboutRepository.developer.collectAsStateWithLifecycleIfAvailable(Developer())
 
     ToolkitDeveloperContent(
+        linkButtonContainerColor = linkButtonContainerColor,
+        linkButtonContentColor = linkButtonContentColor,
         developer = developer,
         onDeveloperLinkClick = { link -> urlLauncher.launch(link.url) },
+        linkButtonBorder = linkButtonBorder,
         modifier = modifier,
     )
 }
@@ -43,8 +51,11 @@ public fun ToolkitDeveloperContent(
 @Composable
 private fun ToolkitDeveloperContent(
     developer: Developer,
+    linkButtonContainerColor: Color,
+    linkButtonContentColor: Color,
     onDeveloperLinkClick: (Developer.Link) -> Unit,
     modifier: Modifier = Modifier,
+    linkButtonBorder: BorderStroke? = null,
 ) {
     Column(
         verticalArrangement = Arrangement.spacedBy(space = 4.dp),
@@ -68,10 +79,11 @@ private fun ToolkitDeveloperContent(
         developer.links.forEach { link ->
             Button(
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.surface,
-                    contentColor = MaterialTheme.colorScheme.onSurface,
+                    containerColor = linkButtonContainerColor,
+                    contentColor = linkButtonContentColor,
                 ),
                 shape = MaterialTheme.shapes.extraLarge,
+                border = linkButtonBorder,
                 onClick = { onDeveloperLinkClick(link) },
             ) {
                 Row(
@@ -97,9 +109,13 @@ private fun ToolkitDeveloperContent(
 @Composable
 private fun ToolkitDeveloperContentPreview() {
     MaterialTheme {
-        Surface {
+        Surface(
+            color = MaterialTheme.colorScheme.surfaceContainer,
+        ) {
             ToolkitDeveloperContent(
                 developer = Developer(),
+                linkButtonContainerColor = MaterialTheme.colorScheme.surface,
+                linkButtonContentColor = MaterialTheme.colorScheme.onSurface,
                 onDeveloperLinkClick = {},
                 modifier = Modifier.padding(16.dp),
             )
