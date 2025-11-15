@@ -53,8 +53,7 @@ public fun ToolkitAppBanner(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
             .animateContentSize()
-            .padding(16.dp)
-            .fillMaxWidth(),
+            .padding(16.dp),
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -107,6 +106,7 @@ private fun ToolkitAppBannerPreview(
                 appVersionName = "1.0.0",
                 showBuildDetails = showBuildDetails,
                 buildDetails = persistentListOf(100, "flavor"),
+                modifier = Modifier.fillMaxWidth(),
             )
         }
     }
