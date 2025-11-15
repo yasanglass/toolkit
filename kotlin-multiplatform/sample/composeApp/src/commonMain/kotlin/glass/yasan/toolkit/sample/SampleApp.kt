@@ -93,6 +93,7 @@ private fun SampleApp(
                     },
                 )
             },
+            containerColor = MaterialTheme.colorScheme.surfaceContainer,
         ) { contentPadding ->
             LazyColumn(
                 contentPadding = contentPadding,
