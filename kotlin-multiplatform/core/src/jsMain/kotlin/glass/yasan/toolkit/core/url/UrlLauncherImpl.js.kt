@@ -1,5 +1,6 @@
 package glass.yasan.toolkit.core.url
 
+import co.touchlab.kermit.Logger
 import glass.yasan.toolkit.core.url.UrlLauncher.Companion.ERROR_MESSAGE
 import kotlinx.browser.window
 
@@ -10,7 +11,7 @@ internal actual class UrlLauncherImpl : UrlLauncher {
             window.open(url, "_blank")
             true
         } catch (e: Exception) {
-            console.error("$ERROR_MESSAGE: $url", e)
+            Logger.e("$ERROR_MESSAGE: $url", e)
             false
         }
     }
