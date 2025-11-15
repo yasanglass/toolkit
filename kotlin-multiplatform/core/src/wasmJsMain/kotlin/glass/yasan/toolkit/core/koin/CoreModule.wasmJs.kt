@@ -1,10 +1,10 @@
-package glass.yasan.toolkit.koin
+package glass.yasan.toolkit.core.koin
 
 import glass.yasan.toolkit.core.url.UrlLauncher
 import glass.yasan.toolkit.core.url.UrlLauncherImpl
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
-public actual val toolkitPlatformModule: Module = module {
-    factory<UrlLauncher> { UrlLauncherImpl(context = get()) }
+public actual val coreModule: Module = module {
+    factory<UrlLauncher> { UrlLauncherImpl() }
 }

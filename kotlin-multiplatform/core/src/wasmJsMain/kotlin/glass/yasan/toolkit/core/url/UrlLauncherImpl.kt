@@ -4,7 +4,7 @@ import co.touchlab.kermit.Logger
 import glass.yasan.toolkit.core.Window
 import glass.yasan.toolkit.core.url.UrlLauncher.Companion.ERROR_MESSAGE
 
-public actual class UrlLauncherImpl : UrlLauncher {
+internal actual class UrlLauncherImpl : UrlLauncher {
 
     actual override fun launch(url: String): Boolean {
         return try {
