@@ -33,6 +33,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import glass.yasan.toolkit.about.presentation.compose.ToolkitAppBanner
+import glass.yasan.toolkit.about.presentation.compose.ToolkitDeveloperBanner
 import glass.yasan.toolkit.about.presentation.compose.ToolkitDeveloperContent
 import glass.yasan.toolkit.compose.viewmodel.ViewActionEffect
 import org.jetbrains.compose.resources.stringResource
@@ -102,11 +103,7 @@ private fun SampleApp(
             ) {
                 viewEventItem(viewState, sendViewEvent)
                 item { HorizontalDivider() }
-                item {
-                    ToolkitDeveloperContent(
-                        darkContainer = isSystemInDarkTheme(),
-                    )
-                }
+                item { ToolkitDeveloperContent() }
                 item { HorizontalDivider() }
                 item {
                     ToolkitAppBanner(
@@ -122,6 +119,11 @@ private fun SampleApp(
                             ) {
                                 showBuildDetails.value = !showBuildDetails.value
                             },
+                    )
+                }
+                item {
+                    ToolkitDeveloperBanner(
+                        darkContainer = isSystemInDarkTheme(),
                     )
                 }
             }

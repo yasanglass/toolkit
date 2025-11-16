@@ -1,7 +1,6 @@
 package glass.yasan.toolkit.about.presentation.compose
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -29,7 +28,6 @@ import org.koin.compose.koinInject
 
 @Composable
 public fun ToolkitDeveloperContent(
-    darkContainer: Boolean,
     modifier: Modifier = Modifier,
     linkButtonContainerColor: Color = MaterialTheme.colorScheme.surface,
     linkButtonContentColor: Color = MaterialTheme.colorScheme.onSurface,
@@ -41,7 +39,6 @@ public fun ToolkitDeveloperContent(
     val developer: Developer by aboutRepository.developer.collectAsStateWithLifecycleIfAvailable(Developer())
 
     ToolkitDeveloperContent(
-        darkContainer = darkContainer,
         linkButtonContainerColor = linkButtonContainerColor,
         linkButtonContentColor = linkButtonContentColor,
         developer = developer,
@@ -53,7 +50,6 @@ public fun ToolkitDeveloperContent(
 
 @Composable
 private fun ToolkitDeveloperContent(
-    darkContainer: Boolean,
     developer: Developer,
     linkButtonContainerColor: Color,
     linkButtonContentColor: Color,
@@ -71,8 +67,9 @@ private fun ToolkitDeveloperContent(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.padding(16.dp),
         ) {
-            ToolkitDeveloperBanner(
-                darkContainer = darkContainer,
+            Text(
+                text = developer.name,
+                style = MaterialTheme.typography.titleMedium,
             )
             Text(
                 text = developer.biography,
@@ -116,7 +113,6 @@ private fun ToolkitDeveloperContentPreview() {
             color = MaterialTheme.colorScheme.surfaceContainer,
         ) {
             ToolkitDeveloperContent(
-                darkContainer = isSystemInDarkTheme(),
                 developer = Developer(),
                 linkButtonContainerColor = MaterialTheme.colorScheme.surface,
                 linkButtonContentColor = MaterialTheme.colorScheme.onSurface,
