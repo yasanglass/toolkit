@@ -103,7 +103,11 @@ private fun SampleApp(
             ) {
                 viewEventItem(viewState, sendViewEvent)
                 item { HorizontalDivider() }
-                item { ToolkitDeveloperContent() }
+                item {
+                    ToolkitDeveloperContent(
+                        isDarkTheme = isSystemInDarkTheme(),
+                    )
+                }
                 item { HorizontalDivider() }
                 item {
                     ToolkitAppBanner(
@@ -123,7 +127,7 @@ private fun SampleApp(
                 }
                 item {
                     ToolkitDeveloperBanner(
-                        darkContainer = isSystemInDarkTheme(),
+                        isDarkTheme = isSystemInDarkTheme(),
                     )
                 }
             }

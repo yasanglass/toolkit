@@ -1,6 +1,7 @@
 package glass.yasan.toolkit.about.presentation.compose
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -28,6 +29,7 @@ import org.koin.compose.koinInject
 
 @Composable
 public fun ToolkitDeveloperContent(
+    isDarkTheme: Boolean,
     modifier: Modifier = Modifier,
     linkButtonContainerColor: Color = MaterialTheme.colorScheme.surface,
     linkButtonContentColor: Color = MaterialTheme.colorScheme.onSurface,
@@ -36,9 +38,12 @@ public fun ToolkitDeveloperContent(
     val aboutRepository: AboutRepository = koinInject()
     val urlLauncher: UrlLauncher = koinInject()
 
-    val developer: Developer by aboutRepository.developer.collectAsStateWithLifecycleIfAvailable(Developer())
+    val developer: Developer by aboutRepository.developer.collectAsStateWithLifecycleIfAvailable(
+        Developer()
+    )
 
     ToolkitDeveloperContent(
+        isDarkTheme = isDarkTheme,
         linkButtonContainerColor = linkButtonContainerColor,
         linkButtonContentColor = linkButtonContentColor,
         developer = developer,
@@ -50,6 +55,7 @@ public fun ToolkitDeveloperContent(
 
 @Composable
 private fun ToolkitDeveloperContent(
+    isDarkTheme: Boolean,
     developer: Developer,
     linkButtonContainerColor: Color,
     linkButtonContentColor: Color,
@@ -67,13 +73,18 @@ private fun ToolkitDeveloperContent(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.padding(16.dp),
         ) {
-            Text(
-                text = developer.name,
-                style = MaterialTheme.typography.titleMedium,
+            ToolkitDeveloperLogoVertical(
+                isDarkTheme = isDarkTheme,
+                modifier = modifier
+                    .padding(
+                        vertical = 8.dp,
+                        horizontal = 16.dp,
+                    )
+                    .size(128.dp),
             )
             Text(
                 text = developer.biography,
-                style = MaterialTheme.typography.bodyMedium,
+                style = MaterialTheme.typography.bodyLarge,
             )
         }
         developer.links.forEach { link ->
@@ -113,6 +124,7 @@ private fun ToolkitDeveloperContentPreview() {
             color = MaterialTheme.colorScheme.surfaceContainer,
         ) {
             ToolkitDeveloperContent(
+                isDarkTheme = isSystemInDarkTheme(),
                 developer = Developer(),
                 linkButtonContainerColor = MaterialTheme.colorScheme.surface,
                 linkButtonContentColor = MaterialTheme.colorScheme.onSurface,
