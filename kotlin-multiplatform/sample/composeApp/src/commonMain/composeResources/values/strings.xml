@@ -1,5 +1,7 @@
 <resources>
+    <string name="about">About</string>
     <string name="app_title">Toolkit</string>
-    <string name="increment">Increment</string>
     <string name="decrement">Decrement</string>
+    <string name="go_back">Go Back</string>
+    <string name="increment">Increment</string>
 </resources>

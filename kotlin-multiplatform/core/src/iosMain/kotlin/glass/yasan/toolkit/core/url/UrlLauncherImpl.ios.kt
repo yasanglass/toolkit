@@ -11,7 +11,16 @@ internal actual class UrlLauncherImpl : UrlLauncher {
         try {
             val nsUrl = NSURL.URLWithString(url) ?: return false
             if (UIApplication.sharedApplication.canOpenURL(nsUrl)) {
-                UIApplication.sharedApplication.openURL(nsUrl)
+                UIApplication.sharedApplication.openURL(
+                    nsUrl,
+                    options = emptyMap<Any?, Any?>(),
+                    completionHandler = { success ->
+                        if (!success) {
+                            // TODO return the actual completion handler result
+                            Logger.e { "$ERROR_MESSAGE: $url" }
+                        }
+                    }
+                )
                 true
             } else {
                 false
