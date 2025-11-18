@@ -1,7 +1,6 @@
 package glass.yasan.toolkit.about.presentation.compose
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -49,10 +48,9 @@ public fun ToolkitAppBanner(
     }
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(12.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
-            .animateContentSize()
+            .fillMaxWidth()
             .padding(16.dp),
     ) {
         Row(
@@ -82,6 +80,7 @@ public fun ToolkitAppBanner(
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier
+                    .padding(top = 16.dp)
                     .clip(MaterialTheme.shapes.extraLarge)
                     .background(color = MaterialTheme.colorScheme.surfaceVariant)
                     .padding(
