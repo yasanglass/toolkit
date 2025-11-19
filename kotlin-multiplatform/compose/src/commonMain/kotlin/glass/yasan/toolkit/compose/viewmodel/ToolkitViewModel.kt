@@ -2,8 +2,6 @@ package glass.yasan.toolkit.compose.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlin.time.Duration
-import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -11,10 +9,14 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.WhileSubscribed
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.getAndUpdate
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.updateAndGet
 import kotlinx.coroutines.launch
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.seconds
 
 public abstract class ToolkitViewModel<
         S : ViewState,
@@ -30,6 +32,14 @@ public abstract class ToolkitViewModel<
 
     public fun updateViewState(transform: S.() -> S) {
         _viewState.update { state -> transform(state) }
+    }
+
+    public fun updateAndGetViewState(transform: S.() -> S): S {
+        return _viewState.updateAndGet { state -> transform(state) }
+    }
+
+    public fun getAndUpdateViewState(transform: S.() -> S): S {
+        return _viewState.getAndUpdate { state -> transform(state) }
     }
 
     private val _viewEvent: Channel<E> = Channel(Channel.BUFFERED)
