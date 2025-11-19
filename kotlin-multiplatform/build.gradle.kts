@@ -45,7 +45,10 @@ fun Project.configureDetekt() {
 fun Project.configurePublishing() {
     apply(plugin = "com.vanniktech.maven.publish")
     configure<com.vanniktech.maven.publish.MavenPublishBaseExtension> {
-        publishToMavenCentral()
+        publishToMavenCentral(
+            automaticRelease = true,
+            validateDeployment = false,
+        )
 
         signAllPublications()
 
