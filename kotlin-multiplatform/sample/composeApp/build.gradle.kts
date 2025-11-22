@@ -88,12 +88,12 @@ kotlin {
 
 android {
     namespace = "glass.yasan.toolkit.sample"
-    compileSdk = libs.versions.android.sdk.compile.get().toInt()
+    compileSdk = libs.versions.sample.android.sdk.compile.get().toInt()
 
     defaultConfig {
         applicationId = "glass.yasan.toolkit.sample"
-        minSdk = libs.versions.android.sdk.min.get().toInt()
-        targetSdk = libs.versions.android.sdk.compile.get().toInt()
+        minSdk = libs.versions.sample.android.sdk.min.get().toInt()
+        targetSdk = libs.versions.sample.android.sdk.target.get().toInt()
         versionCode = 1
         versionName = "1.0.0"
     }
