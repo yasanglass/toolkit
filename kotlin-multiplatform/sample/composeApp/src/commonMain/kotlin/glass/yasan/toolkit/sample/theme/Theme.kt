@@ -5,7 +5,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import glass.yasan.toolkit.compose.typography.RubikTypography
+import glass.yasan.concrete.foundation.typography.rubikTypography
 
 private val LightColorScheme = lightColorScheme(
     primary = lightPrimary,
@@ -74,7 +74,7 @@ fun AppTheme(
 
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = RubikTypography(),
+        typography = rubikTypography(),
         content = content,
     )
 }
