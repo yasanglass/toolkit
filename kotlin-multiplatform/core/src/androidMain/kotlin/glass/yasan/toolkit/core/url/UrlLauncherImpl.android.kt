@@ -7,7 +7,7 @@ import androidx.browser.customtabs.CustomTabsIntent
 import co.touchlab.kermit.Logger
 import glass.yasan.toolkit.core.url.UrlLauncher.Companion.ERROR_MESSAGE
 
-internal actual class UrlLauncherImpl(
+public actual class UrlLauncherImpl(
     private val context: Context,
 ) : UrlLauncher {
 

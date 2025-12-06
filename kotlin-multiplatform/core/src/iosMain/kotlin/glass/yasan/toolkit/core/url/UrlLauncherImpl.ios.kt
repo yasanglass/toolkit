@@ -5,7 +5,7 @@ import glass.yasan.toolkit.core.url.UrlLauncher.Companion.ERROR_MESSAGE
 import platform.Foundation.NSURL
 import platform.UIKit.UIApplication
 
-internal actual class UrlLauncherImpl : UrlLauncher {
+public actual class UrlLauncherImpl : UrlLauncher {
 
     actual override fun launch(url: String): Boolean =
         try {
