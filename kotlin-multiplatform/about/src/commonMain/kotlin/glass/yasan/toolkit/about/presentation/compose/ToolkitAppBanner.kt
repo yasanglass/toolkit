@@ -15,14 +15,17 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import glass.yasan.concrete.component.TextSubtle
+import glass.yasan.concrete.foundation.theme.ConcreteTheme
 import glass.yasan.toolkit.compose.about.Res
 import glass.yasan.toolkit.compose.about.ic_github
 import glass.yasan.toolkit.compose.preview.BooleanPreviewParameterProvider
@@ -60,13 +63,14 @@ public fun ToolkitAppBanner(
             Image(
                 painter = appIcon,
                 contentDescription = null,
+                colorFilter = ColorFilter.tint(color = ConcreteTheme.colors.contentSubtle),
                 modifier = Modifier
                     .requiredHeight(height = 24.dp),
             )
 
-            Text(
+            TextSubtle(
                 text = "$appName $appVersionName",
-                style = MaterialTheme.typography.labelLarge,
+                fontSize = 14.sp,
             )
         }
 
@@ -75,17 +79,15 @@ public fun ToolkitAppBanner(
             enter = fadeIn() + expandVertically(),
             exit = fadeOut() + shrinkVertically(),
         ) {
-            Text(
+            TextSubtle(
                 text = buildDetailsString,
-                style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                fontSize = 12.sp,
                 modifier = Modifier
                     .padding(top = 16.dp)
-                    .clip(MaterialTheme.shapes.extraLarge)
-                    .background(color = MaterialTheme.colorScheme.surfaceVariant)
+                    .clip(shape = MaterialTheme.shapes.extraLarge)
+                    .background(color = ConcreteTheme.colors.background)
                     .padding(
-                        vertical = 4.dp,
-                        horizontal = 8.dp,
+                        horizontal = 12.dp,
                     )
             )
         }
@@ -97,7 +99,7 @@ public fun ToolkitAppBanner(
 private fun ToolkitAppBannerPreview(
     @PreviewParameter(BooleanPreviewParameterProvider::class) showBuildDetails: Boolean,
 ) {
-    MaterialTheme {
+    ConcreteTheme {
         Surface {
             ToolkitAppBanner(
                 appName = "Toolkit",

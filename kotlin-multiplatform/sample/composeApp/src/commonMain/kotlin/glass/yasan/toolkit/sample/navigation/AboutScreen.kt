@@ -8,12 +8,12 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import glass.yasan.concrete.foundation.theme.ConcreteTheme
 import glass.yasan.toolkit.about.presentation.compose.ToolkitDeveloperContent
 import glass.yasan.toolkit.composeapp.generated.resources.Res
 import glass.yasan.toolkit.composeapp.generated.resources.arrow_back
@@ -35,7 +35,7 @@ internal fun AboutScreen(
                 )
             }
         },
-        containerColor = MaterialTheme.colorScheme.surfaceContainer,
+        containerColor = ConcreteTheme.colors.midground,
         modifier = Modifier.fillMaxSize(),
     ) { contentPadding ->
         LazyColumn(

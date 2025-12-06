@@ -2,13 +2,13 @@ package glass.yasan.toolkit.sample
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
+import glass.yasan.concrete.foundation.theme.ConcreteTheme
 import glass.yasan.toolkit.compose.viewmodel.ViewActionEffect
 import glass.yasan.toolkit.compose.viewmodel.rememberSendViewEvent
 import glass.yasan.toolkit.core.url.UrlLauncher
@@ -50,7 +50,7 @@ private fun SampleApp(
 
     AppTheme {
         Scaffold(
-            containerColor = MaterialTheme.colorScheme.surfaceContainer,
+            containerColor = ConcreteTheme.colors.midground,
         ) { contentPadding ->
             SampleNavHost(
                 navController = navController,

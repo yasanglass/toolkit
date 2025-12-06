@@ -49,6 +49,9 @@ kotlin {
                 api(project(":compose"))
                 api(libs.jetbrains.kotlinx.collections.immutable)
 
+                implementation(libs.glass.yasan.concrete.component)
+                implementation(libs.glass.yasan.concrete.foundation)
+
                 implementation(compose.components.resources)
                 implementation(compose.components.uiToolingPreview)
                 implementation(compose.foundation)

@@ -58,6 +58,7 @@ kotlin {
                 implementation(libs.androidx.lifecycle.runtime.compose)
                 implementation(libs.androidx.lifecycle.viewmodel.compose)
                 implementation(libs.androidx.navigation.compose)
+                implementation(libs.glass.yasan.concrete.component)
                 implementation(libs.glass.yasan.concrete.foundation)
                 implementation(libs.jetbrains.kotlinx.serialization.core)
                 implementation(libs.koin.compose)

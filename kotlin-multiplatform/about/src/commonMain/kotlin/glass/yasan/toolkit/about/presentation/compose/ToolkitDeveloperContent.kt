@@ -14,13 +14,15 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import glass.yasan.concrete.component.Text
+import glass.yasan.concrete.foundation.theme.ConcreteTheme
 import glass.yasan.toolkit.about.domain.model.Developer
 import glass.yasan.toolkit.about.domain.repository.AboutRepository
 import glass.yasan.toolkit.compose.coroutines.collectAsStateWithLifecycleIfAvailable
@@ -33,8 +35,8 @@ import org.koin.compose.koinInject
 public fun ToolkitDeveloperContent(
     isDarkTheme: Boolean,
     modifier: Modifier = Modifier,
-    linkButtonContainerColor: Color = MaterialTheme.colorScheme.surface,
-    linkButtonContentColor: Color = MaterialTheme.colorScheme.onSurface,
+    linkButtonContainerColor: Color = ConcreteTheme.colors.foreground,
+    linkButtonContentColor: Color = ConcreteTheme.colors.content,
     linkButtonBorder: BorderStroke? = null,
 ) {
     val aboutRepository: AboutRepository = koinInject()
@@ -86,7 +88,7 @@ private fun ToolkitDeveloperContent(
             )
             Text(
                 text = developer.biography,
-                style = MaterialTheme.typography.bodyLarge,
+                fontSize = 16.sp,
             )
         }
         developer.links.forEach { link ->
@@ -122,15 +124,15 @@ private fun ToolkitDeveloperContent(
 @Preview
 @Composable
 private fun ToolkitDeveloperContentPreview() {
-    MaterialTheme {
+    ConcreteTheme {
         Surface(
-            color = MaterialTheme.colorScheme.surfaceContainer,
+            color = ConcreteTheme.colors.midground,
         ) {
             ToolkitDeveloperContent(
                 isDarkTheme = isSystemInDarkTheme(),
                 developer = Developer(),
-                linkButtonContainerColor = MaterialTheme.colorScheme.surface,
-                linkButtonContentColor = MaterialTheme.colorScheme.onSurface,
+                linkButtonContainerColor = ConcreteTheme.colors.foreground,
+                linkButtonContentColor = ConcreteTheme.colors.content,
                 onDeveloperLinkClick = {},
                 modifier = Modifier.padding(16.dp),
             )
