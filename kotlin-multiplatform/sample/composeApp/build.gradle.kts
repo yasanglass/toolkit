@@ -125,8 +125,19 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "glass.yasan.toolkit.sample"
+            packageName = "Toolkit"
             packageVersion = "1.0.0"
+            macOS {
+                iconFile.set(project.file("src/jvmMain/resources/app_icon.icns"))
+                bundleID = "glass.yasan.toolkit.sample"
+                dockName = "Toolkit"
+            }
+            windows {
+                iconFile.set(project.file("src/commonMain/composeResources/drawable/app_icon.png"))
+            }
+            linux {
+                iconFile.set(project.file("src/commonMain/composeResources/drawable/app_icon.png"))
+            }
         }
     }
 }
