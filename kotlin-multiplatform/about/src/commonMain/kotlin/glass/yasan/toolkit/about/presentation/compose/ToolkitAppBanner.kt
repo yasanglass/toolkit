@@ -63,7 +63,6 @@ public fun ToolkitAppBanner(
             Image(
                 painter = appIcon,
                 contentDescription = null,
-                colorFilter = ColorFilter.tint(color = ConcreteTheme.colors.contentSubtle),
                 modifier = Modifier
                     .requiredHeight(height = 24.dp),
             )
