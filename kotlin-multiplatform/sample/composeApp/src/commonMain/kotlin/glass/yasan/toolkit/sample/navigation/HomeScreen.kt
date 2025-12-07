@@ -8,7 +8,6 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.animation.togetherWith
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,8 +18,6 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -44,8 +41,6 @@ internal fun HomeScreen(
     sendViewEvent: (SampleViewModel.Event) -> Unit,
     onNavigateToAbout: () -> Unit,
 ) {
-    val showBuildDetails = remember { mutableStateOf(true) }
-
     LazyColumn(
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -77,15 +72,7 @@ internal fun HomeScreen(
                 appName = stringResource(Res.string.app_title),
                 appIcon = painterResource(Res.drawable.app_icon),
                 appVersionName = "1.0.0",
-                showBuildDetails = showBuildDetails.value,
                 buildDetails = persistentListOf(100, "flavor"),
-                modifier = Modifier
-                    .clickable(
-                        indication = null,
-                        interactionSource = null,
-                    ) {
-                        showBuildDetails.value = !showBuildDetails.value
-                    },
             )
         }
 

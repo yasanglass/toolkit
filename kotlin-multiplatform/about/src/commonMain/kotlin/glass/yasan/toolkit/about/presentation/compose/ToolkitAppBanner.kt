@@ -1,10 +1,5 @@
 package glass.yasan.toolkit.about.presentation.compose
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.expandVertically
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -20,7 +15,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -28,19 +22,16 @@ import glass.yasan.concrete.component.TextSubtle
 import glass.yasan.concrete.foundation.theme.ConcreteTheme
 import glass.yasan.toolkit.compose.about.Res
 import glass.yasan.toolkit.compose.about.ic_github
-import glass.yasan.toolkit.compose.preview.BooleanPreviewParameterProvider
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import org.jetbrains.compose.ui.tooling.preview.PreviewParameter
 
 @Composable
 public fun ToolkitAppBanner(
     appName: String,
     appIcon: Painter,
     appVersionName: String,
-    showBuildDetails: Boolean,
     buildDetails: ImmutableList<Any>,
     modifier: Modifier = Modifier,
 ) {
@@ -73,38 +64,30 @@ public fun ToolkitAppBanner(
             )
         }
 
-        AnimatedVisibility(
-            visible = showBuildDetails,
-            enter = fadeIn() + expandVertically(),
-            exit = fadeOut() + shrinkVertically(),
-        ) {
-            TextSubtle(
-                text = buildDetailsString,
-                fontSize = 12.sp,
-                modifier = Modifier
-                    .padding(top = 16.dp)
-                    .clip(shape = MaterialTheme.shapes.extraLarge)
-                    .background(color = ConcreteTheme.colors.background)
-                    .padding(
-                        horizontal = 12.dp,
-                    )
-            )
-        }
+
+        TextSubtle(
+            text = buildDetailsString,
+            fontSize = 12.sp,
+            modifier = Modifier
+                .padding(top = 16.dp)
+                .clip(shape = MaterialTheme.shapes.extraLarge)
+                .background(color = ConcreteTheme.colors.background)
+                .padding(
+                    horizontal = 12.dp,
+                )
+        )
     }
 }
 
 @Preview
 @Composable
-private fun ToolkitAppBannerPreview(
-    @PreviewParameter(BooleanPreviewParameterProvider::class) showBuildDetails: Boolean,
-) {
+private fun ToolkitAppBannerPreview() {
     ConcreteTheme {
         Surface {
             ToolkitAppBanner(
                 appName = "Toolkit",
                 appIcon = painterResource(resource = Res.drawable.ic_github),
                 appVersionName = "1.0.0",
-                showBuildDetails = showBuildDetails,
                 buildDetails = persistentListOf(100, "flavor"),
                 modifier = Modifier.fillMaxWidth(),
             )
