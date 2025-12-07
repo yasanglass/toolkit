@@ -2,12 +2,22 @@ package glass.yasan.toolkit.compose.color
 
 import androidx.compose.ui.graphics.Color
 
+/**
+ * Darkens the given [Color] by [factor].
+ *
+ * @see lighten
+ */
 public fun Color.darken(factor: Float = 0.075f): Color {
     val hsl = toHsl()
     hsl[2] = (hsl[2] - factor).coerceIn(0f, 1f)
     return hslToColor(hsl, alpha)
 }
 
+/**
+ * Lightens the given [Color] by [factor].
+ *
+ * @see darken
+ */
 public fun Color.lighten(factor: Float = 0.075f): Color {
     val hsl = toHsl()
     hsl[2] = (hsl[2] + factor).coerceIn(0f, 1f)
