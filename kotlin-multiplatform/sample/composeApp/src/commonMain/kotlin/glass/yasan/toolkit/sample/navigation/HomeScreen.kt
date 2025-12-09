@@ -8,20 +8,25 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.animation.togetherWith
-import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import glass.yasan.concrete.component.HorizontalDivider
+import glass.yasan.concrete.component.Switch
+import glass.yasan.concrete.component.Text
+import glass.yasan.concrete.foundation.theme.ConcreteTheme
 import glass.yasan.toolkit.about.presentation.compose.ToolkitAppBanner
 import glass.yasan.toolkit.about.presentation.compose.ToolkitDeveloperBanner
 import glass.yasan.toolkit.composeapp.generated.resources.Res
@@ -37,6 +42,8 @@ import org.jetbrains.compose.resources.stringResource
 
 @Composable
 internal fun HomeScreen(
+    isDarkTheme: Boolean,
+    onDarkThemeChange: (Boolean) -> Unit,
     viewState: SampleViewModel.State,
     sendViewEvent: (SampleViewModel.Event) -> Unit,
     onNavigateToAbout: () -> Unit,
@@ -61,8 +68,20 @@ internal fun HomeScreen(
                 onClick = onNavigateToAbout,
                 modifier = Modifier.fillMaxWidth(),
             ) {
-                Text(text = stringResource(Res.string.about))
+                Text(
+                    text = stringResource(Res.string.about),
+                    color = ConcreteTheme.colors.onPrimary,
+                )
             }
+        }
+
+        item { HorizontalDivider() }
+
+        item {
+            DarkThemeSwitch(
+                checked = isDarkTheme,
+                onCheckedChange = onDarkThemeChange,
+            )
         }
 
         item { HorizontalDivider() }
@@ -78,7 +97,7 @@ internal fun HomeScreen(
 
         item {
             ToolkitDeveloperBanner(
-                isDarkTheme = isSystemInDarkTheme(),
+                isDarkTheme = isDarkTheme,
             )
         }
     }
@@ -98,14 +117,20 @@ private fun CounterSection(
             onClick = onIncrement,
             modifier = Modifier.fillMaxWidth(),
         ) {
-            Text(text = stringResource(Res.string.increment))
+            Text(
+                text = stringResource(Res.string.increment),
+                color = ConcreteTheme.colors.onPrimary,
+            )
         }
         CounterText(count)
         Button(
             onClick = onDecrement,
             modifier = Modifier.fillMaxWidth(),
         ) {
-            Text(text = stringResource(Res.string.decrement))
+            Text(
+                text = stringResource(Res.string.decrement),
+                color = ConcreteTheme.colors.onPrimary,
+            )
         }
     }
 }
@@ -137,7 +162,28 @@ private fun CounterText(count: Int) {
     ) { count ->
         Text(
             text = count.toString(),
-            style = MaterialTheme.typography.displayLarge,
+            fontSize = 64.sp,
+            fontWeight = FontWeight.Normal,
+        )
+    }
+}
+
+@Composable
+private fun DarkThemeSwitch(
+    checked: Boolean,
+    onCheckedChange: (Boolean) -> Unit,
+) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable { onCheckedChange(!checked) }
+    ) {
+        Text(text = "Dark Theme")
+        Spacer(Modifier.weight(1f))
+        Switch(
+            checked = checked,
+            onCheckedChange = onCheckedChange,
         )
     }
 }

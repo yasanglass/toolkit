@@ -1,11 +1,14 @@
 package glass.yasan.toolkit.sample
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import glass.yasan.concrete.foundation.theme.ConcreteTheme
@@ -46,13 +49,19 @@ private fun SampleApp(
     viewState: State,
     sendViewEvent: (Event) -> Unit,
 ) {
+    val isSystemInDarkTheme = isSystemInDarkTheme()
+    val isDarkTheme = remember { mutableStateOf(isSystemInDarkTheme) }
     val navController = rememberNavController()
 
-    AppTheme {
+    AppTheme(
+        isDark = isDarkTheme.value,
+    ) {
         Scaffold(
             containerColor = ConcreteTheme.colors.midground,
         ) { contentPadding ->
             SampleNavHost(
+                isDarkTheme = isDarkTheme.value,
+                onDarkThemeChange = { isDarkTheme.value = it },
                 navController = navController,
                 viewState = viewState,
                 sendViewEvent = sendViewEvent,

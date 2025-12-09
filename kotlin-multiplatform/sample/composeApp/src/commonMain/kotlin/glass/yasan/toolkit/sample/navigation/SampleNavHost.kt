@@ -12,6 +12,8 @@ import glass.yasan.toolkit.sample.SampleViewModel
 
 @Composable
 internal fun SampleNavHost(
+    isDarkTheme: Boolean,
+    onDarkThemeChange: (Boolean) -> Unit,
     navController: NavHostController,
     viewState: SampleViewModel.State,
     sendViewEvent: (SampleViewModel.Event) -> Unit,
@@ -48,16 +50,17 @@ internal fun SampleNavHost(
     ) {
         composable<Route.Home> {
             HomeScreen(
+                isDarkTheme = isDarkTheme,
+                onDarkThemeChange = onDarkThemeChange,
                 viewState = viewState,
                 sendViewEvent = sendViewEvent,
-                onNavigateToAbout = {
-                    navController.navigate(Route.About)
-                },
+                onNavigateToAbout = { navController.navigate(Route.About) },
             )
         }
 
         composable<Route.About> {
             AboutScreen(
+                isDarkTheme = isDarkTheme,
                 onNavigateBack = {
                     navController.navigateUp()
                 },

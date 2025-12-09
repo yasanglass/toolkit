@@ -1,6 +1,5 @@
 package glass.yasan.toolkit.sample.navigation
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -24,6 +23,7 @@ import org.jetbrains.compose.resources.stringResource
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun AboutScreen(
+    isDarkTheme: Boolean,
     onNavigateBack: () -> Unit,
 ) {
     Scaffold(
@@ -46,7 +46,7 @@ internal fun AboutScreen(
         ) {
             item {
                 ToolkitDeveloperContent(
-                    isDarkTheme = isSystemInDarkTheme(),
+                    isDarkTheme = isDarkTheme,
                 )
             }
         }
