@@ -4,12 +4,26 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.luminance
 
 /**
+ * @return If the given [Color] is dark.
+ */
+public fun Color.isDark(
+    luminanceThreshold: Float = 0.5f,
+): Boolean = luminance() <= luminanceThreshold
+
+/**
+ * @return If the given [Color] is light.
+ */
+public fun Color.isLight(
+    luminanceThreshold: Float = 0.5f,
+): Boolean = luminance() > luminanceThreshold
+
+/**
  * @return [Color.Black] or [Color.White] based on the luminance of the given [Color].
  */
 public fun Color.toContentColor(
     luminanceThreshold: Float = 0.5f,
 ): Color =
-    if (luminance() > luminanceThreshold) {
+    if (isLight(luminanceThreshold)) {
         Color.Black
     } else {
         Color.White
