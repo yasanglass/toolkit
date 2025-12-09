@@ -1,6 +1,19 @@
 package glass.yasan.toolkit.compose.color
 
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.luminance
+
+/**
+ * @return [Color.Black] or [Color.White] based on the luminance of the given [Color].
+ */
+public fun Color.toContentColor(
+    luminanceThreshold: Float = 0.5f,
+): Color =
+    if (luminance() > luminanceThreshold) {
+        Color.Black
+    } else {
+        Color.White
+    }
 
 /**
  * Darkens the given [Color] by [factor].
