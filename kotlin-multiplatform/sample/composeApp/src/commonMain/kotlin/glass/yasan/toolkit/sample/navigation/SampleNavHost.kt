@@ -14,6 +14,8 @@ import glass.yasan.toolkit.sample.SampleViewModel
 internal fun SampleNavHost(
     isDarkTheme: Boolean,
     onDarkThemeChange: (Boolean) -> Unit,
+    isDynamicAccent: Boolean,
+    onDynamicAccentChange: (Boolean) -> Unit,
     navController: NavHostController,
     viewState: SampleViewModel.State,
     sendViewEvent: (SampleViewModel.Event) -> Unit,
@@ -52,9 +54,20 @@ internal fun SampleNavHost(
             HomeScreen(
                 isDarkTheme = isDarkTheme,
                 onDarkThemeChange = onDarkThemeChange,
+                isDynamicAccent = isDynamicAccent,
+                onDynamicAccentChange = onDynamicAccentChange,
                 viewState = viewState,
                 sendViewEvent = sendViewEvent,
+                onNavigateToColors = { navController.navigate(Route.Colors) },
                 onNavigateToAbout = { navController.navigate(Route.About) },
+            )
+        }
+
+        composable<Route.Colors> {
+            ColorsScreen(
+                onNavigateBack = {
+                    navController.navigateUp()
+                },
             )
         }
 

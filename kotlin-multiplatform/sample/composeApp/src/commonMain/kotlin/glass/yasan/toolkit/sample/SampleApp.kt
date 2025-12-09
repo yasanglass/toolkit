@@ -8,9 +8,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
+import glass.yasan.concrete.foundation.color.isDynamicAccentSupported
 import glass.yasan.concrete.foundation.theme.ConcreteTheme
 import glass.yasan.toolkit.compose.viewmodel.ViewActionEffect
 import glass.yasan.toolkit.compose.viewmodel.rememberSendViewEvent
@@ -50,11 +51,15 @@ private fun SampleApp(
     sendViewEvent: (Event) -> Unit,
 ) {
     val isSystemInDarkTheme = isSystemInDarkTheme()
-    val isDarkTheme = remember { mutableStateOf(isSystemInDarkTheme) }
+    val isDynamicAccentSupported = isDynamicAccentSupported()
     val navController = rememberNavController()
+
+    val isDynamicAccent = rememberSaveable { mutableStateOf(isDynamicAccentSupported) }
+    val isDarkTheme = rememberSaveable { mutableStateOf(isSystemInDarkTheme) }
 
     AppTheme(
         isDark = isDarkTheme.value,
+        isDynamicAccentAllowed = isDynamicAccent.value,
     ) {
         Scaffold(
             containerColor = ConcreteTheme.colors.midground,
@@ -62,6 +67,8 @@ private fun SampleApp(
             SampleNavHost(
                 isDarkTheme = isDarkTheme.value,
                 onDarkThemeChange = { isDarkTheme.value = it },
+                isDynamicAccent = isDynamicAccent.value,
+                onDynamicAccentChange = { isDynamicAccent.value = it },
                 navController = navController,
                 viewState = viewState,
                 sendViewEvent = sendViewEvent,

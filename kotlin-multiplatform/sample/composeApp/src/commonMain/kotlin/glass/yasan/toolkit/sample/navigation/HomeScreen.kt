@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.material3.Button
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -33,7 +34,10 @@ import glass.yasan.toolkit.composeapp.generated.resources.Res
 import glass.yasan.toolkit.composeapp.generated.resources.about
 import glass.yasan.toolkit.composeapp.generated.resources.app_icon
 import glass.yasan.toolkit.composeapp.generated.resources.app_title
+import glass.yasan.toolkit.composeapp.generated.resources.colors
+import glass.yasan.toolkit.composeapp.generated.resources.dark_theme
 import glass.yasan.toolkit.composeapp.generated.resources.decrement
+import glass.yasan.toolkit.composeapp.generated.resources.dynamic_accent_colors
 import glass.yasan.toolkit.composeapp.generated.resources.increment
 import glass.yasan.toolkit.sample.SampleViewModel
 import kotlinx.collections.immutable.persistentListOf
@@ -44,8 +48,11 @@ import org.jetbrains.compose.resources.stringResource
 internal fun HomeScreen(
     isDarkTheme: Boolean,
     onDarkThemeChange: (Boolean) -> Unit,
+    isDynamicAccent: Boolean,
+    onDynamicAccentChange: (Boolean) -> Unit,
     viewState: SampleViewModel.State,
     sendViewEvent: (SampleViewModel.Event) -> Unit,
+    onNavigateToColors: () -> Unit,
     onNavigateToAbout: () -> Unit,
 ) {
     LazyColumn(
@@ -65,6 +72,18 @@ internal fun HomeScreen(
 
         item {
             Button(
+                onClick = onNavigateToColors,
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Text(
+                    text = stringResource(Res.string.colors),
+                    color = ConcreteTheme.colors.onPrimary,
+                )
+            }
+        }
+
+        item {
+            Button(
                 onClick = onNavigateToAbout,
                 modifier = Modifier.fillMaxWidth(),
             ) {
@@ -78,29 +97,39 @@ internal fun HomeScreen(
         item { HorizontalDivider() }
 
         item {
-            DarkThemeSwitch(
+            PreferenceSwitch(
+                text = stringResource(Res.string.dark_theme),
                 checked = isDarkTheme,
                 onCheckedChange = onDarkThemeChange,
             )
         }
 
+        item {
+            PreferenceSwitch(
+                text = stringResource(Res.string.dynamic_accent_colors),
+                checked = isDynamicAccent,
+                onCheckedChange = onDynamicAccentChange,
+            )
+        }
+
         item { HorizontalDivider() }
 
-        item {
-            ToolkitAppBanner(
-                appName = stringResource(Res.string.app_title),
-                appIcon = painterResource(Res.drawable.app_icon),
-                appVersionName = "1.0.0",
-                buildDetails = persistentListOf(100, "flavor"),
-            )
-        }
-
-        item {
-            ToolkitDeveloperBanner(
-                isDarkTheme = isDarkTheme,
-            )
-        }
+        footers(isDarkTheme = isDarkTheme)
     }
+}
+
+private fun LazyListScope.footers(
+    isDarkTheme: Boolean,
+) {
+    item {
+        ToolkitAppBanner(
+            appName = stringResource(Res.string.app_title),
+            appIcon = painterResource(Res.drawable.app_icon),
+            appVersionName = "1.0.0",
+            buildDetails = persistentListOf(100, "flavor"),
+        )
+    }
+    item { ToolkitDeveloperBanner(isDarkTheme) }
 }
 
 @Composable
@@ -169,7 +198,8 @@ private fun CounterText(count: Int) {
 }
 
 @Composable
-private fun DarkThemeSwitch(
+private fun PreferenceSwitch(
+    text: String,
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
 ) {
@@ -179,7 +209,7 @@ private fun DarkThemeSwitch(
             .fillMaxWidth()
             .clickable { onCheckedChange(!checked) }
     ) {
-        Text(text = "Dark Theme")
+        Text(text = text)
         Spacer(Modifier.weight(1f))
         Switch(
             checked = checked,
