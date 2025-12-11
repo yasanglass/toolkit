@@ -4,7 +4,6 @@
     <string name="colors">Colors</string>
     <string name="dark_theme">Dark Theme</string>
     <string name="decrement">Decrement</string>
-    <string name="dynamic_accent_colors">Dynamic Accent Colors</string>
     <string name="go_back">Go Back</string>
     <string name="increment">Increment</string>
 </resources>

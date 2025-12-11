@@ -11,8 +11,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import glass.yasan.concrete.foundation.color.isDynamicAccentSupported
-import glass.yasan.concrete.foundation.theme.ConcreteTheme
+import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.toolkit.compose.viewmodel.ViewActionEffect
 import glass.yasan.toolkit.compose.viewmodel.rememberSendViewEvent
 import glass.yasan.toolkit.core.url.UrlLauncher
@@ -51,24 +50,19 @@ private fun SampleApp(
     sendViewEvent: (Event) -> Unit,
 ) {
     val isSystemInDarkTheme = isSystemInDarkTheme()
-    val isDynamicAccentSupported = isDynamicAccentSupported()
     val navController = rememberNavController()
 
-    val isDynamicAccent = rememberSaveable { mutableStateOf(isDynamicAccentSupported) }
     val isDarkTheme = rememberSaveable { mutableStateOf(isSystemInDarkTheme) }
 
     AppTheme(
         isDark = isDarkTheme.value,
-        isDynamicAccentAllowed = isDynamicAccent.value,
     ) {
         Scaffold(
-            containerColor = ConcreteTheme.colors.midground,
+            containerColor = KepkoTheme.colors.midground,
         ) { contentPadding ->
             SampleNavHost(
                 isDarkTheme = isDarkTheme.value,
                 onDarkThemeChange = { isDarkTheme.value = it },
-                isDynamicAccent = isDynamicAccent.value,
-                onDynamicAccentChange = { isDynamicAccent.value = it },
                 navController = navController,
                 viewState = viewState,
                 sendViewEvent = sendViewEvent,

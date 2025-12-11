@@ -21,8 +21,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import glass.yasan.concrete.component.Text
-import glass.yasan.concrete.foundation.theme.ConcreteTheme
+import glass.yasan.kepko.component.Text
+import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.toolkit.about.domain.model.Developer
 import glass.yasan.toolkit.about.domain.repository.AboutRepository
 import glass.yasan.toolkit.compose.coroutines.collectAsStateWithLifecycleIfAvailable
@@ -35,8 +35,8 @@ import org.koin.compose.koinInject
 public fun ToolkitDeveloperContent(
     isDarkTheme: Boolean,
     modifier: Modifier = Modifier,
-    linkButtonContainerColor: Color = ConcreteTheme.colors.foreground,
-    linkButtonContentColor: Color = ConcreteTheme.colors.content,
+    linkButtonContainerColor: Color = KepkoTheme.colors.foreground,
+    linkButtonContentColor: Color = KepkoTheme.colors.content,
     linkButtonBorder: BorderStroke? = null,
 ) {
     val aboutRepository: AboutRepository = koinInject()
@@ -124,15 +124,15 @@ private fun ToolkitDeveloperContent(
 @Preview
 @Composable
 private fun ToolkitDeveloperContentPreview() {
-    ConcreteTheme {
+    KepkoTheme {
         Surface(
-            color = ConcreteTheme.colors.midground,
+            color = KepkoTheme.colors.midground,
         ) {
             ToolkitDeveloperContent(
                 isDarkTheme = isSystemInDarkTheme(),
                 developer = Developer(),
-                linkButtonContainerColor = ConcreteTheme.colors.foreground,
-                linkButtonContentColor = ConcreteTheme.colors.content,
+                linkButtonContainerColor = KepkoTheme.colors.foreground,
+                linkButtonContentColor = KepkoTheme.colors.content,
                 onDeveloperLinkClick = {},
                 modifier = Modifier.padding(16.dp),
             )

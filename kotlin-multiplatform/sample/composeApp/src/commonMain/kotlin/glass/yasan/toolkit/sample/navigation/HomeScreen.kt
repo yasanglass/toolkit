@@ -24,10 +24,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import glass.yasan.concrete.component.HorizontalDivider
-import glass.yasan.concrete.component.Switch
-import glass.yasan.concrete.component.Text
-import glass.yasan.concrete.foundation.theme.ConcreteTheme
+import glass.yasan.kepko.component.HorizontalDivider
+import glass.yasan.kepko.component.Switch
+import glass.yasan.kepko.component.Text
+import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.toolkit.about.presentation.compose.ToolkitAppBanner
 import glass.yasan.toolkit.about.presentation.compose.ToolkitDeveloperBanner
 import glass.yasan.toolkit.composeapp.generated.resources.Res
@@ -37,7 +37,6 @@ import glass.yasan.toolkit.composeapp.generated.resources.app_title
 import glass.yasan.toolkit.composeapp.generated.resources.colors
 import glass.yasan.toolkit.composeapp.generated.resources.dark_theme
 import glass.yasan.toolkit.composeapp.generated.resources.decrement
-import glass.yasan.toolkit.composeapp.generated.resources.dynamic_accent_colors
 import glass.yasan.toolkit.composeapp.generated.resources.increment
 import glass.yasan.toolkit.sample.SampleViewModel
 import kotlinx.collections.immutable.persistentListOf
@@ -48,8 +47,6 @@ import org.jetbrains.compose.resources.stringResource
 internal fun HomeScreen(
     isDarkTheme: Boolean,
     onDarkThemeChange: (Boolean) -> Unit,
-    isDynamicAccent: Boolean,
-    onDynamicAccentChange: (Boolean) -> Unit,
     viewState: SampleViewModel.State,
     sendViewEvent: (SampleViewModel.Event) -> Unit,
     onNavigateToColors: () -> Unit,
@@ -77,7 +74,7 @@ internal fun HomeScreen(
             ) {
                 Text(
                     text = stringResource(Res.string.colors),
-                    color = ConcreteTheme.colors.onPrimary,
+                    color = KepkoTheme.colors.foreground,
                 )
             }
         }
@@ -89,7 +86,7 @@ internal fun HomeScreen(
             ) {
                 Text(
                     text = stringResource(Res.string.about),
-                    color = ConcreteTheme.colors.onPrimary,
+                    color = KepkoTheme.colors.foreground,
                 )
             }
         }
@@ -101,14 +98,6 @@ internal fun HomeScreen(
                 text = stringResource(Res.string.dark_theme),
                 checked = isDarkTheme,
                 onCheckedChange = onDarkThemeChange,
-            )
-        }
-
-        item {
-            PreferenceSwitch(
-                text = stringResource(Res.string.dynamic_accent_colors),
-                checked = isDynamicAccent,
-                onCheckedChange = onDynamicAccentChange,
             )
         }
 
@@ -148,7 +137,7 @@ private fun CounterSection(
         ) {
             Text(
                 text = stringResource(Res.string.increment),
-                color = ConcreteTheme.colors.onPrimary,
+                color = KepkoTheme.colors.foreground,
             )
         }
         CounterText(count)
@@ -158,7 +147,7 @@ private fun CounterSection(
         ) {
             Text(
                 text = stringResource(Res.string.decrement),
-                color = ConcreteTheme.colors.onPrimary,
+                color = KepkoTheme.colors.foreground,
             )
         }
     }

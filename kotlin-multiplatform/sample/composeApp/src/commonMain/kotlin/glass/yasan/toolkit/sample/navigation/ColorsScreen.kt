@@ -15,8 +15,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import glass.yasan.concrete.component.TextMono
-import glass.yasan.concrete.foundation.theme.ConcreteTheme
+import glass.yasan.kepko.component.TextMono
+import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.toolkit.compose.color.toContentColor
 import glass.yasan.toolkit.composeapp.generated.resources.Res
 import glass.yasan.toolkit.composeapp.generated.resources.arrow_back
@@ -29,21 +29,12 @@ internal fun ColorsScreen(
     onNavigateBack: () -> Unit,
 ) {
     val colorsAndNames = listOf(
-        ConcreteTheme.colors.primaryHigh to "Primary High",
-        ConcreteTheme.colors.primary to "Primary",
-        ConcreteTheme.colors.primaryLow to "Primary Low",
-        ConcreteTheme.colors.secondaryHigh to "Secondary High",
-        ConcreteTheme.colors.secondary to "Secondary",
-        ConcreteTheme.colors.secondaryLow to "Secondary Low",
-        ConcreteTheme.colors.tertiaryHigh to "Tertiary High",
-        ConcreteTheme.colors.tertiary to "Tertiary",
-        ConcreteTheme.colors.tertiaryLow to "Tertiary Low",
-        ConcreteTheme.colors.onPrimary to "On Primary",
-        ConcreteTheme.colors.onSecondary to "On Secondary",
-        ConcreteTheme.colors.onTertiary to "On Tertiary",
-        ConcreteTheme.colors.foreground to "Foreground",
-        ConcreteTheme.colors.midground to "Midground",
-        ConcreteTheme.colors.background to "Background",
+        KepkoTheme.colors.content to "Content",
+        KepkoTheme.colors.contentSubtle to "Content Subtle",
+        KepkoTheme.colors.contentDisabled to "Content Disabled",
+        KepkoTheme.colors.foreground to "Foreground",
+        KepkoTheme.colors.midground to "Midground",
+        KepkoTheme.colors.background to "Background",
     )
 
     Scaffold(
@@ -55,7 +46,7 @@ internal fun ColorsScreen(
                 )
             }
         },
-        containerColor = ConcreteTheme.colors.midground,
+        containerColor = KepkoTheme.colors.midground,
         modifier = Modifier.fillMaxSize(),
     ) { contentPadding ->
         LazyColumn(

@@ -12,7 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import glass.yasan.concrete.foundation.theme.ConcreteTheme
+import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.toolkit.about.presentation.compose.ToolkitDeveloperContent
 import glass.yasan.toolkit.composeapp.generated.resources.Res
 import glass.yasan.toolkit.composeapp.generated.resources.arrow_back
@@ -35,7 +35,7 @@ internal fun AboutScreen(
                 )
             }
         },
-        containerColor = ConcreteTheme.colors.midground,
+        containerColor = KepkoTheme.colors.midground,
         modifier = Modifier.fillMaxSize(),
     ) { contentPadding ->
         LazyColumn(

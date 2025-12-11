@@ -9,7 +9,7 @@ androidx-lifecycle = "2.9.6"
 androidx-navigation = "2.9.1"
 arturbosch-detekt = "1.23.8"
 coil = "3.3.0"
-glass-yasan-concrete = "0.7.0"
+glass-yasan-kepko = "0.8.1"
 iurysouza-modulegraph = "0.13.0"
 jetbrains-compose = "1.9.3"
 jetbrains-compose-hotreload = "1.0.0"
@@ -36,8 +36,8 @@ androidx-lifecycle-viewmodel-compose = { module = "org.jetbrains.androidx.lifecy
 androidx-navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "androidx-navigation" }
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
 coil-svg = { module = "io.coil-kt.coil3:coil-svg", version.ref = "coil" }
-glass-yasan-concrete-foundation = { module = "glass.yasan.concrete:foundation", version.ref = "glass-yasan-concrete" }
-glass-yasan-concrete-component = { module = "glass.yasan.concrete:component", version.ref = "glass-yasan-concrete" }
+glass-yasan-kepko-foundation = { module = "glass.yasan.kepko:foundation", version.ref = "glass-yasan-kepko" }
+glass-yasan-kepko-component = { module = "glass.yasan.kepko:component", version.ref = "glass-yasan-kepko" }
 jetbrains-kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "jetbrains-kotlin" }
 jetbrains-kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "jetbrains-kotlinx-collections-immutable" }
 jetbrains-kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "jetbrains-kotlinx-coroutines" }

@@ -18,8 +18,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import glass.yasan.concrete.component.TextSubtle
-import glass.yasan.concrete.foundation.theme.ConcreteTheme
+import glass.yasan.kepko.component.TextSubtle
+import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.toolkit.compose.about.Res
 import glass.yasan.toolkit.compose.about.ic_github
 import kotlinx.collections.immutable.ImmutableList
@@ -64,14 +64,13 @@ public fun ToolkitAppBanner(
             )
         }
 
-
         TextSubtle(
             text = buildDetailsString,
             fontSize = 12.sp,
             modifier = Modifier
                 .padding(top = 16.dp)
                 .clip(shape = MaterialTheme.shapes.extraLarge)
-                .background(color = ConcreteTheme.colors.background)
+                .background(color = KepkoTheme.colors.background)
                 .padding(
                     horizontal = 12.dp,
                 )
@@ -82,7 +81,7 @@ public fun ToolkitAppBanner(
 @Preview
 @Composable
 private fun ToolkitAppBannerPreview() {
-    ConcreteTheme {
+    KepkoTheme {
         Surface {
             ToolkitAppBanner(
                 appName = "Toolkit",
