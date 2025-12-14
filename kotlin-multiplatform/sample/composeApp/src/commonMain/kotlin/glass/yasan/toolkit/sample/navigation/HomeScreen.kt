@@ -17,17 +17,16 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
-import androidx.compose.material3.Button
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import glass.yasan.kepko.component.Button
 import glass.yasan.kepko.component.HorizontalDivider
 import glass.yasan.kepko.component.Switch
 import glass.yasan.kepko.component.Text
-import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.toolkit.about.presentation.compose.ToolkitAppBanner
 import glass.yasan.toolkit.about.presentation.compose.ToolkitDeveloperBanner
 import glass.yasan.toolkit.composeapp.generated.resources.Res
@@ -69,26 +68,18 @@ internal fun HomeScreen(
 
         item {
             Button(
+                text = stringResource(Res.string.colors),
                 onClick = onNavigateToColors,
                 modifier = Modifier.fillMaxWidth(),
-            ) {
-                Text(
-                    text = stringResource(Res.string.colors),
-                    color = KepkoTheme.colors.foreground,
-                )
-            }
+            )
         }
 
         item {
             Button(
+                text = stringResource(Res.string.about),
                 onClick = onNavigateToAbout,
                 modifier = Modifier.fillMaxWidth(),
-            ) {
-                Text(
-                    text = stringResource(Res.string.about),
-                    color = KepkoTheme.colors.foreground,
-                )
-            }
+            )
         }
 
         item { HorizontalDivider() }
@@ -132,24 +123,16 @@ private fun CounterSection(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Button(
+            text = stringResource(Res.string.increment),
             onClick = onIncrement,
             modifier = Modifier.fillMaxWidth(),
-        ) {
-            Text(
-                text = stringResource(Res.string.increment),
-                color = KepkoTheme.colors.foreground,
-            )
-        }
+        )
         CounterText(count)
         Button(
+            text = stringResource(Res.string.decrement),
             onClick = onDecrement,
             modifier = Modifier.fillMaxWidth(),
-        ) {
-            Text(
-                text = stringResource(Res.string.decrement),
-                color = KepkoTheme.colors.foreground,
-            )
-        }
+        )
     }
 }
 

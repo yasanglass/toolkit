@@ -18,7 +18,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import glass.yasan.kepko.component.TextSubtle
+import glass.yasan.kepko.component.Text
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.toolkit.compose.about.Res
 import glass.yasan.toolkit.compose.about.ic_github
@@ -58,15 +58,17 @@ public fun ToolkitAppBanner(
                     .requiredHeight(height = 24.dp),
             )
 
-            TextSubtle(
+            Text(
                 text = "$appName $appVersionName",
                 fontSize = 14.sp,
+                color = KepkoTheme.colors.contentSubtle,
             )
         }
 
-        TextSubtle(
+        Text(
             text = buildDetailsString,
             fontSize = 12.sp,
+            color = KepkoTheme.colors.contentSubtle,
             modifier = Modifier
                 .padding(top = 16.dp)
                 .clip(shape = MaterialTheme.shapes.extraLarge)
