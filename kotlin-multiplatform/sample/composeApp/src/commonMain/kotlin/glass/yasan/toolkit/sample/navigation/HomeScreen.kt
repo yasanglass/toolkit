@@ -8,12 +8,9 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.animation.togetherWith
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
@@ -25,8 +22,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import glass.yasan.kepko.component.Button
 import glass.yasan.kepko.component.HorizontalDivider
-import glass.yasan.kepko.component.Switch
+import glass.yasan.kepko.component.PreferenceSwitch
 import glass.yasan.kepko.component.Text
+import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.toolkit.about.presentation.compose.ToolkitAppBanner
 import glass.yasan.toolkit.about.presentation.compose.ToolkitDeveloperBanner
 import glass.yasan.toolkit.composeapp.generated.resources.Res
@@ -42,6 +40,7 @@ import kotlinx.collections.immutable.persistentListOf
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
+@OptIn(ExperimentalKepkoApi::class)
 @Composable
 internal fun HomeScreen(
     isDarkTheme: Boolean,
@@ -86,7 +85,7 @@ internal fun HomeScreen(
 
         item {
             PreferenceSwitch(
-                text = stringResource(Res.string.dark_theme),
+                title = stringResource(Res.string.dark_theme),
                 checked = isDarkTheme,
                 onCheckedChange = onDarkThemeChange,
             )
@@ -165,27 +164,6 @@ private fun CounterText(count: Int) {
             text = count.toString(),
             fontSize = 64.sp,
             fontWeight = FontWeight.Normal,
-        )
-    }
-}
-
-@Composable
-private fun PreferenceSwitch(
-    text: String,
-    checked: Boolean,
-    onCheckedChange: (Boolean) -> Unit,
-) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable { onCheckedChange(!checked) }
-    ) {
-        Text(text = text)
-        Spacer(Modifier.weight(1f))
-        Switch(
-            checked = checked,
-            onCheckedChange = onCheckedChange,
         )
     }
 }
