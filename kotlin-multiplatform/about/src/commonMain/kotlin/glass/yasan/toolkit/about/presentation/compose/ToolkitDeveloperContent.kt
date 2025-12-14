@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import glass.yasan.kepko.component.Button
+import glass.yasan.kepko.component.ButtonText
 import glass.yasan.kepko.component.Icon
 import glass.yasan.kepko.component.Text
 import glass.yasan.kepko.foundation.theme.KepkoTheme
@@ -79,7 +79,7 @@ private fun ToolkitDeveloperContent(
             )
         }
         developer.links.forEach { link ->
-            Button(
+            ButtonText(
                 text = link.name,
                 containerColor = KepkoTheme.colors.foreground,
                 onClick = { onDeveloperLinkClick(link) },
@@ -94,10 +94,6 @@ private fun ToolkitDeveloperContent(
                 modifier = Modifier
                     .fillMaxWidth()
                     .widthIn(max = 512.dp),
-                contentRowModifier = Modifier
-                    .padding(8.dp),
-                contentTextModifier = Modifier
-                    .weight(1f),
             )
         }
     }
