@@ -94,6 +94,8 @@ private fun ToolkitDeveloperContent(
                 modifier = Modifier
                     .fillMaxWidth()
                     .widthIn(max = 512.dp),
+                contentTextModifier = Modifier
+                    .weight(1f),
             )
         }
     }
