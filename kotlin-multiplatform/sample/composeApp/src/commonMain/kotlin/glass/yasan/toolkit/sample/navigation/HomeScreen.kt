@@ -106,7 +106,7 @@ private fun LazyListScope.footers(
             appName = stringResource(Res.string.app_title),
             appIcon = painterResource(Res.drawable.app_icon),
             appVersionName = "1.0.0",
-            buildDetails = persistentListOf(100, "flavor"),
+            buildDetails = persistentListOf(100.toString(), "flavor"),
         )
     }
     item { ToolkitDeveloperBanner(isDarkTheme) }

@@ -32,12 +32,12 @@ public fun ToolkitAppBanner(
     appName: String,
     appIcon: Painter,
     appVersionName: String,
-    buildDetails: ImmutableList<Any>,
+    buildDetails: ImmutableList<String>,
     modifier: Modifier = Modifier,
 ) {
     val buildDetailsString = remember {
         buildDetails
-            .map { it.toString().uppercase() }
+            .map { it.uppercase() }
             .joinToString(separator = " ") { it }
     }
 
@@ -89,7 +89,7 @@ private fun ToolkitAppBannerPreview() {
                 appName = "Toolkit",
                 appIcon = painterResource(resource = Res.drawable.ic_github),
                 appVersionName = "1.0.0",
-                buildDetails = persistentListOf(100, "flavor"),
+                buildDetails = persistentListOf(100.toString(), "flavor"),
                 modifier = Modifier.fillMaxWidth(),
             )
         }
