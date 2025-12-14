@@ -12,11 +12,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import glass.yasan.kepko.component.ButtonText
-import glass.yasan.kepko.component.Icon
 import glass.yasan.kepko.component.Text
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.toolkit.about.domain.model.Developer
@@ -83,16 +81,9 @@ private fun ToolkitDeveloperContent(
                 text = link.name,
                 containerColor = KepkoTheme.colors.foreground,
                 onClick = { onDeveloperLinkClick(link) },
-                textAlign = TextAlign.Start,
-                trailingContent = {
-                    Icon(
-                        painter = painterResource(resource = link.icon),
-                        contentDescription = link.name,
-                        modifier = Modifier.size(24.dp),
-                    )
-                },
+                leadingIcon = null,
+                trailingIcon = painterResource(resource = link.icon),
                 modifier = Modifier
-                    .fillMaxWidth()
                     .widthIn(max = 512.dp),
             )
         }

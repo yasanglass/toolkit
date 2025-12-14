@@ -124,13 +124,11 @@ private fun CounterSection(
         ButtonText(
             text = stringResource(Res.string.increment),
             onClick = onIncrement,
-            modifier = Modifier.fillMaxWidth(),
         )
         CounterText(count)
         ButtonText(
             text = stringResource(Res.string.decrement),
             onClick = onDecrement,
-            modifier = Modifier.fillMaxWidth(),
         )
     }
 }
