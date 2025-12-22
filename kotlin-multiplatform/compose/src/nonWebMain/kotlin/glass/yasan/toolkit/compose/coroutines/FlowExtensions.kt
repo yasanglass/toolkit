@@ -11,13 +11,3 @@ import kotlinx.coroutines.flow.StateFlow
 public fun <T> Flow<T>.collectAsStateWithLifecycleBlocking(): State<T> = collectAsStateWithLifecycle(
     initialValue = firstBlocking(),
 )
-
-@Composable
-public actual fun <T> Flow<T>.collectAsStateWithLifecycleIfAvailable(
-    initialValue: T,
-): State<T> = collectAsStateWithLifecycle(
-    initialValue = initialValue,
-)
-
-@Composable
-public actual fun <T> StateFlow<T>.collectAsStateWithLifecycleIfAvailable(): State<T> = collectAsStateWithLifecycle()

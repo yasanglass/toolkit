@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import glass.yasan.kepko.component.ButtonText
 import glass.yasan.kepko.component.Midground
 import glass.yasan.kepko.component.Text
@@ -20,7 +21,6 @@ import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.toolkit.about.domain.model.Developer
 import glass.yasan.toolkit.about.domain.repository.AboutRepository
-import glass.yasan.toolkit.compose.coroutines.collectAsStateWithLifecycleIfAvailable
 import glass.yasan.toolkit.core.url.UrlLauncher
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -34,9 +34,7 @@ public fun ToolkitDeveloperContent(
     val aboutRepository: AboutRepository = koinInject()
     val urlLauncher: UrlLauncher = koinInject()
 
-    val developer: Developer by aboutRepository.developer.collectAsStateWithLifecycleIfAvailable(
-        Developer()
-    )
+    val developer: Developer by aboutRepository.developer.collectAsStateWithLifecycle(Developer())
 
     ToolkitDeveloperContent(
         isDarkTheme = isDarkTheme,

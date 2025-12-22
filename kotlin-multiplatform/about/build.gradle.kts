@@ -62,6 +62,7 @@ kotlin {
 
                 implementation(libs.coil.compose)
                 implementation(libs.coil.svg)
+                implementation(libs.androidx.lifecycle.runtime.compose)
                 implementation(libs.koin.compose)
                 implementation(libs.koin.core)
                 implementation(libs.ktor.http)
