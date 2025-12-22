@@ -8,12 +8,13 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import glass.yasan.kepko.foundation.theme.ThemeStyle
 import glass.yasan.toolkit.sample.SampleViewModel
 
 @Composable
 internal fun SampleNavHost(
-    isDarkTheme: Boolean,
-    onDarkThemeChange: (Boolean) -> Unit,
+    themeStyle: ThemeStyle,
+    onThemeStyleChange: (ThemeStyle) -> Unit,
     navController: NavHostController,
     viewState: SampleViewModel.State,
     sendViewEvent: (SampleViewModel.Event) -> Unit,
@@ -50,8 +51,8 @@ internal fun SampleNavHost(
     ) {
         composable<Route.Home> {
             HomeScreen(
-                isDarkTheme = isDarkTheme,
-                onDarkThemeChange = onDarkThemeChange,
+                theme = themeStyle,
+                onThemeChange = onThemeStyleChange,
                 viewState = viewState,
                 sendViewEvent = sendViewEvent,
                 onNavigateToColors = { navController.navigate(Route.Colors) },
@@ -69,7 +70,7 @@ internal fun SampleNavHost(
 
         composable<Route.About> {
             AboutScreen(
-                isDarkTheme = isDarkTheme,
+                isDarkTheme = themeStyle.isDark,
                 onNavigateBack = {
                     navController.navigateUp()
                 },

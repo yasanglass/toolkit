@@ -11,20 +11,22 @@ import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import glass.yasan.kepko.component.ButtonText
 import glass.yasan.kepko.component.HorizontalDivider
-import glass.yasan.kepko.component.PreferenceSwitch
+import glass.yasan.kepko.component.PreferenceRadioGroup
 import glass.yasan.kepko.component.Text
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
+import glass.yasan.kepko.foundation.theme.KepkoTheme
+import glass.yasan.kepko.foundation.theme.ThemeStyle
+import glass.yasan.kepko.util.asPreferenceRadioGroupItems
 import glass.yasan.toolkit.about.presentation.compose.ToolkitAppBanner
 import glass.yasan.toolkit.about.presentation.compose.ToolkitDeveloperBanner
 import glass.yasan.toolkit.composeapp.generated.resources.Res
@@ -32,7 +34,6 @@ import glass.yasan.toolkit.composeapp.generated.resources.about
 import glass.yasan.toolkit.composeapp.generated.resources.app_icon
 import glass.yasan.toolkit.composeapp.generated.resources.app_title
 import glass.yasan.toolkit.composeapp.generated.resources.colors
-import glass.yasan.toolkit.composeapp.generated.resources.dark_theme
 import glass.yasan.toolkit.composeapp.generated.resources.decrement
 import glass.yasan.toolkit.composeapp.generated.resources.increment
 import glass.yasan.toolkit.sample.SampleViewModel
@@ -43,8 +44,8 @@ import org.jetbrains.compose.resources.stringResource
 @OptIn(ExperimentalKepkoApi::class)
 @Composable
 internal fun HomeScreen(
-    isDarkTheme: Boolean,
-    onDarkThemeChange: (Boolean) -> Unit,
+    theme: ThemeStyle,
+    onThemeChange: (ThemeStyle) -> Unit,
     viewState: SampleViewModel.State,
     sendViewEvent: (SampleViewModel.Event) -> Unit,
     onNavigateToColors: () -> Unit,
@@ -69,7 +70,8 @@ internal fun HomeScreen(
             ButtonText(
                 text = stringResource(Res.string.colors),
                 onClick = onNavigateToColors,
-                modifier = Modifier.fillMaxWidth(),
+                containerColor = KepkoTheme.colors.foreground,
+                textAlign = TextAlign.Center,
             )
         }
 
@@ -77,23 +79,21 @@ internal fun HomeScreen(
             ButtonText(
                 text = stringResource(Res.string.about),
                 onClick = onNavigateToAbout,
-                modifier = Modifier.fillMaxWidth(),
+                containerColor = KepkoTheme.colors.foreground,
+                textAlign = TextAlign.Center,
             )
         }
 
         item { HorizontalDivider() }
 
-        item {
-            PreferenceSwitch(
-                title = stringResource(Res.string.dark_theme),
-                checked = isDarkTheme,
-                onCheckedChange = onDarkThemeChange,
-            )
-        }
+        themeStylePreference(
+            theme = theme,
+            onThemeChange = onThemeChange,
+        )
 
         item { HorizontalDivider() }
 
-        footers(isDarkTheme = isDarkTheme)
+        footers(isDarkTheme = theme.isDark)
     }
 }
 
@@ -124,11 +124,13 @@ private fun CounterSection(
         ButtonText(
             text = stringResource(Res.string.increment),
             onClick = onIncrement,
+            textAlign = TextAlign.Center,
         )
         CounterText(count)
         ButtonText(
             text = stringResource(Res.string.decrement),
             onClick = onDecrement,
+            textAlign = TextAlign.Center,
         )
     }
 }
@@ -162,6 +164,25 @@ private fun CounterText(count: Int) {
             text = count.toString(),
             fontSize = 64.sp,
             fontWeight = FontWeight.Normal,
+        )
+    }
+}
+
+@OptIn(ExperimentalKepkoApi::class)
+private fun LazyListScope.themeStylePreference(
+    theme: ThemeStyle,
+    onThemeChange: (ThemeStyle) -> Unit,
+) {
+    item {
+        PreferenceRadioGroup(
+            title = "Theme",
+            items = ThemeStyle.asPreferenceRadioGroupItems(),
+            selectedId = theme.id,
+            onSelectId = {
+                ThemeStyle.fromId(it)?.let { newValue ->
+                    onThemeChange(newValue)
+                }
+            },
         )
     }
 }

@@ -5,11 +5,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import glass.yasan.kepko.component.Foreground
+import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -30,11 +31,12 @@ public fun ToolkitDeveloperBanner(
     }
 }
 
+@OptIn(ExperimentalKepkoApi::class)
 @Preview
 @Composable
 private fun DeveloperBrandingFooterPreview() {
     MaterialTheme {
-        Surface {
+        Foreground {
             ToolkitDeveloperBanner(
                 isDarkTheme = false,
             )

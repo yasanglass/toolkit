@@ -1,16 +1,16 @@
 package glass.yasan.toolkit.sample.theme
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import glass.yasan.kepko.foundation.theme.KepkoTheme
+import glass.yasan.kepko.foundation.theme.ThemeStyle
 
 @Composable
 fun AppTheme(
-    isDark: Boolean = isSystemInDarkTheme(),
+    style: ThemeStyle = ThemeStyle.LIGHT,
     content: @Composable () -> Unit
 ) {
     KepkoTheme(
-        isDark = isDark,
+        style = style,
         content = content,
     )
 }

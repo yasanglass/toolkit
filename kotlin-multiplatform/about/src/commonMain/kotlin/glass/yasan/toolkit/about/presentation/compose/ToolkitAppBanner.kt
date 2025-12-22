@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredHeight
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -15,8 +14,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import glass.yasan.kepko.component.Foreground
 import glass.yasan.kepko.component.Text
 import glass.yasan.kepko.component.TextPill
+import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.toolkit.compose.about.Res
 import glass.yasan.toolkit.compose.about.ic_github
@@ -72,11 +73,12 @@ public fun ToolkitAppBanner(
     }
 }
 
+@OptIn(ExperimentalKepkoApi::class)
 @Preview
 @Composable
 private fun ToolkitAppBannerPreview() {
     KepkoTheme {
-        Surface {
+        Foreground {
             ToolkitAppBanner(
                 appName = "Toolkit",
                 appIcon = painterResource(resource = Res.drawable.ic_github),

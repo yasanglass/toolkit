@@ -12,6 +12,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import glass.yasan.kepko.foundation.theme.KepkoTheme
+import glass.yasan.kepko.foundation.theme.ThemeStyle
 import glass.yasan.toolkit.compose.viewmodel.ViewActionEffect
 import glass.yasan.toolkit.compose.viewmodel.rememberSendViewEvent
 import glass.yasan.toolkit.core.url.UrlLauncher
@@ -52,17 +53,19 @@ private fun SampleApp(
     val isSystemInDarkTheme = isSystemInDarkTheme()
     val navController = rememberNavController()
 
-    val isDarkTheme = rememberSaveable { mutableStateOf(isSystemInDarkTheme) }
+    val themeStyle = rememberSaveable {
+        mutableStateOf(ThemeStyle.fromDarkMode(isSystemInDarkTheme))
+    }
 
     AppTheme(
-        isDark = isDarkTheme.value,
+        style = themeStyle.value,
     ) {
         Scaffold(
             containerColor = KepkoTheme.colors.midground,
         ) { contentPadding ->
             SampleNavHost(
-                isDarkTheme = isDarkTheme.value,
-                onDarkThemeChange = { isDarkTheme.value = it },
+                themeStyle = themeStyle.value,
+                onThemeStyleChange = { themeStyle.value = it },
                 navController = navController,
                 viewState = viewState,
                 sendViewEvent = sendViewEvent,
