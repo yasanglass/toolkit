@@ -1,6 +1,5 @@
 package glass.yasan.toolkit.about.presentation.compose
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -28,7 +27,6 @@ import org.koin.compose.koinInject
 
 @Composable
 public fun ToolkitDeveloperContent(
-    isDarkTheme: Boolean,
     modifier: Modifier = Modifier,
 ) {
     val aboutRepository: AboutRepository = koinInject()
@@ -37,7 +35,6 @@ public fun ToolkitDeveloperContent(
     val developer: Developer by aboutRepository.developer.collectAsStateWithLifecycle(Developer())
 
     ToolkitDeveloperContent(
-        isDarkTheme = isDarkTheme,
         developer = developer,
         onDeveloperLinkClick = { link -> urlLauncher.launch(link.url) },
         modifier = modifier,
@@ -46,7 +43,6 @@ public fun ToolkitDeveloperContent(
 
 @Composable
 private fun ToolkitDeveloperContent(
-    isDarkTheme: Boolean,
     developer: Developer,
     onDeveloperLinkClick: (Developer.Link) -> Unit,
     modifier: Modifier = Modifier,
@@ -62,7 +58,6 @@ private fun ToolkitDeveloperContent(
             modifier = Modifier.padding(16.dp),
         ) {
             ToolkitDeveloperLogoVertical(
-                isDarkTheme = isDarkTheme,
                 modifier = modifier
                     .padding(
                         vertical = 8.dp,
@@ -96,7 +91,6 @@ private fun ToolkitDeveloperContentPreview() {
     KepkoTheme {
         Midground {
             ToolkitDeveloperContent(
-                isDarkTheme = isSystemInDarkTheme(),
                 developer = Developer(),
                 onDeveloperLinkClick = {},
                 modifier = Modifier.padding(16.dp),

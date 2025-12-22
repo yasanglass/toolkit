@@ -70,10 +70,7 @@ internal fun SampleNavHost(
 
         composable<Route.About> {
             AboutScreen(
-                isDarkTheme = themeStyle.isDark,
-                onNavigateBack = {
-                    navController.navigateUp()
-                },
+                onNavigateBack = { navController.navigateUp() },
             )
         }
     }

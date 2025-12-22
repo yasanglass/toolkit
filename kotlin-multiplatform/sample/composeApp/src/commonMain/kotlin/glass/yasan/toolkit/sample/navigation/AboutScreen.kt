@@ -23,7 +23,6 @@ import org.jetbrains.compose.resources.stringResource
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun AboutScreen(
-    isDarkTheme: Boolean,
     onNavigateBack: () -> Unit,
 ) {
     Scaffold(
@@ -44,11 +43,7 @@ internal fun AboutScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.padding(16.dp),
         ) {
-            item {
-                ToolkitDeveloperContent(
-                    isDarkTheme = isDarkTheme,
-                )
-            }
+            item { ToolkitDeveloperContent() }
         }
     }
 }

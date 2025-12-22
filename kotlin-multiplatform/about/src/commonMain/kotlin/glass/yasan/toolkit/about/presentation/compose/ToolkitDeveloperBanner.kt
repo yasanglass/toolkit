@@ -15,7 +15,6 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 public fun ToolkitDeveloperBanner(
-    isDarkTheme: Boolean,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -23,7 +22,6 @@ public fun ToolkitDeveloperBanner(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         ToolkitDeveloperLogoHorizontal(
-            isDarkTheme = isDarkTheme,
             modifier = Modifier
                 .padding(16.dp)
                 .requiredHeight(height = 48.dp),
@@ -37,9 +35,7 @@ public fun ToolkitDeveloperBanner(
 private fun DeveloperBrandingFooterPreview() {
     MaterialTheme {
         Foreground {
-            ToolkitDeveloperBanner(
-                isDarkTheme = false,
-            )
+            ToolkitDeveloperBanner()
         }
     }
 }

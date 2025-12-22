@@ -93,13 +93,11 @@ internal fun HomeScreen(
 
         item { HorizontalDivider() }
 
-        footers(isDarkTheme = theme.isDark)
+        footers()
     }
 }
 
-private fun LazyListScope.footers(
-    isDarkTheme: Boolean,
-) {
+private fun LazyListScope.footers() {
     item {
         ToolkitAppBanner(
             appName = stringResource(Res.string.app_title),
@@ -108,7 +106,7 @@ private fun LazyListScope.footers(
             buildDetails = persistentListOf(100.toString(), "flavor"),
         )
     }
-    item { ToolkitDeveloperBanner(isDarkTheme) }
+    item { ToolkitDeveloperBanner() }
 }
 
 @Composable
