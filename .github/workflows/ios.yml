@@ -31,16 +31,13 @@ jobs:
         uses: gradle/actions/setup-gradle@v5
 
       - name: Build Debug Frameworks
-        run: cd kotlin-multiplatform && ./gradlew linkDebugFrameworkIosArm64 linkDebugFrameworkIosSimulatorArm64 linkDebugFrameworkIosX64
+        run: cd kotlin-multiplatform && ./gradlew linkDebugFrameworkIosSimulatorArm64
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v6
         with:
           name: artifacts
-          path: |
-            kotlin-multiplatform/**/build/classes/kotlin/iosArm64/main/
-            kotlin-multiplatform/**/build/classes/kotlin/iosSimulatorArm64/main/
-            kotlin-multiplatform/**/build/classes/kotlin/iosX64/main/
+          path: kotlin-multiplatform/**/build/classes/kotlin/iosSimulatorArm64/main/
           retention-days: 30
 
   test:
@@ -63,4 +60,4 @@ jobs:
         uses: gradle/actions/setup-gradle@v5
 
       - name: Run Tests
-        run: cd kotlin-multiplatform && ./gradlew iosSimulatorArm64Test iosX64Test
+        run: cd kotlin-multiplatform && ./gradlew iosSimulatorArm64Test
