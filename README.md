@@ -1,6 +1,19 @@
-![Banner](./graphics/banner.png)
+<p align="center">
+  <img src="./graphics/banner.png" alt="Banner"/>
+</p>
 
-[![version](https://img.shields.io/maven-central/v/glass.yasan.toolkit/core?label=version)](https://central.sonatype.com/artifact/glass.yasan.toolkit/core) [![License](https://img.shields.io/github/license/yasanglass/toolkit.svg)](LICENSE) [![android](https://img.shields.io/github/actions/workflow/status/yasanglass/toolkit/android.yml?label=android)](https://github.com/yasanglass/toolkit/actions/workflows/android.yml) [![jvm](https://img.shields.io/github/actions/workflow/status/yasanglass/toolkit/jvm.yml?label=jvm)](https://github.com/yasanglass/toolkit/actions/workflows/jvm.yml) [![ios](https://img.shields.io/github/actions/workflow/status/yasanglass/toolkit/ios.yml?label=ios)](https://github.com/yasanglass/toolkit/actions/workflows/ios.yml) [![js](https://img.shields.io/github/actions/workflow/status/yasanglass/toolkit/js.yml?label=js)](https://github.com/yasanglass/toolkit/actions/workflows/js.yml) [![wasm](https://img.shields.io/github/actions/workflow/status/yasanglass/toolkit/wasm.yml?label=wasm)](https://github.com/yasanglass/toolkit/actions/workflows/wasm.yml) [![detekt](https://img.shields.io/github/actions/workflow/status/yasanglass/toolkit/detekt.yml?label=detekt)](https://github.com/yasanglass/toolkit/actions/workflows/detekt.yml) [![publish](https://img.shields.io/github/actions/workflow/status/yasanglass/toolkit/publish.yml?label=publish)](https://github.com/yasanglass/toolkit/actions/workflows/publish.yml)
+<p align="center">
+  <a href="https://central.sonatype.com/artifact/glass.yasan.toolkit/core"><img alt="version" src="https://img.shields.io/maven-central/v/glass.yasan.toolkit/core?label=version"/></a>
+  <a href="LICENSE"><img alt="License" src="https://img.shields.io/github/license/yasanglass/toolkit.svg"/></a>
+  <a href="https://kotlinlang.org"><img alt="Kotlin" src="https://img.shields.io/badge/Kotlin-2.3.0-purple.svg?style=flat"/></a>
+  <a href="https://github.com/yasanglass/toolkit/actions/workflows/android.yml"><img alt="android" src="https://img.shields.io/github/actions/workflow/status/yasanglass/toolkit/android.yml?label=android"/></a>
+  <a href="https://github.com/yasanglass/toolkit/actions/workflows/jvm.yml"><img alt="jvm" src="https://img.shields.io/github/actions/workflow/status/yasanglass/toolkit/jvm.yml?label=jvm"/></a>
+  <a href="https://github.com/yasanglass/toolkit/actions/workflows/ios.yml"><img alt="ios" src="https://img.shields.io/github/actions/workflow/status/yasanglass/toolkit/ios.yml?label=ios"/></a>
+  <a href="https://github.com/yasanglass/toolkit/actions/workflows/js.yml"><img alt="js" src="https://img.shields.io/github/actions/workflow/status/yasanglass/toolkit/js.yml?label=js"/></a>
+  <a href="https://github.com/yasanglass/toolkit/actions/workflows/wasm.yml"><img alt="wasm" src="https://img.shields.io/github/actions/workflow/status/yasanglass/toolkit/wasm.yml?label=wasm"/></a>
+  <a href="https://github.com/yasanglass/toolkit/actions/workflows/detekt.yml"><img alt="detekt" src="https://img.shields.io/github/actions/workflow/status/yasanglass/toolkit/detekt.yml?label=detekt"/></a>
+  <a href="https://github.com/yasanglass/toolkit/actions/workflows/publish.yml"><img alt="publish" src="https://img.shields.io/github/actions/workflow/status/yasanglass/toolkit/publish.yml?label=publish"/></a>
+</p>
 
 Personal development toolkit.
 
