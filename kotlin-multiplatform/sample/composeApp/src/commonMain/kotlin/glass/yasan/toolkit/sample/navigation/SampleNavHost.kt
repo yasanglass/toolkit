@@ -56,7 +56,6 @@ internal fun SampleNavHost(
                 viewState = viewState,
                 sendViewEvent = sendViewEvent,
                 onNavigateToColors = { navController.navigate(Route.Colors) },
-                onNavigateToAbout = { navController.navigate(Route.About) },
             )
         }
 
@@ -65,12 +64,6 @@ internal fun SampleNavHost(
                 onNavigateBack = {
                     navController.navigateUp()
                 },
-            )
-        }
-
-        composable<Route.About> {
-            AboutScreen(
-                onNavigateBack = { navController.navigateUp() },
             )
         }
     }

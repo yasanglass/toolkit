@@ -44,7 +44,8 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                api(project(":about"))
+                api(project(":compose"))
+                api(project(":core"))
 
                 implementation(libs.jetbrains.kotlinx.coroutines.core)
                 implementation(libs.koin.core)

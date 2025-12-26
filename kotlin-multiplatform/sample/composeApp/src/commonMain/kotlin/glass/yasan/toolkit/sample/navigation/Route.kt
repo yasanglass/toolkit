@@ -9,9 +9,6 @@ sealed interface Route {
     data object Home : Route
 
     @Serializable
-    data object About : Route
-
-    @Serializable
     data object Colors : Route
 
 }
