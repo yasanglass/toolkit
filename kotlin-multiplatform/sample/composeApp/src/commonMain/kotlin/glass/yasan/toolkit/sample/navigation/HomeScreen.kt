@@ -27,18 +27,11 @@ import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.foundation.theme.ThemeStyle
 import glass.yasan.kepko.util.asPreferenceRadioGroupItems
-import glass.yasan.toolkit.about.presentation.compose.ToolkitAppBanner
-import glass.yasan.toolkit.about.presentation.compose.ToolkitDeveloperBanner
 import glass.yasan.toolkit.composeapp.generated.resources.Res
-import glass.yasan.toolkit.composeapp.generated.resources.about
-import glass.yasan.toolkit.composeapp.generated.resources.app_icon
-import glass.yasan.toolkit.composeapp.generated.resources.app_title
 import glass.yasan.toolkit.composeapp.generated.resources.colors
 import glass.yasan.toolkit.composeapp.generated.resources.decrement
 import glass.yasan.toolkit.composeapp.generated.resources.increment
 import glass.yasan.toolkit.sample.SampleViewModel
-import kotlinx.collections.immutable.persistentListOf
-import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
 @OptIn(ExperimentalKepkoApi::class)
@@ -49,7 +42,6 @@ internal fun HomeScreen(
     viewState: SampleViewModel.State,
     sendViewEvent: (SampleViewModel.Event) -> Unit,
     onNavigateToColors: () -> Unit,
-    onNavigateToAbout: () -> Unit,
 ) {
     LazyColumn(
         contentPadding = PaddingValues(16.dp),
@@ -75,15 +67,6 @@ internal fun HomeScreen(
             )
         }
 
-        item {
-            ButtonText(
-                text = stringResource(Res.string.about),
-                onClick = onNavigateToAbout,
-                containerColor = KepkoTheme.colors.foreground,
-                textAlign = TextAlign.Center,
-            )
-        }
-
         item { HorizontalDivider() }
 
         themeStylePreference(
@@ -92,21 +75,7 @@ internal fun HomeScreen(
         )
 
         item { HorizontalDivider() }
-
-        footers()
     }
-}
-
-private fun LazyListScope.footers() {
-    item {
-        ToolkitAppBanner(
-            appName = stringResource(Res.string.app_title),
-            appIcon = painterResource(Res.drawable.app_icon),
-            appVersionName = "1.0.0",
-            buildDetails = persistentListOf(100.toString(), "flavor"),
-        )
-    }
-    item { ToolkitDeveloperBanner() }
 }
 
 @Composable
