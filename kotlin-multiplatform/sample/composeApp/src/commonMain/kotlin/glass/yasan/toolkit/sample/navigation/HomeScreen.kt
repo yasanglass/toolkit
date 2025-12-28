@@ -19,6 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import glass.yasan.kepko.component.AppIdentity
 import glass.yasan.kepko.component.ButtonText
 import glass.yasan.kepko.component.HorizontalDivider
 import glass.yasan.kepko.component.PreferenceRadioGroup
@@ -27,7 +28,6 @@ import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.foundation.theme.ThemeStyle
 import glass.yasan.kepko.util.asPreferenceRadioGroupItems
-import glass.yasan.toolkit.about.presentation.compose.ToolkitAppBanner
 import glass.yasan.toolkit.about.presentation.compose.ToolkitDeveloperBanner
 import glass.yasan.toolkit.composeapp.generated.resources.Res
 import glass.yasan.toolkit.composeapp.generated.resources.about
@@ -37,7 +37,6 @@ import glass.yasan.toolkit.composeapp.generated.resources.colors
 import glass.yasan.toolkit.composeapp.generated.resources.decrement
 import glass.yasan.toolkit.composeapp.generated.resources.increment
 import glass.yasan.toolkit.sample.SampleViewModel
-import kotlinx.collections.immutable.persistentListOf
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -99,11 +98,11 @@ internal fun HomeScreen(
 
 private fun LazyListScope.footers() {
     item {
-        ToolkitAppBanner(
-            appName = stringResource(Res.string.app_title),
-            appIcon = painterResource(Res.drawable.app_icon),
-            appVersionName = "1.0.0",
-            buildDetails = persistentListOf(100.toString(), "flavor"),
+        AppIdentity(
+            title = stringResource(Res.string.app_title),
+            icon = painterResource(Res.drawable.app_icon),
+            versionName = "1.0.0",
+            extras = arrayOf(100.toString(), "flavor"),
         )
     }
     item { ToolkitDeveloperBanner() }
