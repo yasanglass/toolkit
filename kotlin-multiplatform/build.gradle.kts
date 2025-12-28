@@ -8,7 +8,24 @@ plugins {
     alias(libs.plugins.jetbrains.compose.hotreload) apply false
     alias(libs.plugins.vanniktech.maven.publish) apply false
     alias(libs.plugins.arturbosch.detekt) apply true
+    alias(libs.plugins.jetbrains.kotlinx.kover)
     alias(libs.plugins.iurysouza.modulegraph)
+}
+
+dependencies {
+    subprojects.forEach { subproject ->
+        kover(subproject)
+    }
+}
+
+kover {
+    reports {
+        total {
+            binary {
+                file = layout.buildDirectory.file("reports/kover/report.ic")
+            }
+        }
+    }
 }
 
 detekt {
@@ -86,10 +103,15 @@ fun Project.configurePublishing() {
     }
 }
 
+fun Project.configureKover() {
+    apply(plugin = "org.jetbrains.kotlinx.kover")
+}
+
 subprojects {
     val isSample = path.contains("sample")
 
     configureDetekt()
+    configureKover()
 
     if (isSample.not()) {
         configurePublishing()

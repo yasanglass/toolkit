@@ -64,6 +64,17 @@ jobs:
       - name: Run Tests
         run: cd kotlin-multiplatform && ./gradlew testDebugUnitTest
 
+      - name: Generate Coverage Report
+        run: cd kotlin-multiplatform && ./gradlew koverXmlReport koverHtmlReport
+
+      - name: Upload Coverage Report
+        uses: actions/upload-artifact@v6
+        with:
+          name: coverage-report-android
+          path: |
+            kotlin-multiplatform/**/build/reports/kover/
+          retention-days: 30
+
   lint:
     name: Lint
     runs-on: ubuntu-latest
