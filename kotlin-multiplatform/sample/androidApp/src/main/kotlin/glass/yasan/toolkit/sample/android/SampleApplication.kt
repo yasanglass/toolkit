@@ -1,4 +1,4 @@
-package glass.yasan.toolkit.sample
+package glass.yasan.toolkit.sample.android
 
 import android.app.Application
 import glass.yasan.toolkit.sample.di.sampleModule
@@ -17,4 +17,3 @@ class SampleApplication : Application() {
         }
     }
 }
-
