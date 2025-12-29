@@ -19,9 +19,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import glass.yasan.kepko.component.AppIdentity
 import glass.yasan.kepko.component.ButtonText
 import glass.yasan.kepko.component.HorizontalDivider
+import glass.yasan.kepko.component.PreferenceAppIdentity
 import glass.yasan.kepko.component.PreferenceRadioGroup
 import glass.yasan.kepko.component.Text
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
@@ -98,7 +98,7 @@ internal fun HomeScreen(
 
 private fun LazyListScope.footers() {
     item {
-        AppIdentity(
+        PreferenceAppIdentity(
             title = stringResource(Res.string.app_title),
             icon = painterResource(Res.drawable.app_icon),
             versionName = "1.0.0",
