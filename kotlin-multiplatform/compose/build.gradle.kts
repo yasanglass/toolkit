@@ -63,6 +63,8 @@ kotlin {
 
                 implementation(libs.koin.compose)
                 implementation(libs.koin.core)
+
+                implementation(libs.touchlab.kermit)
             }
         }
         val nonWebMain by creating {

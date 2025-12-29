@@ -2,6 +2,7 @@ package glass.yasan.toolkit.compose.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import co.touchlab.kermit.Logger
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,6 +25,7 @@ public abstract class ToolkitViewModel<
         A : ViewAction,
         > : ViewModel() {
 
+    protected val logger: Logger = Logger.withTag(this::class.simpleName ?: "ToolkitViewModel)")
 
     private val _viewState: MutableStateFlow<S> = MutableStateFlow(defaultViewState())
     public val viewState: StateFlow<S> = _viewState.asStateFlow()
