@@ -1,9 +1,10 @@
-package glass.yasan.toolkit.sample
+package glass.yasan.toolkit.sample.android
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import glass.yasan.toolkit.sample.SampleApp
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

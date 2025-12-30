@@ -18,9 +18,9 @@ import glass.yasan.kepko.component.Icon
 import glass.yasan.kepko.component.TextMono
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.toolkit.compose.color.toContentColor
-import glass.yasan.toolkit.composeapp.generated.resources.Res
-import glass.yasan.toolkit.composeapp.generated.resources.arrow_back
-import glass.yasan.toolkit.composeapp.generated.resources.go_back
+import glass.yasan.toolkit.sample.Res
+import glass.yasan.toolkit.sample.arrow_back
+import glass.yasan.toolkit.sample.go_back
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
