@@ -4,13 +4,13 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredHeight
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import glass.yasan.kepko.component.Foreground
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
+import glass.yasan.kepko.foundation.theme.KepkoTheme
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -32,8 +32,41 @@ public fun ToolkitDeveloperBanner(
 @OptIn(ExperimentalKepkoApi::class)
 @Preview
 @Composable
-private fun DeveloperBrandingFooterPreview() {
-    MaterialTheme {
+private fun DeveloperBrandingFooterLightPreview() {
+    KepkoTheme(style = LIGHT) {
+        Foreground {
+            ToolkitDeveloperBanner()
+        }
+    }
+}
+
+@OptIn(ExperimentalKepkoApi::class)
+@Preview
+@Composable
+private fun DeveloperBrandingFooterDarkPreview() {
+    KepkoTheme(style = DARK) {
+        Foreground {
+            ToolkitDeveloperBanner()
+        }
+    }
+}
+
+@OptIn(ExperimentalKepkoApi::class)
+@Preview
+@Composable
+private fun DeveloperBrandingFooterLightSolarizedPreview() {
+    KepkoTheme(style = SOLARIZED_LIGHT) {
+        Foreground {
+            ToolkitDeveloperBanner()
+        }
+    }
+}
+
+@OptIn(ExperimentalKepkoApi::class)
+@Preview
+@Composable
+private fun DeveloperBrandingFooterDarkSolarizedPreview() {
+    KepkoTheme(style = SOLARIZED_DARK) {
         Foreground {
             ToolkitDeveloperBanner()
         }
