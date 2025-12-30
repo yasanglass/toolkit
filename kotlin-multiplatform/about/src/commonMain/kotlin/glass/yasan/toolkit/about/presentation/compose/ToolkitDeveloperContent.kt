@@ -73,7 +73,6 @@ private fun ToolkitDeveloperContent(
         developer.links.forEach { link ->
             ButtonText(
                 text = link.name,
-                containerColor = KepkoTheme.colors.foreground,
                 onClick = { onDeveloperLinkClick(link) },
                 leadingIcon = null,
                 trailingIcon = painterResource(resource = link.icon),
