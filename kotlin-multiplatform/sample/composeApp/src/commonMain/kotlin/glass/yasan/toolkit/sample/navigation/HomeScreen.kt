@@ -10,7 +10,6 @@ import androidx.compose.animation.slideOutVertically
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.runtime.Composable
@@ -23,17 +22,18 @@ import glass.yasan.kepko.component.ButtonText
 import glass.yasan.kepko.component.HorizontalDivider
 import glass.yasan.kepko.component.PreferenceAppIdentity
 import glass.yasan.kepko.component.PreferenceRadioGroup
+import glass.yasan.kepko.component.Scaffold
 import glass.yasan.kepko.component.Text
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.foundation.theme.ThemeStyle
 import glass.yasan.kepko.util.asPreferenceRadioGroupItems
 import glass.yasan.toolkit.about.presentation.compose.ToolkitDeveloperBanner
+import glass.yasan.toolkit.compose.spacer.VerticalSpacer
 import glass.yasan.toolkit.composeapp.generated.resources.Res
 import glass.yasan.toolkit.composeapp.generated.resources.about
 import glass.yasan.toolkit.composeapp.generated.resources.app_icon
-import glass.yasan.toolkit.composeapp.generated.resources.app_title
-import glass.yasan.toolkit.composeapp.generated.resources.colors
+import glass.yasan.toolkit.composeapp.generated.resources.app_name
 import glass.yasan.toolkit.composeapp.generated.resources.decrement
 import glass.yasan.toolkit.composeapp.generated.resources.increment
 import glass.yasan.toolkit.sample.SampleViewModel
@@ -47,59 +47,53 @@ internal fun HomeScreen(
     onThemeChange: (ThemeStyle) -> Unit,
     viewState: SampleViewModel.State,
     sendViewEvent: (SampleViewModel.Event) -> Unit,
-    onNavigateToColors: () -> Unit,
     onNavigateToAbout: () -> Unit,
 ) {
-    LazyColumn(
-        contentPadding = PaddingValues(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        item {
-            CounterSection(
-                count = viewState.count,
-                onIncrement = { sendViewEvent(SampleViewModel.Event.Increment) },
-                onDecrement = { sendViewEvent(SampleViewModel.Event.Decrement) },
+    Scaffold(
+        title = stringResource(Res.string.app_name),
+    ) { contentPadding ->
+        LazyColumn(
+            contentPadding = contentPadding,
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            item {
+                CounterSection(
+                    count = viewState.count,
+                    onIncrement = { sendViewEvent(SampleViewModel.Event.Increment) },
+                    onDecrement = { sendViewEvent(SampleViewModel.Event.Decrement) },
+                )
+            }
+
+            item { HorizontalDivider() }
+
+            item {
+                ButtonText(
+                    text = stringResource(Res.string.about),
+                    onClick = onNavigateToAbout,
+                    containerColor = KepkoTheme.colors.foreground,
+                    textAlign = TextAlign.Center,
+                )
+            }
+
+            item { HorizontalDivider() }
+
+            themeStylePreference(
+                theme = theme,
+                onThemeChange = onThemeChange,
             )
+
+            item { HorizontalDivider() }
+
+            footers()
         }
-
-        item { HorizontalDivider() }
-
-        item {
-            ButtonText(
-                text = stringResource(Res.string.colors),
-                onClick = onNavigateToColors,
-                containerColor = KepkoTheme.colors.foreground,
-                textAlign = TextAlign.Center,
-            )
-        }
-
-        item {
-            ButtonText(
-                text = stringResource(Res.string.about),
-                onClick = onNavigateToAbout,
-                containerColor = KepkoTheme.colors.foreground,
-                textAlign = TextAlign.Center,
-            )
-        }
-
-        item { HorizontalDivider() }
-
-        themeStylePreference(
-            theme = theme,
-            onThemeChange = onThemeChange,
-        )
-
-        item { HorizontalDivider() }
-
-        footers()
     }
 }
 
 private fun LazyListScope.footers() {
     item {
         PreferenceAppIdentity(
-            title = stringResource(Res.string.app_title),
+            title = stringResource(Res.string.app_name),
             icon = painterResource(Res.drawable.app_icon),
             versionName = "1.0.0",
             extras = arrayOf(100.toString(), "flavor"),
@@ -118,6 +112,7 @@ private fun CounterSection(
         verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
+        VerticalSpacer(height = 4.dp)
         ButtonText(
             text = stringResource(Res.string.increment),
             onClick = onIncrement,

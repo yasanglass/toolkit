@@ -1,17 +1,13 @@
 package glass.yasan.toolkit.sample
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.foundation.theme.ThemeStyle
 import glass.yasan.toolkit.compose.viewmodel.ViewActionEffect
 import glass.yasan.toolkit.compose.viewmodel.rememberSendViewEvent
@@ -60,17 +56,12 @@ private fun SampleApp(
     AppTheme(
         style = themeStyle.value,
     ) {
-        Scaffold(
-            containerColor = KepkoTheme.colors.midground,
-        ) { contentPadding ->
-            SampleNavHost(
-                themeStyle = themeStyle.value,
-                onThemeStyleChange = { themeStyle.value = it },
-                navController = navController,
-                viewState = viewState,
-                sendViewEvent = sendViewEvent,
-                modifier = Modifier.padding(contentPadding),
-            )
-        }
+        SampleNavHost(
+            themeStyle = themeStyle.value,
+            onThemeStyleChange = { themeStyle.value = it },
+            navController = navController,
+            viewState = viewState,
+            sendViewEvent = sendViewEvent,
+        )
     }
 }
