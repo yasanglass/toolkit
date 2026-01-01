@@ -1,6 +1,5 @@
 package glass.yasan.toolkit.sample
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -46,12 +45,10 @@ private fun SampleApp(
     viewState: State,
     sendViewEvent: (Event) -> Unit,
 ) {
-    val isSystemInDarkTheme = isSystemInDarkTheme()
+    val defaultThemeStyle = ThemeStyle.fromSystemDarkTheme()
     val navController = rememberNavController()
 
-    val themeStyle = rememberSaveable {
-        mutableStateOf(ThemeStyle.fromDarkMode(isSystemInDarkTheme))
-    }
+    val themeStyle = rememberSaveable { mutableStateOf(defaultThemeStyle) }
 
     AppTheme(
         style = themeStyle.value,
