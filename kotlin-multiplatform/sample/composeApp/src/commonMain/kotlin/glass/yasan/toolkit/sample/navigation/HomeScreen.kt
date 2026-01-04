@@ -37,6 +37,7 @@ import glass.yasan.toolkit.composeapp.generated.resources.app_icon
 import glass.yasan.toolkit.composeapp.generated.resources.app_name
 import glass.yasan.toolkit.composeapp.generated.resources.decrement
 import glass.yasan.toolkit.composeapp.generated.resources.increment
+import glass.yasan.toolkit.composeapp.generated.resources.theme
 import glass.yasan.toolkit.sample.SampleViewModel
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -170,7 +171,7 @@ private fun LazyListScope.themeStylePreference(
 ) {
     item {
         PreferenceRadioGroup(
-            title = "Theme",
+            title = stringResource(Res.string.theme),
             items = ThemeStyle.asPreferenceRadioGroupItems(),
             selectedId = theme.id,
             onSelectId = { id ->
