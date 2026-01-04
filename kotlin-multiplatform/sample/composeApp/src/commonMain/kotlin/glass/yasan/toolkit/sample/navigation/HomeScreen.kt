@@ -170,8 +170,8 @@ private fun LazyListScope.themeStylePreference(
             title = "Theme",
             items = ThemeStyle.asPreferenceRadioGroupItems(),
             selectedId = theme.id,
-            onSelectId = {
-                ThemeStyle.fromId(it)?.let { newValue ->
+            onSelectId = { id ->
+                ThemeStyle.fromIdOrNull(id)?.let { newValue ->
                     onThemeChange(newValue)
                 }
             },
