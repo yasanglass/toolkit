@@ -1,15 +1,14 @@
 package glass.yasan.toolkit.sample.navigation
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import glass.yasan.kepko.component.Scaffold
 import glass.yasan.toolkit.about.presentation.compose.ToolkitDeveloperContent
+import glass.yasan.toolkit.compose.spacer.verticalSpacerItem
 import glass.yasan.toolkit.composeapp.generated.resources.Res
 import glass.yasan.toolkit.composeapp.generated.resources.about
 import org.jetbrains.compose.resources.stringResource
@@ -27,9 +26,9 @@ internal fun AboutScreen(
             contentPadding = contentPadding,
             verticalArrangement = Arrangement.spacedBy(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.padding(16.dp),
         ) {
             item { ToolkitDeveloperContent() }
+            verticalSpacerItem(height = 16.dp)
         }
     }
 }

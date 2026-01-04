@@ -30,6 +30,7 @@ import glass.yasan.kepko.foundation.theme.ThemeStyle
 import glass.yasan.kepko.util.asPreferenceRadioGroupItems
 import glass.yasan.toolkit.about.presentation.compose.ToolkitDeveloperBanner
 import glass.yasan.toolkit.compose.spacer.VerticalSpacer
+import glass.yasan.toolkit.compose.spacer.verticalSpacerItem
 import glass.yasan.toolkit.composeapp.generated.resources.Res
 import glass.yasan.toolkit.composeapp.generated.resources.about
 import glass.yasan.toolkit.composeapp.generated.resources.app_icon
@@ -86,6 +87,8 @@ internal fun HomeScreen(
             item { HorizontalDivider() }
 
             footers()
+
+            verticalSpacerItem(height = 16.dp)
         }
     }
 }
