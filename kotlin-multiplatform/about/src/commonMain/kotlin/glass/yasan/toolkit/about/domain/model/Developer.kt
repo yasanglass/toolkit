@@ -10,6 +10,7 @@ import glass.yasan.toolkit.compose.about.ic_mail
 import glass.yasan.toolkit.compose.about.ic_mastodon
 import glass.yasan.toolkit.compose.about.ic_play_store
 import glass.yasan.toolkit.compose.about.ic_telegram
+import glass.yasan.toolkit.compose.about.ic_translate
 import io.ktor.http.parseUrl
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
@@ -60,6 +61,10 @@ public data class Developer(
             name = "Gumroad",
             url = "https://yasanglass.gumroad.com",
         ),
+        Link(
+            name = "Crowdin",
+            url = "https://crowdin.com/profile/yasanglass",
+        ),
     ),
 ) {
 
@@ -89,6 +94,7 @@ public data class Developer(
 
         public enum class Type {
             BLUESKY,
+            CROWDIN,
             DISCORD,
             EMAIL,
             GITHUB,
@@ -112,6 +118,7 @@ public data class Developer(
                     parsedUrl?.host == "github.com" -> GITHUB
                     parsedUrl?.host == "play.google.com" -> PLAY_STORE
                     parsedUrl?.host == "t.me" -> TELEGRAM
+                    parsedUrl?.host == "crowdin.com" -> CROWDIN
                     // Other
                     name.contains("mastodon", true) -> MASTODON
                     parsedUrl?.host?.contains("gumroad.com") == true -> GUMROAD
@@ -123,6 +130,7 @@ public data class Developer(
             get() = when (type) {
                 Type.EMAIL -> Res.drawable.ic_mail
                 Type.BLUESKY -> Res.drawable.ic_bluesky
+                Type.CROWDIN -> Res.drawable.ic_translate
                 Type.DISCORD -> Res.drawable.ic_discord
                 Type.GITHUB -> Res.drawable.ic_github
                 Type.GUMROAD -> Res.drawable.ic_gumroad
