@@ -1,7 +1,7 @@
 package glass.yasan.toolkit.sample.theme
 
 import androidx.compose.runtime.Composable
-import glass.yasan.kepko.foundation.theme.AnimatedKepkoTheme
+import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.foundation.theme.ThemeStyle
 
 @Composable
@@ -9,7 +9,7 @@ fun AppTheme(
     style: ThemeStyle = ThemeStyle.LIGHT,
     content: @Composable () -> Unit
 ) {
-    AnimatedKepkoTheme(
+    KepkoTheme(
         style = style,
         content = content,
     )
