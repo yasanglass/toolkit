@@ -12,10 +12,6 @@ updates:
   open-pull-requests-limit: 3
   assignees:
     - "yasanglass"
-  cooldown:
-    default-days: 7
-    exclude:
-      - "glass.yasan.*"
   groups:
     kotlin:
       patterns:
@@ -39,5 +35,3 @@ updates:
   open-pull-requests-limit: 3
   assignees:
     - "yasanglass"
-  cooldown:
-    default-days: 7
