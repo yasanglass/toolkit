@@ -5,6 +5,7 @@ updates:
   schedule:
     interval: monthly
     timezone: "Europe/Prague"
+  rebase-strategy: disabled
   labels:
     - 'kotlin multiplatform'
     - 'dependencies'
@@ -27,6 +28,7 @@ updates:
   schedule:
     interval: monthly
     timezone: "Europe/Prague"
+  rebase-strategy: disabled
   labels:
     - 'github actions'
     - 'dependencies'
