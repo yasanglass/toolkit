@@ -3,10 +3,9 @@ updates:
 - package-ecosystem: gradle
   directory: "/kotlin-multiplatform"
   schedule:
-    interval: daily
-    time: "16:30"
+    interval: monthly
     timezone: "Europe/Prague"
-  labels: 
+  labels:
     - 'kotlin multiplatform'
     - 'dependencies'
   open-pull-requests-limit: 3
@@ -26,10 +25,9 @@ updates:
 - package-ecosystem: "github-actions"
   directory: "/"
   schedule:
-    interval: daily
-    time: "16:30"
+    interval: monthly
     timezone: "Europe/Prague"
-  labels: 
+  labels:
     - 'github actions'
     - 'dependencies'
   open-pull-requests-limit: 3
