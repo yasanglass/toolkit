@@ -7,6 +7,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 
 /**
  * A custom [AnimatedVisibility] that uses fade in/out and vertical expand/shrink animations.
@@ -14,6 +15,7 @@ import androidx.compose.runtime.Composable
 @Composable
 public fun VerticalAnimatedVisibility(
     visible: Boolean,
+    modifier: Modifier = Modifier,
     content: @Composable() AnimatedVisibilityScope.() -> Unit,
 ) {
     AnimatedVisibility(
@@ -21,5 +23,6 @@ public fun VerticalAnimatedVisibility(
         enter = fadeIn() + expandVertically(),
         exit = fadeOut() + shrinkVertically(),
         content = content,
+        modifier = modifier,
     )
 }
