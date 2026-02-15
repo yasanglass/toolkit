@@ -8,7 +8,8 @@ on:
     branches:
       - main
     paths:
-      - 'kotlin-multiplatform/**'
+      - '**/*.kt'
+      - '**/*.kts'
       - '.github/workflows/ios.yml'
 
 jobs:
@@ -31,13 +32,13 @@ jobs:
         uses: gradle/actions/setup-gradle@v5
 
       - name: Build Debug Frameworks
-        run: cd kotlin-multiplatform && ./gradlew linkDebugFrameworkIosSimulatorArm64
+        run: ./gradlew linkDebugFrameworkIosSimulatorArm64
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v6
         with:
           name: artifacts
-          path: kotlin-multiplatform/**/build/classes/kotlin/iosSimulatorArm64/main/
+          path: **/build/classes/kotlin/iosSimulatorArm64/main/
           retention-days: 30
 
   test:
@@ -60,4 +61,4 @@ jobs:
         uses: gradle/actions/setup-gradle@v5
 
       - name: Run Tests
-        run: cd kotlin-multiplatform && ./gradlew iosSimulatorArm64Test
+        run: ./gradlew iosSimulatorArm64Test

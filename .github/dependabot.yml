@@ -1,7 +1,7 @@
 version: 2
 updates:
 - package-ecosystem: gradle
-  directory: "/kotlin-multiplatform"
+  directory: "/"
   schedule:
     interval: monthly
     timezone: "Europe/Prague"

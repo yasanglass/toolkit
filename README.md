@@ -19,25 +19,25 @@ Personal development toolkit.
 
 ### Kotlin Multiplatform
 
-##### [Core](https://github.com/yasanglass/toolkit/tree/main/kotlin-multiplatform/core)
+##### [Core](https://github.com/yasanglass/toolkit/tree/main/core)
 
 ```kotlin
 implementation("glass.yasan.toolkit:core:<version>")
 ```
 
-##### [Compose](https://github.com/yasanglass/toolkit/tree/main/kotlin-multiplatform/compose)
+##### [Compose](https://github.com/yasanglass/toolkit/tree/main/compose)
 
 ```kotlin
 implementation("glass.yasan.toolkit:compose:<version>")
 ```
 
-##### [About](https://github.com/yasanglass/toolkit/tree/main/kotlin-multiplatform/about)
+##### [About](https://github.com/yasanglass/toolkit/tree/main/about)
 
 ```kotlin
 implementation("glass.yasan.toolkit:about:<version>")
 ```
 
-##### [Koin](https://github.com/yasanglass/toolkit/tree/main/kotlin-multiplatform/koin)
+##### [Koin](https://github.com/yasanglass/toolkit/tree/main/koin)
 
 ```kotlin
 implementation("glass.yasan.toolkit:koin:<version>")

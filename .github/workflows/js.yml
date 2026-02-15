@@ -8,7 +8,8 @@ on:
     branches:
       - main
     paths:
-      - 'kotlin-multiplatform/**'
+      - '**/*.kt'
+      - '**/*.kts'
       - '.github/workflows/js.yml'
 
 jobs:
@@ -31,14 +32,14 @@ jobs:
         uses: gradle/actions/setup-gradle@v5
 
       - name: Assemble
-        run: cd kotlin-multiplatform && ./gradlew jsJar
+        run: ./gradlew jsJar
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v6
         with:
           name: artifacts
           path: |
-            kotlin-multiplatform/**/build/libs/*-js.jar
+            **/build/libs/*-js.jar
           retention-days: 30
 
   test:
@@ -61,4 +62,4 @@ jobs:
         uses: gradle/actions/setup-gradle@v5
 
       - name: Run Tests
-        run: cd kotlin-multiplatform && ./gradlew jsTest
+        run: ./gradlew jsTest

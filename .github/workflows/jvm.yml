@@ -8,7 +8,8 @@ on:
     branches:
       - main
     paths:
-      - 'kotlin-multiplatform/**'
+      - '**/*.kt'
+      - '**/*.kts'
       - '.github/workflows/jvm.yml'
 
 jobs:
@@ -31,14 +32,14 @@ jobs:
         uses: gradle/actions/setup-gradle@v5
 
       - name: Assemble
-        run: cd kotlin-multiplatform && ./gradlew jvmJar
+        run: ./gradlew jvmJar
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v6
         with:
           name: artifacts
           path: |
-            kotlin-multiplatform/**/build/libs/*-jvm.jar
+            **/build/libs/*-jvm.jar
           retention-days: 30
 
   test:
@@ -61,15 +62,15 @@ jobs:
         uses: gradle/actions/setup-gradle@v5
 
       - name: Run Tests
-        run: cd kotlin-multiplatform && ./gradlew jvmTest
+        run: ./gradlew jvmTest
 
       - name: Generate Coverage Report
-        run: cd kotlin-multiplatform && ./gradlew koverXmlReport koverHtmlReport
+        run: ./gradlew koverXmlReport koverHtmlReport
 
       - name: Upload Coverage Report
         uses: actions/upload-artifact@v6
         with:
           name: coverage-report-jvm
           path: |
-            kotlin-multiplatform/**/build/reports/kover/
+            **/build/reports/kover/
           retention-days: 30

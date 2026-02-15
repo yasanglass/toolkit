@@ -23,7 +23,7 @@ jobs:
         with:
           repo-token: ${{ secrets.GRADLE_WRAPPER_TOKEN }}
           paths: |
-            kotlin-multiplatform/**
+            **
           labels: |
             dependencies
             kotlin multiplatform

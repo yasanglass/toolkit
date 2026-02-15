@@ -8,7 +8,8 @@ on:
     branches:
       - main
     paths:
-      - 'kotlin-multiplatform/**'
+      - '**/*.kt'
+      - '**/*.kts'
       - '.github/workflows/android.yml'
 
 jobs:
@@ -31,15 +32,15 @@ jobs:
         uses: gradle/actions/setup-gradle@v5
 
       - name: Assemble Debug
-        run: cd kotlin-multiplatform && ./gradlew assembleDebug
+        run: ./gradlew assembleDebug
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v6
         with:
           name: artifacts
           path: |
-            kotlin-multiplatform/**/build/outputs/aar/
-            kotlin-multiplatform/**/build/libs/*-android.jar
+            **/build/outputs/aar/
+            **/build/libs/*-android.jar
           retention-days: 30
 
   test:
@@ -62,17 +63,17 @@ jobs:
         uses: gradle/actions/setup-gradle@v5
 
       - name: Run Tests
-        run: cd kotlin-multiplatform && ./gradlew testDebugUnitTest
+        run: ./gradlew testDebugUnitTest
 
       - name: Generate Coverage Report
-        run: cd kotlin-multiplatform && ./gradlew koverXmlReport koverHtmlReport
+        run: ./gradlew koverXmlReport koverHtmlReport
 
       - name: Upload Coverage Report
         uses: actions/upload-artifact@v6
         with:
           name: coverage-report-android
           path: |
-            kotlin-multiplatform/**/build/reports/kover/
+            **/build/reports/kover/
           retention-days: 30
 
   lint:
@@ -94,4 +95,4 @@ jobs:
         uses: gradle/actions/setup-gradle@v5
 
       - name: Run Lint
-        run: cd kotlin-multiplatform && ./gradlew lintDebug
+        run: ./gradlew lintDebug
