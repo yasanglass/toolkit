@@ -9,6 +9,7 @@
   <a href="https://github.com/yasanglass/toolkit/actions/workflows/android.yml"><img alt="android" src="https://img.shields.io/github/actions/workflow/status/yasanglass/toolkit/android.yml?branch=main&label=android"/></a>
   <a href="https://github.com/yasanglass/toolkit/actions/workflows/jvm.yml"><img alt="jvm" src="https://img.shields.io/github/actions/workflow/status/yasanglass/toolkit/jvm.yml?branch=main&label=jvm"/></a>
   <a href="https://github.com/yasanglass/toolkit/actions/workflows/ios.yml"><img alt="ios" src="https://img.shields.io/github/actions/workflow/status/yasanglass/toolkit/ios.yml?branch=main&label=ios"/></a>
+  <a href="https://github.com/yasanglass/toolkit/actions/workflows/macos.yml"><img alt="macos" src="https://img.shields.io/github/actions/workflow/status/yasanglass/toolkit/macos.yml?branch=main&label=macos"/></a>
   <a href="https://github.com/yasanglass/toolkit/actions/workflows/js.yml"><img alt="js" src="https://img.shields.io/github/actions/workflow/status/yasanglass/toolkit/js.yml?branch=main&label=js"/></a>
   <a href="https://github.com/yasanglass/toolkit/actions/workflows/wasm.yml"><img alt="wasm" src="https://img.shields.io/github/actions/workflow/status/yasanglass/toolkit/wasm.yml?branch=main&label=wasm"/></a>
   <a href="https://github.com/yasanglass/toolkit/actions/workflows/detekt.yml"><img alt="detekt" src="https://img.shields.io/github/actions/workflow/status/yasanglass/toolkit/detekt.yml?branch=main&label=detekt"/></a>
