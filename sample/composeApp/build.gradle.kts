@@ -1,6 +1,8 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.plugin.mpp.Executable
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     alias(libs.plugins.jetbrains.kotlin.multiplatform)
@@ -30,6 +32,15 @@ kotlin {
             }
         }
         binaries.executable()
+    }
+
+    listOf(
+        macosX64(),
+        macosArm64(),
+    ).forEach { macosTarget ->
+        macosTarget.binaries.executable {
+            entryPoint = "glass.yasan.toolkit.sample.main"
+        }
     }
 
     listOf(
@@ -116,6 +127,20 @@ android {
 
 dependencies {
     debugImplementation(compose.uiTooling)
+}
+
+val macosTargets = kotlin.targets.filterIsInstance<KotlinNativeTarget>().filter { it.name.startsWith("macos") }
+for (target in macosTargets) {
+    for (executable in target.binaries.filterIsInstance<Executable>()) {
+        val taskName = "copyComposeResources" +
+            executable.name.replaceFirstChar { it.uppercaseChar() } +
+            target.name.replaceFirstChar { it.uppercaseChar() }
+        val copyResources = tasks.register<Copy>(taskName) {
+            from(tasks.named("${target.name}ProcessResources"))
+            into(executable.outputDirectory.resolve("compose-resources"))
+        }
+        executable.linkTaskProvider.configure { dependsOn(copyResources) }
+    }
 }
 
 compose.desktop {
