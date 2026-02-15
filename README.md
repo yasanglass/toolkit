@@ -13,6 +13,7 @@
   <a href="https://github.com/yasanglass/toolkit/actions/workflows/wasm.yml"><img alt="wasm" src="https://img.shields.io/github/actions/workflow/status/yasanglass/toolkit/wasm.yml?label=wasm"/></a>
   <a href="https://github.com/yasanglass/toolkit/actions/workflows/detekt.yml"><img alt="detekt" src="https://img.shields.io/github/actions/workflow/status/yasanglass/toolkit/detekt.yml?label=detekt"/></a>
   <a href="https://github.com/yasanglass/toolkit/actions/workflows/publish.yml"><img alt="publish" src="https://img.shields.io/github/actions/workflow/status/yasanglass/toolkit/publish.yml?label=publish"/></a>
+  <a href="https://context7.com/yasanglass/toolkit/llms.txt"><img alt="Context7" src="https://img.shields.io/badge/context7-llms.txt-blue"/></a>
 </p>
 
 Personal development toolkit.
