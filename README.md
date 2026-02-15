@@ -5,7 +5,7 @@
 <p align="center">
   <a href="https://central.sonatype.com/artifact/glass.yasan.toolkit/core"><img alt="version" src="https://img.shields.io/maven-central/v/glass.yasan.toolkit/core?label=version"/></a>
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/github/license/yasanglass/toolkit.svg"/></a>
-  <a href="https://kotlinlang.org"><img alt="Kotlin" src="https://img.shields.io/badge/Kotlin-2.3.0-purple.svg?style=flat"/></a>
+  <a href="https://kotlinlang.org"><img alt="Kotlin" src="https://img.shields.io/badge/Kotlin-2.3.10-purple.svg?style=flat"/></a>
   <a href="https://github.com/yasanglass/toolkit/actions/workflows/android.yml"><img alt="android" src="https://img.shields.io/github/actions/workflow/status/yasanglass/toolkit/android.yml?label=android"/></a>
   <a href="https://github.com/yasanglass/toolkit/actions/workflows/jvm.yml"><img alt="jvm" src="https://img.shields.io/github/actions/workflow/status/yasanglass/toolkit/jvm.yml?label=jvm"/></a>
   <a href="https://github.com/yasanglass/toolkit/actions/workflows/ios.yml"><img alt="ios" src="https://img.shields.io/github/actions/workflow/status/yasanglass/toolkit/ios.yml?label=ios"/></a>
