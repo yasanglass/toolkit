@@ -12,6 +12,7 @@ coil = "3.3.0"
 glass-yasan-kepko = "1.2.20"
 iurysouza-modulegraph = "0.13.0"
 jetbrains-compose = "1.10.0"
+jetbrains-dokka = "2.1.0"
 jetbrains-kotlin = "2.3.10"
 jetbrains-kotlinx-kover = "0.9.6"
 jetbrains-kotlinx-collections-immutable = "0.4.0"
@@ -60,6 +61,7 @@ android-library = { id = "com.android.library", version.ref = "agp" }
 arturbosch-detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "arturbosch-detekt" }
 iurysouza-modulegraph = { id = "dev.iurysouza.modulegraph", version.ref = "iurysouza-modulegraph" }
 jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "jetbrains-compose" }
+jetbrains-dokka = { id = "org.jetbrains.dokka", version.ref = "jetbrains-dokka" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "jetbrains-kotlin" }
 jetbrains-kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "jetbrains-kotlin" }
 jetbrains-kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "jetbrains-kotlin" }

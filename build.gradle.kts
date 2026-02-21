@@ -8,12 +8,25 @@ plugins {
     alias(libs.plugins.vanniktech.maven.publish) apply false
     alias(libs.plugins.arturbosch.detekt) apply true
     alias(libs.plugins.jetbrains.kotlinx.kover)
+    alias(libs.plugins.jetbrains.dokka)
     alias(libs.plugins.iurysouza.modulegraph)
 }
 
 dependencies {
+    dokka(project(":about"))
+    dokka(project(":compose"))
+    dokka(project(":core"))
+    dokka(project(":koin"))
+
     subprojects.forEach { subproject ->
         kover(subproject)
+    }
+}
+
+dokka {
+    moduleName.set("Toolkit")
+    dokkaPublications.html {
+        includes.from("README.md")
     }
 }
 
@@ -113,6 +126,7 @@ subprojects {
     configureKover()
 
     if (isSample.not()) {
+        apply(plugin = "org.jetbrains.dokka")
         configurePublishing()
     }
 }
