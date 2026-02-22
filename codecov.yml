@@ -1,0 +1,26 @@
+coverage:
+  status:
+    project: true
+
+component_management:
+  individual_components:
+    - component_id: about
+      name: ":about"
+      paths:
+        - "about/src/**"
+    - component_id: compose
+      name: ":compose"
+      paths:
+        - "compose/src/**"
+    - component_id: core
+      name: ":core"
+      paths:
+        - "core/src/**"
+    - component_id: koin
+      name: ":koin"
+      paths:
+        - "koin/src/**"
+    - component_id: sample-compose
+      name: ":sample:composeApp"
+      paths:
+        - "sample/composeApp/src/**"
