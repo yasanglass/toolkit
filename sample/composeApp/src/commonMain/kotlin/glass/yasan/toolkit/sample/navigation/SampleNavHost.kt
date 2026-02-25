@@ -8,13 +8,11 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import glass.yasan.kepko.foundation.theme.ThemeStyle
+import glass.yasan.kepko.persistence.PersistentPreferenceThemeScreen
 import glass.yasan.toolkit.sample.SampleViewModel
 
 @Composable
 internal fun SampleNavHost(
-    themeStyle: ThemeStyle,
-    onThemeStyleChange: (ThemeStyle) -> Unit,
     navController: NavHostController,
     viewState: SampleViewModel.State,
     sendViewEvent: (SampleViewModel.Event) -> Unit,
@@ -51,11 +49,16 @@ internal fun SampleNavHost(
     ) {
         composable<Route.Home> {
             HomeScreen(
-                theme = themeStyle,
-                onThemeChange = onThemeStyleChange,
                 viewState = viewState,
                 sendViewEvent = sendViewEvent,
                 onNavigateToAbout = { navController.navigate(Route.About) },
+                onNavigateToTheme = { navController.navigate(Route.Theme) },
+            )
+        }
+
+        composable<Route.Theme> {
+            PersistentPreferenceThemeScreen(
+                onBackClick = { navController.navigateUp() },
             )
         }
 

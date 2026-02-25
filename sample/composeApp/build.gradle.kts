@@ -68,6 +68,7 @@ kotlin {
                 implementation(libs.androidx.lifecycle.runtime.compose)
                 implementation(libs.androidx.lifecycle.viewmodel.compose)
                 implementation(libs.androidx.navigation.compose)
+                implementation(libs.glass.yasan.kepko.persistence)
                 implementation(libs.glass.yasan.kepko.component)
                 implementation(libs.glass.yasan.kepko.foundation)
                 implementation(libs.jetbrains.kotlinx.serialization.core)

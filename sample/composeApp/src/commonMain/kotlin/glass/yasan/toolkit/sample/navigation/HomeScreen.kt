@@ -21,13 +21,8 @@ import androidx.compose.ui.unit.sp
 import glass.yasan.kepko.component.ButtonText
 import glass.yasan.kepko.component.HorizontalDivider
 import glass.yasan.kepko.component.PreferenceAppIdentity
-import glass.yasan.kepko.component.PreferenceRadioGroup
 import glass.yasan.kepko.component.Scaffold
 import glass.yasan.kepko.component.Text
-import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
-import glass.yasan.kepko.foundation.theme.KepkoTheme
-import glass.yasan.kepko.foundation.theme.ThemeStyle
-import glass.yasan.kepko.util.asPreferenceRadioGroupItems
 import glass.yasan.toolkit.about.presentation.compose.ToolkitDeveloperBanner
 import glass.yasan.toolkit.compose.spacer.VerticalSpacer
 import glass.yasan.toolkit.compose.spacer.verticalSpacerItem
@@ -42,14 +37,12 @@ import glass.yasan.toolkit.sample.SampleViewModel
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
-@OptIn(ExperimentalKepkoApi::class)
 @Composable
 internal fun HomeScreen(
-    theme: ThemeStyle,
-    onThemeChange: (ThemeStyle) -> Unit,
     viewState: SampleViewModel.State,
     sendViewEvent: (SampleViewModel.Event) -> Unit,
     onNavigateToAbout: () -> Unit,
+    onNavigateToTheme: () -> Unit,
 ) {
     Scaffold(
         title = stringResource(Res.string.app_name),
@@ -73,17 +66,19 @@ internal fun HomeScreen(
                 ButtonText(
                     text = stringResource(Res.string.about),
                     onClick = onNavigateToAbout,
-                    containerColor = KepkoTheme.colors.foreground,
                     textAlign = TextAlign.Center,
                 )
             }
 
             item { HorizontalDivider() }
 
-            themeStylePreference(
-                theme = theme,
-                onThemeChange = onThemeChange,
-            )
+            item {
+                ButtonText(
+                    text = stringResource(Res.string.theme),
+                    onClick = onNavigateToTheme,
+                    textAlign = TextAlign.Center,
+                )
+            }
 
             item { HorizontalDivider() }
 
@@ -160,25 +155,6 @@ private fun CounterText(count: Int) {
             text = count.toString(),
             fontSize = 64.sp,
             fontWeight = FontWeight.Normal,
-        )
-    }
-}
-
-@OptIn(ExperimentalKepkoApi::class)
-private fun LazyListScope.themeStylePreference(
-    theme: ThemeStyle,
-    onThemeChange: (ThemeStyle) -> Unit,
-) {
-    item {
-        PreferenceRadioGroup(
-            title = stringResource(Res.string.theme),
-            items = ThemeStyle.asPreferenceRadioGroupItems(),
-            selectedId = theme.id,
-            onSelectId = { id ->
-                ThemeStyle.fromIdOrNull(id)?.let { newValue ->
-                    onThemeChange(newValue)
-                }
-            },
         )
     }
 }
