@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.flowOf
 @InternalToolkitApi
 public class AboutRepositoryImpl : AboutRepository {
 
-    // TODO load the data from https://yasan.glass/about.json
+    // TODO load the data from https://yasan.glass/pulse.json
     public override val developer: Flow<Developer> = flowOf(Developer())
 
 }
