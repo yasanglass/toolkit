@@ -38,11 +38,11 @@ jobs:
         run: ./gradlew jvmTest
 
       - name: Generate Coverage Report
-        if: ${{ !cancelled() }}
+        if: ${{ !cancelled() && !contains(github.event.pull_request.labels.*.name, 'dependencies') }}
         run: ./gradlew koverXmlReport
 
       - name: Upload Coverage to Codecov
-        if: ${{ !cancelled() }}
+        if: ${{ !cancelled() && !contains(github.event.pull_request.labels.*.name, 'dependencies') }}
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
@@ -50,7 +50,7 @@ jobs:
           fail_ci_if_error: true
 
       - name: Upload Test Results to Codecov
-        if: ${{ !cancelled() }}
+        if: ${{ !cancelled() && !contains(github.event.pull_request.labels.*.name, 'dependencies') }}
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
