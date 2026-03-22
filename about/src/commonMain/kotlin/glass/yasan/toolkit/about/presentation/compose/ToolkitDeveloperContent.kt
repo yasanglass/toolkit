@@ -25,9 +25,14 @@ import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.koinInject
 
+/**
+ * @param onTrackDeveloperLinkClick optional callback that is called before the developer link is launched.
+ * Meant to be used for analytics.
+ */
 @Composable
 public fun ToolkitDeveloperContent(
     modifier: Modifier = Modifier,
+    onTrackDeveloperLinkClick: (Developer.Link) -> Unit = {},
 ) {
     val aboutRepository: AboutRepository = koinInject()
     val urlLauncher: UrlLauncher = koinInject()
@@ -36,7 +41,10 @@ public fun ToolkitDeveloperContent(
 
     ToolkitDeveloperContent(
         developer = developer,
-        onDeveloperLinkClick = { link -> urlLauncher.launch(link.url) },
+        onDeveloperLinkClick = { link ->
+            onTrackDeveloperLinkClick(link)
+            urlLauncher.launch(link.url)
+        },
         modifier = modifier,
     )
 }
