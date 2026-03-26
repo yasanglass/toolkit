@@ -33,7 +33,7 @@ public fun ToolkitDeveloperBanner(
 @Preview
 @Composable
 private fun DeveloperBrandingFooterLightPreview() {
-    KepkoTheme(style = LIGHT) {
+    KepkoTheme(palette = LIGHT) {
         Foreground {
             ToolkitDeveloperBanner()
         }
@@ -44,7 +44,7 @@ private fun DeveloperBrandingFooterLightPreview() {
 @Preview
 @Composable
 private fun DeveloperBrandingFooterDarkPreview() {
-    KepkoTheme(style = DARK) {
+    KepkoTheme(palette = DARK) {
         Foreground {
             ToolkitDeveloperBanner()
         }
@@ -55,7 +55,7 @@ private fun DeveloperBrandingFooterDarkPreview() {
 @Preview
 @Composable
 private fun DeveloperBrandingFooterLightSolarizedPreview() {
-    KepkoTheme(style = SOLARIZED_LIGHT) {
+    KepkoTheme(palette = SOLARIZED_LIGHT) {
         Foreground {
             ToolkitDeveloperBanner()
         }
@@ -66,7 +66,7 @@ private fun DeveloperBrandingFooterLightSolarizedPreview() {
 @Preview
 @Composable
 private fun DeveloperBrandingFooterDarkSolarizedPreview() {
-    KepkoTheme(style = SOLARIZED_DARK) {
+    KepkoTheme(palette = SOLARIZED_DARK) {
         Foreground {
             ToolkitDeveloperBanner()
         }
