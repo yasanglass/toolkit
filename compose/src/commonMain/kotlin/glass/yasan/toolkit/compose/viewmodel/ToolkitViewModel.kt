@@ -34,17 +34,14 @@ public abstract class ToolkitViewModel<
 
     public fun updateViewState(transform: S.() -> S) {
         _viewState.update { state -> transform(state) }
-        logger.d { "🔄 ViewState: Updated" }
     }
 
     public fun updateAndGetViewState(transform: S.() -> S): S {
         return _viewState.updateAndGet { state -> transform(state) }
-            .also { logger.d { "🔄 ViewState: Updated" } }
     }
 
     public fun getAndUpdateViewState(transform: S.() -> S): S {
         return _viewState.getAndUpdate { state -> transform(state) }
-            .also { logger.d { "🔄 ViewState: Updated" } }
     }
 
     private val _viewEvent: Channel<E> = Channel(Channel.BUFFERED)
@@ -58,7 +55,6 @@ public abstract class ToolkitViewModel<
 
     @DelicateViewEventApi
     public fun sendViewEvent(event: E) {
-        logger.d { "⬆️ ViewEvent: $event" }
         _viewEvent.trySend(event)
     }
 
@@ -68,7 +64,6 @@ public abstract class ToolkitViewModel<
     public val viewAction: Flow<A> = _viewAction.receiveAsFlow()
 
     public fun sendViewAction(action: A) {
-        logger.d { "⬇️ ViewAction: $action" }
         _viewAction.trySend(action)
     }
 
