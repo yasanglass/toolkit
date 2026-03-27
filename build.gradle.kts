@@ -1,3 +1,5 @@
+import org.gradle.plugins.signing.Sign
+
 plugins {
     alias(libs.plugins.jetbrains.kotlin.android) apply false
     alias(libs.plugins.jetbrains.kotlin.compose) apply false
@@ -52,7 +54,7 @@ detekt {
 
 allprojects {
     group = "glass.yasan.toolkit"
-    version = "1.7.8"
+    version = "1.7.9"
 }
 
 fun Project.configureDetekt() {
@@ -112,6 +114,10 @@ fun Project.configurePublishing() {
                 developerConnection.set("scm:git:ssh://git@github.com/yasanglass/toolkit.git")
             }
         }
+    }
+
+    tasks.withType<Sign>().configureEach {
+        isEnabled = gradle.startParameter.taskNames.none { it.contains("MavenLocal") }
     }
 }
 
