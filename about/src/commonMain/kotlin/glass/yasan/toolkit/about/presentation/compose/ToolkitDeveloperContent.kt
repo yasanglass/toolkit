@@ -34,7 +34,7 @@ import org.koin.compose.koinInject
 @Composable
 public fun ToolkitDeveloperContent(
     modifier: Modifier = Modifier,
-    onTrackDeveloperLinkClick: (Developer.Link) -> Unit = {},
+    onTrackDeveloperLinkClick: (Developer.Link) -> Unit,
 ) {
     val aboutRepository: AboutRepository = koinInject()
     val urlLauncher: UrlLauncher = koinInject()

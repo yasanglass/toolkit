@@ -27,7 +27,11 @@ internal fun AboutScreen(
             verticalArrangement = Arrangement.spacedBy(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            item { ToolkitDeveloperContent() }
+            item {
+                ToolkitDeveloperContent(
+                    onTrackDeveloperLinkClick = {},
+                )
+            }
             verticalSpacerItem(height = 16.dp)
         }
     }
