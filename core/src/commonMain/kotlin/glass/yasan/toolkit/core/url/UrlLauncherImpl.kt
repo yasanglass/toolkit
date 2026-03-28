@@ -4,5 +4,5 @@ import glass.yasan.toolkit.core.annotation.InternalToolkitApi
 
 @InternalToolkitApi
 public expect class UrlLauncherImpl : UrlLauncher {
-    override fun launch(url: String): UrlLaunchResult
+    override suspend fun launch(url: String): UrlLaunchResult
 }

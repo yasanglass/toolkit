@@ -10,7 +10,7 @@ public actual class UrlLauncherImpl(
     private val context: Context,
 ) : UrlLauncher {
 
-    actual override fun launch(url: String): UrlLaunchResult = try {
+    actual override suspend fun launch(url: String): UrlLaunchResult = try {
         val uri = Uri.parse(url)
 
         try {

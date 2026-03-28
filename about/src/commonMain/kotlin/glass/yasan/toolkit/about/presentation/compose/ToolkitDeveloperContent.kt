@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -21,6 +22,7 @@ import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.toolkit.about.domain.model.Developer
 import glass.yasan.toolkit.about.domain.repository.AboutRepository
 import glass.yasan.toolkit.core.url.UrlLauncher
+import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.koinInject
@@ -36,6 +38,7 @@ public fun ToolkitDeveloperContent(
 ) {
     val aboutRepository: AboutRepository = koinInject()
     val urlLauncher: UrlLauncher = koinInject()
+    val scope = rememberCoroutineScope()
 
     val developer: Developer by aboutRepository.developer.collectAsStateWithLifecycle(Developer())
 
@@ -43,7 +46,7 @@ public fun ToolkitDeveloperContent(
         developer = developer,
         onDeveloperLinkClick = { link ->
             onTrackDeveloperLinkClick(link)
-            urlLauncher.launch(link.url)
+            scope.launch { urlLauncher.launch(link.url) }
         },
         modifier = modifier,
     )

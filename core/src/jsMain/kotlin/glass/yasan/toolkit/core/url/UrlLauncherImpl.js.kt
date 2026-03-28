@@ -4,7 +4,7 @@ import kotlinx.browser.window
 
 public actual class UrlLauncherImpl : UrlLauncher {
 
-    actual override fun launch(url: String): UrlLaunchResult = try {
+    actual override suspend fun launch(url: String): UrlLaunchResult = try {
         if (window.open(url, target = "_blank") != null) {
             UrlLaunchResult.Success
         } else {

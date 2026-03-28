@@ -6,7 +6,7 @@ import java.net.URISyntaxException
 
 public actual class UrlLauncherImpl : UrlLauncher {
 
-    actual override fun launch(url: String): UrlLaunchResult = try {
+    actual override suspend fun launch(url: String): UrlLaunchResult = try {
         if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
             Desktop.getDesktop().browse(URI(url))
             UrlLaunchResult.Success

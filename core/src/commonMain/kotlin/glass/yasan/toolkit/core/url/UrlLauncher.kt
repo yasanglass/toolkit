@@ -2,11 +2,11 @@ package glass.yasan.toolkit.core.url
 
 public interface UrlLauncher {
 
-    public fun launch(
+    public suspend fun launch(
         url: String,
     ): UrlLaunchResult
 
-    public fun launch(
+    public suspend fun launch(
         url: String,
         onFailure: (UrlLaunchResult.Failure) -> Unit,
     ) {

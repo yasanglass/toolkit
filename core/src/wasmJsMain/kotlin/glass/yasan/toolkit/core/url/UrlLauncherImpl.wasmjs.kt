@@ -4,7 +4,7 @@ import glass.yasan.toolkit.core.Window
 
 public actual class UrlLauncherImpl : UrlLauncher {
 
-    actual override fun launch(url: String): UrlLaunchResult {
+    actual override suspend fun launch(url: String): UrlLaunchResult {
         return try {
             Window.open(url, target = "_blank")
             UrlLaunchResult.Success
