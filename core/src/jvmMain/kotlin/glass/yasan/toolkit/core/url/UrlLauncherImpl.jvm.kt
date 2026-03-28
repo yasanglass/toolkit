@@ -1,14 +1,22 @@
 package glass.yasan.toolkit.core.url
 
+import glass.yasan.toolkit.core.coroutines.DispatcherProvider
+import kotlinx.coroutines.withContext
 import java.awt.Desktop
 import java.net.URI
 import java.net.URISyntaxException
 
-public actual class UrlLauncherImpl : UrlLauncher {
+public actual class UrlLauncherImpl(
+    private val dispatcherProvider: DispatcherProvider,
+) : UrlLauncher {
 
     actual override suspend fun launch(url: String): UrlLaunchResult = try {
+        val uri = URI(url)
+
         if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
-            Desktop.getDesktop().browse(URI(url))
+            withContext(dispatcherProvider.io) {
+                Desktop.getDesktop().browse(uri)
+            }
             UrlLaunchResult.Success
         } else {
             UrlLaunchResult.Failure.Unsupported
