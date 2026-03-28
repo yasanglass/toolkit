@@ -4,12 +4,14 @@ import glass.yasan.toolkit.core.Window
 
 public actual class UrlLauncherImpl : UrlLauncher {
 
-    actual override suspend fun launch(url: String): UrlLaunchResult {
-        return try {
-            Window.open(url, target = "_blank")
+    @OptIn(ExperimentalWasmJsInterop::class)
+    actual override suspend fun launch(url: String): UrlLaunchResult = try {
+        if (Window.open(url, target = "_blank") != null) {
             UrlLaunchResult.Success
-        } catch (e: Exception) {
-            UrlLaunchResult.Failure.Error(e)
+        } else {
+            UrlLaunchResult.Failure.Unsupported
         }
+    } catch (e: Exception) {
+        UrlLaunchResult.Failure.Error(e)
     }
 }
