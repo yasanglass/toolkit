@@ -8,9 +8,11 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.persistence.PersistentPreferenceThemeScreen
 import glass.yasan.toolkit.sample.SampleViewModel
 
+@OptIn(ExperimentalKepkoApi::class)
 @Composable
 internal fun SampleNavHost(
     navController: NavHostController,
