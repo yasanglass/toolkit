@@ -13,21 +13,17 @@ public actual class UrlLauncherImpl : UrlLauncher {
                 URLString = url,
             ) ?: return UrlLaunchResult.Failure.InvalidUrl
 
-            if (UIApplication.sharedApplication.canOpenURL(nsUrl)) {
-                suspendCancellableCoroutine<UrlLaunchResult> { continuation ->
-                    UIApplication.sharedApplication.openURL(
-                        nsUrl,
-                        options = emptyMap<Any?, Any>(),
-                    ) { success ->
-                        if (success) {
-                            continuation.resume(UrlLaunchResult.Success)
-                        } else {
-                            continuation.resume(UrlLaunchResult.Failure.Unsupported)
-                        }
+            suspendCancellableCoroutine { continuation ->
+                UIApplication.sharedApplication.openURL(
+                    nsUrl,
+                    options = emptyMap<Any?, Any>(),
+                ) { success ->
+                    if (success) {
+                        continuation.resume(UrlLaunchResult.Success)
+                    } else {
+                        continuation.resume(UrlLaunchResult.Failure.Unsupported)
                     }
                 }
-            } else {
-                UrlLaunchResult.Failure.Unsupported
             }
         } catch (e: Exception) {
             UrlLaunchResult.Failure.Error(e)
