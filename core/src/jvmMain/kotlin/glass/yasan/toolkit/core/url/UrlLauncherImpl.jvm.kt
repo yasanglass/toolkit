@@ -2,6 +2,7 @@ package glass.yasan.toolkit.core.url
 
 import java.awt.Desktop
 import java.net.URI
+import java.net.URISyntaxException
 
 public actual class UrlLauncherImpl : UrlLauncher {
 
@@ -12,6 +13,10 @@ public actual class UrlLauncherImpl : UrlLauncher {
         } else {
             UrlLaunchResult.Failure.Unsupported
         }
+    } catch (_: URISyntaxException) {
+        UrlLaunchResult.Failure.InvalidUrl
+    } catch (_: IllegalArgumentException) {
+        UrlLaunchResult.Failure.InvalidUrl
     } catch (e: Exception) {
         UrlLaunchResult.Failure.Error(e)
     }
