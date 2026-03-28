@@ -34,6 +34,15 @@ kotlin {
         binaries.executable()
     }
 
+    js {
+        browser {
+            commonWebpackConfig {
+                outputFileName = "composeApp.js"
+            }
+        }
+        binaries.executable()
+    }
+
     listOf(
         macosX64(),
         macosArm64(),
