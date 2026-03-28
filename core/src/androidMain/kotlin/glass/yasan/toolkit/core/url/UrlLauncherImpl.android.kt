@@ -1,5 +1,6 @@
 package glass.yasan.toolkit.core.url
 
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -24,8 +25,14 @@ public actual class UrlLauncherImpl(
             val intent = Intent(Intent.ACTION_VIEW, uri).apply {
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             }
-            context.startActivity(intent)
-            UrlLaunchResult.Success
+            try {
+                context.startActivity(intent)
+                UrlLaunchResult.Success
+            } catch (_: ActivityNotFoundException) {
+                UrlLaunchResult.Failure.Unsupported
+            } catch (e: Exception) {
+                UrlLaunchResult.Failure.Error(e)
+            }
         }
     } catch (e: Exception) {
         UrlLaunchResult.Failure.Error(e)
