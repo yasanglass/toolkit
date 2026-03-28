@@ -1,21 +1,31 @@
 package glass.yasan.toolkit.core.url
 
-import co.touchlab.kermit.Logger
-import glass.yasan.toolkit.core.url.UrlLauncher.Companion.ERROR_MESSAGE
+import glass.yasan.toolkit.core.coroutines.DispatcherProvider
+import kotlinx.coroutines.withContext
 import java.awt.Desktop
 import java.net.URI
+import java.net.URISyntaxException
 
-public actual class UrlLauncherImpl : UrlLauncher {
+public actual class UrlLauncherImpl(
+    private val dispatcherProvider: DispatcherProvider,
+) : UrlLauncher {
 
-    actual override fun launch(url: String): Boolean = try {
+    actual override suspend fun launch(url: String): UrlLaunchResult = try {
+        val uri = URI(url)
+
         if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
-            Desktop.getDesktop().browse(URI(url))
-            true
+            withContext(dispatcherProvider.io) {
+                Desktop.getDesktop().browse(uri)
+            }
+            UrlLaunchResult.Success
         } else {
-            false
+            UrlLaunchResult.Failure.Unsupported
         }
+    } catch (_: URISyntaxException) {
+        UrlLaunchResult.Failure.InvalidUrl
+    } catch (_: IllegalArgumentException) {
+        UrlLaunchResult.Failure.InvalidUrl
     } catch (e: Exception) {
-        Logger.e(e) { "$ERROR_MESSAGE: $url" }
-        false
+        UrlLaunchResult.Failure.Error(e)
     }
 }

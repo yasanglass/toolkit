@@ -1,17 +1,16 @@
 package glass.yasan.toolkit.core.url
 
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.browser.customtabs.CustomTabsIntent
-import co.touchlab.kermit.Logger
-import glass.yasan.toolkit.core.url.UrlLauncher.Companion.ERROR_MESSAGE
 
 public actual class UrlLauncherImpl(
     private val context: Context,
 ) : UrlLauncher {
 
-    actual override fun launch(url: String): Boolean = try {
+    actual override suspend fun launch(url: String): UrlLaunchResult = try {
         val uri = Uri.parse(url)
 
         try {
@@ -21,16 +20,21 @@ public actual class UrlLauncherImpl(
                 }
             }
             customTabsIntent.launchUrl(context, uri)
-            true
+            UrlLaunchResult.Success
         } catch (_: Exception) {
             val intent = Intent(Intent.ACTION_VIEW, uri).apply {
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             }
-            context.startActivity(intent)
-            true
+            try {
+                context.startActivity(intent)
+                UrlLaunchResult.Success
+            } catch (_: ActivityNotFoundException) {
+                UrlLaunchResult.Failure.Unsupported
+            } catch (e: Exception) {
+                UrlLaunchResult.Failure.Error(e)
+            }
         }
     } catch (e: Exception) {
-        Logger.e(e) { "$ERROR_MESSAGE: $url" }
-        false
+        UrlLaunchResult.Failure.Error(e)
     }
 }

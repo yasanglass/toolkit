@@ -47,7 +47,6 @@ kotlin {
         commonMain {
             dependencies {
                 implementation(libs.jetbrains.kotlinx.coroutines.core)
-                implementation(libs.touchlab.kermit)
             }
         }
         val nonWebMain by creating {

@@ -1,32 +1,31 @@
 package glass.yasan.toolkit.core.url
 
-import co.touchlab.kermit.Logger
-import glass.yasan.toolkit.core.url.UrlLauncher.Companion.ERROR_MESSAGE
+import kotlinx.coroutines.suspendCancellableCoroutine
 import platform.Foundation.NSURL
 import platform.UIKit.UIApplication
+import kotlin.coroutines.resume
 
 public actual class UrlLauncherImpl : UrlLauncher {
 
-    actual override fun launch(url: String): Boolean =
+    actual override suspend fun launch(url: String): UrlLaunchResult =
         try {
-            val nsUrl = NSURL.URLWithString(url) ?: return false
-            if (UIApplication.sharedApplication.canOpenURL(nsUrl)) {
+            val nsUrl = NSURL.URLWithString(
+                URLString = url,
+            ) ?: return UrlLaunchResult.Failure.InvalidUrl
+
+            suspendCancellableCoroutine { continuation ->
                 UIApplication.sharedApplication.openURL(
                     nsUrl,
-                    options = emptyMap<Any?, Any?>(),
-                    completionHandler = { success ->
-                        if (!success) {
-                            // TODO return the actual completion handler result
-                            Logger.e { "$ERROR_MESSAGE: $url" }
-                        }
+                    options = emptyMap<Any?, Any>(),
+                ) { success ->
+                    if (success) {
+                        continuation.resume(UrlLaunchResult.Success)
+                    } else {
+                        continuation.resume(UrlLaunchResult.Failure.Unsupported)
                     }
-                )
-                true
-            } else {
-                false
+                }
             }
         } catch (e: Exception) {
-            Logger.e(e) { "$ERROR_MESSAGE: $url" }
-            false
+            UrlLaunchResult.Failure.Error(e)
         }
 }
