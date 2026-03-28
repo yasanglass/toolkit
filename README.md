@@ -7,6 +7,7 @@
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/github/license/yasanglass/toolkit.svg"/></a>
   <a href="https://codecov.io/gh/yasanglass/toolkit"><img alt="Codecov" src="https://codecov.io/gh/yasanglass/toolkit/graph/badge.svg"/></a>
   <a href="https://context7.com/yasanglass/toolkit/llms.txt"><img alt="Context7" src="https://img.shields.io/badge/context7-llms.txt-blue"/></a>
+  <a href="https://deepwiki.com/yasanglass/toolkit"><img alt="DeepWiki" src="https://deepwiki.com/badge.svg"/></a>
   <a href="https://yasanglass.github.io/toolkit/"><img alt="Documentation" src="https://img.shields.io/badge/documentation-blue"/></a>
 </p>
 
