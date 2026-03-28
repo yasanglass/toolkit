@@ -12,12 +12,11 @@ public actual class UrlLauncherImpl : UrlLauncher {
             ) ?: return UrlLaunchResult.Failure.InvalidUrl
 
             if (UIApplication.sharedApplication.canOpenURL(nsUrl)) {
-                UIApplication.sharedApplication.openURL(
-                    nsUrl,
-                    options = emptyMap<Any?, Any?>(),
-                    completionHandler = null,
-                )
-                UrlLaunchResult.Success
+                if (UIApplication.sharedApplication.openURL(nsUrl)) {
+                    UrlLaunchResult.Success
+                } else {
+                    UrlLaunchResult.Failure.Unsupported
+                }
             } else {
                 UrlLaunchResult.Failure.Unsupported
             }
