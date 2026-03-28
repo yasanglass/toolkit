@@ -7,6 +7,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.navigation.compose.rememberNavController
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
+import glass.yasan.kepko.foundation.system.SystemBarColorsEffect
+import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.persistence.PersistentKepkoTheme
 import glass.yasan.toolkit.compose.viewmodel.ViewActionEffect
 import glass.yasan.toolkit.compose.viewmodel.rememberSendViewEvent
@@ -50,6 +52,11 @@ private fun SampleApp(
     val navController = rememberNavController()
 
     PersistentKepkoTheme {
+        SystemBarColorsEffect(
+            statusBarBackgroundColor = KepkoTheme.colors.foreground,
+            navigationBarBackgroundColor = KepkoTheme.colors.midground,
+        )
+
         SampleNavHost(
             navController = navController,
             viewState = viewState,
