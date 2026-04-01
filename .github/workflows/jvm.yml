@@ -43,7 +43,7 @@ jobs:
 
       - name: Upload Coverage to Codecov
         if: ${{ !cancelled() && !contains(github.event.pull_request.labels.*.name, 'dependencies') }}
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v6
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: build/reports/kover/report.xml
@@ -51,7 +51,7 @@ jobs:
 
       - name: Upload Test Results to Codecov
         if: ${{ !cancelled() && !contains(github.event.pull_request.labels.*.name, 'dependencies') }}
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v6
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           report_type: test_results
