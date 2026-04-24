@@ -6,9 +6,9 @@ import java.awt.Desktop
 import java.net.URI
 import java.net.URISyntaxException
 
-public actual class UrlLauncherImpl(
+public actual class PlatformUrlLauncherImpl(
     private val dispatcherProvider: DispatcherProvider,
-) : UrlLauncher {
+) : PlatformUrlLauncher {
 
     actual override suspend fun launch(url: String): UrlLaunchResult = try {
         val uri = URI(url)

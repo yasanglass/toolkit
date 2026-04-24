@@ -1,6 +1,6 @@
 package glass.yasan.toolkit.core.url
 
-public interface UrlLauncher {
+public interface PlatformUrlLauncher {
 
     public suspend fun launch(
         url: String,

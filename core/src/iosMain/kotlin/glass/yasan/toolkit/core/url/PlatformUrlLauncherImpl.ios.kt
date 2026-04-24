@@ -5,7 +5,7 @@ import platform.Foundation.NSURL
 import platform.UIKit.UIApplication
 import kotlin.coroutines.resume
 
-public actual class UrlLauncherImpl : UrlLauncher {
+public actual class PlatformUrlLauncherImpl : PlatformUrlLauncher {
 
     actual override suspend fun launch(url: String): UrlLaunchResult =
         try {

@@ -12,7 +12,7 @@ import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.kepko.persistence.PersistentKepkoTheme
 import glass.yasan.toolkit.compose.viewmodel.ViewActionEffect
 import glass.yasan.toolkit.compose.viewmodel.rememberSendViewEvent
-import glass.yasan.toolkit.core.url.UrlLauncher
+import glass.yasan.toolkit.core.url.PlatformUrlLauncher
 import kotlinx.coroutines.launch
 import glass.yasan.toolkit.sample.SampleViewModel.Action
 import glass.yasan.toolkit.sample.SampleViewModel.Event
@@ -28,7 +28,7 @@ fun SampleApp() {
     val viewState: State by viewModel.viewState.collectAsState()
     val sendViewEvent: (Event) -> Unit = rememberSendViewEvent(viewModel)
 
-    val urlLauncher: UrlLauncher = koinInject()
+    val urlLauncher: PlatformUrlLauncher = koinInject()
     val scope: CoroutineScope = rememberCoroutineScope()
 
     SampleApp(

@@ -1,12 +1,11 @@
 package glass.yasan.toolkit.core.url
 
-import glass.yasan.toolkit.core.Window
+import kotlinx.browser.window
 
-public actual class UrlLauncherImpl : UrlLauncher {
+public actual class PlatformUrlLauncherImpl : PlatformUrlLauncher {
 
-    @OptIn(ExperimentalWasmJsInterop::class)
     actual override suspend fun launch(url: String): UrlLaunchResult = try {
-        if (Window.open(url, target = "_blank") != null) {
+        if (window.open(url, target = "_blank") != null) {
             UrlLaunchResult.Success
         } else {
             UrlLaunchResult.Failure.Unsupported

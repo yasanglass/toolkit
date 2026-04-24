@@ -21,7 +21,7 @@ import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
 import glass.yasan.kepko.foundation.theme.KepkoTheme
 import glass.yasan.toolkit.about.domain.model.Developer
 import glass.yasan.toolkit.about.domain.repository.AboutRepository
-import glass.yasan.toolkit.core.url.UrlLauncher
+import glass.yasan.toolkit.core.url.PlatformUrlLauncher
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -37,7 +37,7 @@ public fun ToolkitDeveloperContent(
     onTrackDeveloperLinkClick: (Developer.Link) -> Unit,
 ) {
     val aboutRepository: AboutRepository = koinInject()
-    val urlLauncher: UrlLauncher = koinInject()
+    val urlLauncher: PlatformUrlLauncher = koinInject()
     val scope = rememberCoroutineScope()
 
     val developer: Developer by aboutRepository.developer.collectAsStateWithLifecycle(Developer())
