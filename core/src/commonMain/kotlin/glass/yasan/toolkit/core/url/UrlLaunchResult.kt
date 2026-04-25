@@ -1,7 +1,7 @@
 package glass.yasan.toolkit.core.url
 
 /**
- * Result of a [PlatformUrlLauncher] launch attempt.
+ * Result of a [UrlLauncher] launch attempt.
  */
 public sealed interface UrlLaunchResult {
 

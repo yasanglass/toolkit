@@ -6,9 +6,9 @@ import android.content.Intent
 import android.net.Uri
 import androidx.browser.customtabs.CustomTabsIntent
 
-public actual class PlatformUrlLauncherImpl(
+public actual class UrlLauncherImpl(
     private val context: Context,
-) : PlatformUrlLauncher {
+) : UrlLauncher {
 
     actual override suspend fun launch(url: String): UrlLaunchResult = try {
         val uri = Uri.parse(url)
