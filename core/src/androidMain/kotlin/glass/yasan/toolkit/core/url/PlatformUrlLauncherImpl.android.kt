@@ -12,7 +12,6 @@ public actual class PlatformUrlLauncherImpl(
 
     actual override suspend fun launch(url: String): UrlLaunchResult = try {
         val uri = Uri.parse(url)
-        if (uri.scheme.isNullOrBlank()) return UrlLaunchResult.Failure.InvalidUrl
 
         try {
             val customTabsIntent = CustomTabsIntent.Builder().build().apply {
