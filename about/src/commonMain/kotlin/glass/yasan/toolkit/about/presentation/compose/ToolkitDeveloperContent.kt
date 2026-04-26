@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import glass.yasan.kepko.component.ButtonText
+import glass.yasan.kepko.component.Button
 import glass.yasan.kepko.component.Midground
 import glass.yasan.kepko.component.Text
 import glass.yasan.kepko.foundation.annotation.ExperimentalKepkoApi
@@ -82,7 +82,7 @@ private fun ToolkitDeveloperContent(
             )
         }
         developer.links.forEach { link ->
-            ButtonText(
+            Button(
                 text = link.name,
                 onClick = { onDeveloperLinkClick(link) },
                 leadingIcon = null,

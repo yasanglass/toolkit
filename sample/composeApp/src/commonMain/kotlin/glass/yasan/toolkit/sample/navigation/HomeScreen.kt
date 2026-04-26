@@ -18,7 +18,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import glass.yasan.kepko.component.ButtonText
+import glass.yasan.kepko.component.Button
 import glass.yasan.kepko.component.HorizontalDivider
 import glass.yasan.kepko.component.PreferenceAppIdentity
 import glass.yasan.kepko.component.Scaffold
@@ -63,7 +63,7 @@ internal fun HomeScreen(
             item { HorizontalDivider() }
 
             item {
-                ButtonText(
+                Button(
                     text = stringResource(Res.string.about),
                     onClick = onNavigateToAbout,
                     textAlign = TextAlign.Center,
@@ -73,7 +73,7 @@ internal fun HomeScreen(
             item { HorizontalDivider() }
 
             item {
-                ButtonText(
+                Button(
                     text = stringResource(Res.string.theme),
                     onClick = onNavigateToTheme,
                     textAlign = TextAlign.Center,
@@ -112,13 +112,13 @@ private fun CounterSection(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         VerticalSpacer(height = 4.dp)
-        ButtonText(
+        Button(
             text = stringResource(Res.string.increment),
             onClick = onIncrement,
             textAlign = TextAlign.Center,
         )
         CounterText(count)
-        ButtonText(
+        Button(
             text = stringResource(Res.string.decrement),
             onClick = onDecrement,
             textAlign = TextAlign.Center,
