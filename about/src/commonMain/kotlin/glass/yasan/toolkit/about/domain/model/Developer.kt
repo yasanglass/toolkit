@@ -29,16 +29,16 @@ public data class Developer(
             url = "mailto:yasanglass@gmail.com",
         ),
         Link(
+            name = "Play Store",
+            url = "https://play.google.com/store/apps/dev?id=5035207490031558874",
+        ),
+        Link(
             name = "Discord Server",
             url = "https://discord.gg/8BQrfyA",
         ),
         Link(
             name = "Telegram Channel",
             url = "https://t.me/YASANupdates",
-        ),
-        Link(
-            name = "Play Store",
-            url = "https://play.google.com/store/apps/dev?id=5035207490031558874",
         ),
         Link(
             name = "GitHub",
@@ -51,14 +51,6 @@ public data class Developer(
         Link(
             name = "Bluesky",
             url = "https://bsky.app/profile/yasan.glass",
-        ),
-        Link(
-            name = "Gumroad",
-            url = "https://yasanglass.gumroad.com",
-        ),
-        Link(
-            name = "Crowdin",
-            url = "https://crowdin.com/profile/yasanglass",
         ),
     ),
 ) {
@@ -100,6 +92,14 @@ public data class Developer(
             WEBSITE,
         }
 
+        public enum class Group {
+            STANDALONE,
+            CONTACT,
+            COMMUNITY,
+            CREATIONS,
+            SOCIAL,
+        }
+
         public val type: Type
             get() {
                 val parsedUrl = parseUrl(urlString = url)
@@ -119,6 +119,27 @@ public data class Developer(
                     parsedUrl?.host?.contains("gumroad.com") == true -> GUMROAD
                     else -> WEBSITE
                 }
+            }
+
+        public val group: Group
+            get() = when (type) {
+                Type.WEBSITE -> Group.STANDALONE
+
+                Type.EMAIL -> Group.CONTACT
+
+                Type.DISCORD,
+                Type.TELEGRAM,
+                -> Group.COMMUNITY
+
+                Type.CROWDIN,
+                Type.GITHUB,
+                Type.GUMROAD,
+                Type.PLAY_STORE,
+                -> Group.CREATIONS
+
+                Type.BLUESKY,
+                Type.MASTODON,
+                -> Group.SOCIAL
             }
 
         public val icon: DrawableResource
