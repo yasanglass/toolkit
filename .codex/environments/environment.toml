@@ -1,0 +1,10 @@
+version = 1
+name = "Toolkit"
+
+[setup]
+script = ""
+
+[[actions]]
+name = "Run Sample Desktop 🔥"
+icon = "run"
+command = "./gradlew :sample:composeApp:hotRunJvm --mainClass \"glass.yasan.toolkit.sample.MainKt\""
