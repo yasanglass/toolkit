@@ -6,7 +6,7 @@ val artifactId = "compose"
 
 plugins {
     alias(libs.plugins.jetbrains.kotlin.multiplatform)
-    alias(libs.plugins.android.library)
+    alias(libs.plugins.android.kmp.library)
     alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.jetbrains.kotlin.compose)
 }
@@ -20,19 +20,21 @@ kotlin {
         freeCompilerArgs.add("-Xcontext-sensitive-resolution")
     }
 
-    androidTarget {
-        publishLibraryVariants("release")
+    android {
+        namespace = "glass.yasan.toolkit.$artifactId"
+        compileSdk = libs.versions.android.sdk.compile.get().toInt()
+        minSdk = libs.versions.android.sdk.min.get().toInt()
+
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_11)
         }
+
+        androidResources { enable = true }
     }
     jvm()
-    iosX64()
     iosArm64()
     iosSimulatorArm64()
-    macosX64()
-    macosArm64()
 
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
@@ -84,23 +86,6 @@ kotlin {
         iosMain {
             dependsOn(nonWebMain)
         }
-        val macosMain by getting {
-            dependsOn(nonWebMain)
-        }
-    }
-}
-
-android {
-    namespace = "glass.yasan.toolkit.$artifactId"
-    compileSdk = libs.versions.android.sdk.compile.get().toInt()
-
-    defaultConfig {
-        minSdk = libs.versions.android.sdk.min.get().toInt()
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
     }
 }
 
