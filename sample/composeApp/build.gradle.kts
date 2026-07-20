@@ -103,7 +103,14 @@ compose.desktop {
         mainClass = "glass.yasan.toolkit.sample.MainKt"
 
         nativeDistributions {
-            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+            targetFormats(
+                TargetFormat.Dmg,
+                TargetFormat.Msi,
+                TargetFormat.Deb,
+                TargetFormat.Rpm,
+                TargetFormat.Exe,
+                TargetFormat.Pkg,
+            )
             packageName = "Toolkit"
             packageVersion = "1.0.0"
             macOS {
@@ -112,10 +119,10 @@ compose.desktop {
                 dockName = "Toolkit"
             }
             windows {
-                iconFile.set(project.file("src/commonMain/composeResources/drawable/app_icon.png"))
+                iconFile.set(project.file("src/jvmMain/resources/app_icon.ico"))
             }
             linux {
-                iconFile.set(project.file("src/commonMain/composeResources/drawable/app_icon.png"))
+                iconFile.set(project.file("src/jvmMain/resources/app_icon.png"))
             }
         }
     }
