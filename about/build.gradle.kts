@@ -31,7 +31,11 @@ kotlin {
 
         androidResources { enable = true }
     }
-    jvm()
+    jvm {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
+        }
+    }
     iosArm64()
     iosSimulatorArm64()
 

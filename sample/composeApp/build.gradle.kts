@@ -29,7 +29,11 @@ kotlin {
 
         androidResources { enable = true }
     }
-    jvm()
+    jvm {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
+        }
+    }
 
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {

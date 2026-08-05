@@ -1,3 +1,4 @@
+import io.gitlab.arturbosch.detekt.Detekt
 import org.gradle.plugins.signing.Sign
 
 plugins {
@@ -58,6 +59,9 @@ allprojects {
 
 fun Project.configureDetekt() {
     apply(plugin = "io.gitlab.arturbosch.detekt")
+    tasks.withType<Detekt>().configureEach {
+        jvmTarget = "11"
+    }
     detekt {
         buildUponDefaultConfig = true
         config.setFrom(
