@@ -1,31 +1,46 @@
 package glass.yasan.toolkit.core.url
 
+import glass.yasan.toolkit.core.annotation.InternalToolkitApi
+import glass.yasan.toolkit.core.app.ToolkitApp
 import glass.yasan.toolkit.core.coroutines.DispatcherProvider
+import glass.yasan.toolkit.core.tracking.withUtmSourceParameter
+import glass.yasan.toolkit.core.url.UrlLaunchResult.Failure.Error
+import glass.yasan.toolkit.core.url.UrlLaunchResult.Failure.InvalidUrl
+import glass.yasan.toolkit.core.url.UrlLaunchResult.Failure.Unsupported
+import glass.yasan.toolkit.core.url.UrlLaunchResult.Success
+import io.ktor.http.toURI
 import kotlinx.coroutines.withContext
 import java.awt.Desktop
-import java.net.URI
 import java.net.URISyntaxException
 
 public actual class UrlLauncherImpl(
     private val dispatcherProvider: DispatcherProvider,
+    private val toolkitApp: ToolkitApp,
 ) : UrlLauncher {
 
+    @OptIn(InternalToolkitApi::class)
     actual override suspend fun launch(url: String): UrlLaunchResult = try {
-        val uri = URI(url)
+        val trackedUrl = url.withUtmSourceParameter(toolkitApp)
 
-        if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
-            withContext(dispatcherProvider.io) {
-                Desktop.getDesktop().browse(uri)
-            }
-            UrlLaunchResult.Success
+        if (trackedUrl == null) {
+            InvalidUrl
         } else {
-            UrlLaunchResult.Failure.Unsupported
+            if (Desktop.isDesktopSupported() && Desktop.getDesktop()
+                    .isSupported(Desktop.Action.BROWSE)
+            ) {
+                withContext(dispatcherProvider.io) {
+                    Desktop.getDesktop().browse(trackedUrl.toURI())
+                }
+                Success
+            } else {
+                Unsupported
+            }
         }
     } catch (_: URISyntaxException) {
-        UrlLaunchResult.Failure.InvalidUrl
+        InvalidUrl
     } catch (_: IllegalArgumentException) {
-        UrlLaunchResult.Failure.InvalidUrl
+        InvalidUrl
     } catch (e: Exception) {
-        UrlLaunchResult.Failure.Error(e)
+        Error(e)
     }
 }

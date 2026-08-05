@@ -1,17 +1,29 @@
 package glass.yasan.toolkit.core.url
 
+import glass.yasan.toolkit.core.annotation.InternalToolkitApi
+import glass.yasan.toolkit.core.app.ToolkitApp
+import glass.yasan.toolkit.core.tracking.withUtmSourceParameter
+import glass.yasan.toolkit.core.url.UrlLaunchResult.Failure.Error
+import glass.yasan.toolkit.core.url.UrlLaunchResult.Failure.InvalidUrl
+import glass.yasan.toolkit.core.url.UrlLaunchResult.Failure.Unsupported
+import glass.yasan.toolkit.core.url.UrlLaunchResult.Success
 import kotlinx.coroutines.suspendCancellableCoroutine
 import platform.Foundation.NSURL
 import platform.UIKit.UIApplication
 import kotlin.coroutines.resume
 
-public actual class UrlLauncherImpl : UrlLauncher {
+public actual class UrlLauncherImpl(
+    private val toolkitApp: ToolkitApp,
+) : UrlLauncher {
 
+    @OptIn(InternalToolkitApi::class)
     actual override suspend fun launch(url: String): UrlLaunchResult =
         try {
+            val trackedUrl = url.withUtmSourceParameter(toolkitApp)
+                ?: return InvalidUrl
             val nsUrl = NSURL.URLWithString(
-                URLString = url,
-            ) ?: return UrlLaunchResult.Failure.InvalidUrl
+                URLString = trackedUrl.toString(),
+            ) ?: return InvalidUrl
 
             suspendCancellableCoroutine { continuation ->
                 UIApplication.sharedApplication.openURL(
@@ -19,13 +31,13 @@ public actual class UrlLauncherImpl : UrlLauncher {
                     options = emptyMap<Any?, Any>(),
                 ) { success ->
                     if (success) {
-                        continuation.resume(UrlLaunchResult.Success)
+                        continuation.resume(Success)
                     } else {
-                        continuation.resume(UrlLaunchResult.Failure.Unsupported)
+                        continuation.resume(Unsupported)
                     }
                 }
             }
         } catch (e: Exception) {
-            UrlLaunchResult.Failure.Error(e)
+            Error(e)
         }
 }

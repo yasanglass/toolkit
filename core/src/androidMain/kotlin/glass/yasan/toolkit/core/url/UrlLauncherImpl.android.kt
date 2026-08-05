@@ -5,13 +5,24 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.browser.customtabs.CustomTabsIntent
+import glass.yasan.toolkit.core.annotation.InternalToolkitApi
+import glass.yasan.toolkit.core.app.ToolkitApp
+import glass.yasan.toolkit.core.tracking.withUtmSourceParameter
+import glass.yasan.toolkit.core.url.UrlLaunchResult.Failure.Error
+import glass.yasan.toolkit.core.url.UrlLaunchResult.Failure.InvalidUrl
+import glass.yasan.toolkit.core.url.UrlLaunchResult.Failure.Unsupported
+import glass.yasan.toolkit.core.url.UrlLaunchResult.Success
 
 public actual class UrlLauncherImpl(
     private val context: Context,
+    private val toolkitApp: ToolkitApp,
 ) : UrlLauncher {
 
+    @OptIn(InternalToolkitApi::class)
     actual override suspend fun launch(url: String): UrlLaunchResult = try {
-        val uri = Uri.parse(url)
+        val trackedUrl = url.withUtmSourceParameter(toolkitApp)
+            ?: return InvalidUrl
+        val uri = Uri.parse(trackedUrl.toString())
 
         try {
             val customTabsIntent = CustomTabsIntent.Builder().build().apply {
@@ -20,21 +31,21 @@ public actual class UrlLauncherImpl(
                 }
             }
             customTabsIntent.launchUrl(context, uri)
-            UrlLaunchResult.Success
+            Success
         } catch (_: Exception) {
             val intent = Intent(Intent.ACTION_VIEW, uri).apply {
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             }
             try {
                 context.startActivity(intent)
-                UrlLaunchResult.Success
+                Success
             } catch (_: ActivityNotFoundException) {
-                UrlLaunchResult.Failure.Unsupported
+                Unsupported
             } catch (e: Exception) {
-                UrlLaunchResult.Failure.Error(e)
+                Error(e)
             }
         }
     } catch (e: Exception) {
-        UrlLaunchResult.Failure.Error(e)
+        Error(e)
     }
 }

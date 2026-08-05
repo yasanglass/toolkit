@@ -51,6 +51,12 @@ kotlin {
         commonMain {
             dependencies {
                 implementation(libs.jetbrains.kotlinx.coroutines.core)
+                implementation(libs.ktor.http)
+            }
+        }
+        commonTest {
+            dependencies {
+                implementation(libs.jetbrains.kotlin.test)
             }
         }
         val nonWebMain by creating {
