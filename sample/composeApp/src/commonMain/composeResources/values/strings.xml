@@ -1,5 +1,4 @@
 <resources>
-    <string name="about">About</string>
     <string name="app_name">Toolkit</string>
     <string name="colors">Colors</string>
     <string name="dark_theme">Dark Theme</string>
@@ -7,4 +6,5 @@
     <string name="go_back">Go Back</string>
     <string name="increment">Increment</string>
     <string name="theme">Theme</string>
+    <string name="website">Website</string>
 </resources>

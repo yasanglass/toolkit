@@ -14,10 +14,11 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "toolkit"
-include(":about")
 include(":compose")
 include(":core")
 include(":koin")
-include(":sample")
-include(":sample:androidApp")
-include(":sample:composeApp")
+if (gradle.parent == null) {
+    include(":sample")
+    include(":sample:androidApp")
+    include(":sample:composeApp")
+}

@@ -67,6 +67,7 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
+                implementation(project(":compose"))
                 implementation(project(":koin"))
 
                 implementation(libs.jetbrains.compose.components.resources)

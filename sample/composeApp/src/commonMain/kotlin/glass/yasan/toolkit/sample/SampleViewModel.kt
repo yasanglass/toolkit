@@ -1,6 +1,5 @@
 package glass.yasan.toolkit.sample
 
-import glass.yasan.toolkit.about.domain.model.Developer
 import glass.yasan.toolkit.compose.viewmodel.ToolkitViewModel
 import glass.yasan.toolkit.compose.viewmodel.ViewAction
 import glass.yasan.toolkit.compose.viewmodel.ViewEvent
@@ -11,17 +10,20 @@ import glass.yasan.toolkit.sample.SampleViewModel.State
 
 internal class SampleViewModel : ToolkitViewModel<State, Event, Action>() {
 
+    companion object {
+        private const val DEVELOPER_URL = "https://yasan.glass"
+    }
+
     override fun defaultViewState(): State = State()
 
     data class State(
-        val developer: Developer = Developer(),
         val count: Int = 0,
     ) : ViewState
 
     sealed interface Event : ViewEvent {
-        data class DeveloperLinkClick(val link: Developer.Link) : Event
         data object Increment : Event
         data object Decrement : Event
+        data object WebsiteClick : Event
     }
 
     sealed interface Action : ViewAction {
@@ -38,8 +40,8 @@ internal class SampleViewModel : ToolkitViewModel<State, Event, Action>() {
                 updateViewState { copy(count = count - 1) }
             }
 
-            is Event.DeveloperLinkClick -> {
-                sendViewAction(action = Action.LaunchUrl(event.link.url))
+            Event.WebsiteClick -> {
+                sendViewAction(action = Action.LaunchUrl(DEVELOPER_URL))
             }
         }
     }

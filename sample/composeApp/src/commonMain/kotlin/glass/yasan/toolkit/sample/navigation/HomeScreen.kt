@@ -23,16 +23,15 @@ import glass.yasan.kepko.component.HorizontalDivider
 import glass.yasan.kepko.component.PreferenceAppIdentity
 import glass.yasan.kepko.component.Scaffold
 import glass.yasan.kepko.component.Text
-import glass.yasan.toolkit.about.presentation.compose.ToolkitDeveloperBanner
 import glass.yasan.toolkit.compose.spacer.VerticalSpacer
 import glass.yasan.toolkit.compose.spacer.verticalSpacerItem
 import glass.yasan.toolkit.composeapp.generated.resources.Res
-import glass.yasan.toolkit.composeapp.generated.resources.about
 import glass.yasan.toolkit.composeapp.generated.resources.app_icon
 import glass.yasan.toolkit.composeapp.generated.resources.app_name
 import glass.yasan.toolkit.composeapp.generated.resources.decrement
 import glass.yasan.toolkit.composeapp.generated.resources.increment
 import glass.yasan.toolkit.composeapp.generated.resources.theme
+import glass.yasan.toolkit.composeapp.generated.resources.website
 import glass.yasan.toolkit.sample.SampleViewModel
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -41,7 +40,6 @@ import org.jetbrains.compose.resources.stringResource
 internal fun HomeScreen(
     viewState: SampleViewModel.State,
     sendViewEvent: (SampleViewModel.Event) -> Unit,
-    onNavigateToAbout: () -> Unit,
     onNavigateToTheme: () -> Unit,
 ) {
     Scaffold(
@@ -64,8 +62,8 @@ internal fun HomeScreen(
 
             item {
                 Button(
-                    text = stringResource(Res.string.about),
-                    onClick = onNavigateToAbout,
+                    text = stringResource(Res.string.theme),
+                    onClick = onNavigateToTheme,
                     textAlign = TextAlign.Center,
                 )
             }
@@ -74,8 +72,8 @@ internal fun HomeScreen(
 
             item {
                 Button(
-                    text = stringResource(Res.string.theme),
-                    onClick = onNavigateToTheme,
+                    text = stringResource(Res.string.website),
+                    onClick = { sendViewEvent(SampleViewModel.Event.WebsiteClick) },
                     textAlign = TextAlign.Center,
                 )
             }
@@ -98,7 +96,6 @@ private fun LazyListScope.footers() {
             extras = arrayOf(100.toString(), "flavor"),
         )
     }
-    item { ToolkitDeveloperBanner() }
 }
 
 @Composable

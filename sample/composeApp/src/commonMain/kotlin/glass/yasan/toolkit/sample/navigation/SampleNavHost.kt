@@ -53,7 +53,6 @@ internal fun SampleNavHost(
             HomeScreen(
                 viewState = viewState,
                 sendViewEvent = sendViewEvent,
-                onNavigateToAbout = { navController.navigate(Route.About) },
                 onNavigateToTheme = { navController.navigate(Route.Theme) },
             )
         }
@@ -61,12 +60,6 @@ internal fun SampleNavHost(
         composable<Route.Theme> {
             PersistentPreferenceThemeScreen(
                 onBackClick = { navController.navigateUp() },
-            )
-        }
-
-        composable<Route.About> {
-            AboutScreen(
-                onNavigateBack = { navController.navigateUp() },
             )
         }
     }

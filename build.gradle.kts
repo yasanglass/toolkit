@@ -15,7 +15,6 @@ plugins {
 }
 
 dependencies {
-    dokka(project(":about"))
     dokka(project(":compose"))
     dokka(project(":core"))
     dokka(project(":koin"))
