@@ -71,13 +71,10 @@ kotlin {
                 implementation(project(":koin"))
 
                 implementation(libs.jetbrains.compose.components.resources)
-                implementation(libs.jetbrains.compose.components.ui.tooling.preview)
                 implementation(libs.jetbrains.compose.foundation)
                 implementation(libs.jetbrains.compose.material3)
                 implementation(libs.jetbrains.compose.runtime)
                 implementation(libs.jetbrains.compose.ui)
-                implementation(libs.androidx.lifecycle.runtime.compose)
-                implementation(libs.androidx.lifecycle.viewmodel.compose)
                 implementation(libs.androidx.navigation.compose)
                 implementation(libs.glass.yasan.kepko.persistence)
                 implementation(libs.glass.yasan.kepko.component)

@@ -71,11 +71,6 @@ kotlin {
         wasmJsMain {
             dependsOn(nonAndroidMain)
         }
-        androidMain {
-            dependencies {
-                implementation(libs.jetbrains.kotlinx.coroutines.android)
-            }
-        }
         jvmTest {
             dependencies {
                 implementation(libs.koin.test)

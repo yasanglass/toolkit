@@ -1,6 +1,6 @@
 package glass.yasan.toolkit.compose.preview
 
-import org.jetbrains.compose.ui.tooling.preview.PreviewParameterProvider
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 
 /**
  * A [PreviewParameterProvider] that provides Boolean values: `true`, `false`.
