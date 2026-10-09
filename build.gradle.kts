@@ -1,4 +1,4 @@
-import io.gitlab.arturbosch.detekt.Detekt
+import dev.detekt.gradle.Detekt
 import org.gradle.plugins.signing.Sign
 
 plugins {
@@ -8,7 +8,7 @@ plugins {
     alias(libs.plugins.android.kmp.library) apply false
     alias(libs.plugins.jetbrains.compose) apply false
     alias(libs.plugins.vanniktech.maven.publish) apply false
-    alias(libs.plugins.arturbosch.detekt) apply true
+    alias(libs.plugins.detekt) apply true
     alias(libs.plugins.jetbrains.kotlinx.kover)
     alias(libs.plugins.jetbrains.dokka)
     alias(libs.plugins.iurysouza.modulegraph)
@@ -57,7 +57,7 @@ allprojects {
 }
 
 fun Project.configureDetekt() {
-    apply(plugin = "io.gitlab.arturbosch.detekt")
+    apply(plugin = "dev.detekt")
     tasks.withType<Detekt>().configureEach {
         jvmTarget = "11"
     }
